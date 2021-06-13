@@ -1,0 +1,642 @@
+//-----------------------------------------------------------------------------
+//Api_2_Erh_Facrbbs_Bss_1.java
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+//Package Definition
+//-----------------------------------------------------------------------------
+package uicc.test.toolkit.api_2_erh_facrbbs_bss;
+
+import javacard.framework.Util;
+import uicc.test.util.TestToolkitApplet;
+import uicc.toolkit.*;
+
+//-----------------------------------------------------------------------------
+//Imports
+//-----------------------------------------------------------------------------
+
+/**
+ * Test Area : uicc.test.toolkit.api_2_erh_facrbbs_bss
+ *
+ * @version 0.0.1 - 8 avr. 2005
+ * @author 3GPP T3 SWG API
+ */
+public class Api_2_Erh_Facrbbs_Bss_1 extends TestToolkitApplet {
+
+    // Number of tests
+    byte testCaseNb = (byte) 0x00;
+
+    byte[] ref_data = {(byte)0x01,(byte)0x02,(byte)0x03,(byte)0x04,(byte)0x05,(byte)0x06,(byte)0x07,(byte)0x08,(byte)0x09,(byte)0x0A,(byte)0x0B,(byte)0x0C,(byte)0x0D,(byte)0x0E,(byte)0x0F,(byte)0x10,
+                       (byte)0x11,(byte)0x12,(byte)0x13,(byte)0x14,(byte)0x15,(byte)0x16,(byte)0x17,(byte)0x18,(byte)0x19,(byte)0x1A,(byte)0x1B,(byte)0x1C,(byte)0x1D,(byte)0x1E,(byte)0x1F,(byte)0x20,
+                       (byte)0x21,(byte)0x22,(byte)0x23,(byte)0x24,(byte)0x25,(byte)0x26,(byte)0x27,(byte)0x28,(byte)0x29,(byte)0x2A,(byte)0x2B,(byte)0x2C,(byte)0x2D,(byte)0x2E,(byte)0x2F,(byte)0x30,
+                       (byte)0x31,(byte)0x32,(byte)0x33,(byte)0x34,(byte)0x35,(byte)0x36,(byte)0x37,(byte)0x38,(byte)0x39,(byte)0x3A,(byte)0x3B,(byte)0x3C,(byte)0x3D,(byte)0x3E,(byte)0x3F,(byte)0x40,
+                       (byte)0x41,(byte)0x42,(byte)0x43,(byte)0x44,(byte)0x45,(byte)0x46,(byte)0x47,(byte)0x48,(byte)0x49,(byte)0x4A,(byte)0x4B,(byte)0x4C,(byte)0x4D,(byte)0x4E,(byte)0x4F,(byte)0x50,
+                       (byte)0x51,(byte)0x52,(byte)0x53,(byte)0x54,(byte)0x55,(byte)0x56,(byte)0x57,(byte)0x58,(byte)0x59,(byte)0x5A,(byte)0x5B,(byte)0x5C,(byte)0x5D,(byte)0x5E,(byte)0x5F,(byte)0x60,
+                       (byte)0x61,(byte)0x62,(byte)0x63,(byte)0x64,(byte)0x65,(byte)0x66,(byte)0x67,(byte)0x68,(byte)0x69,(byte)0x6A,(byte)0x6B,(byte)0x6C,(byte)0x6D,(byte)0x6E,(byte)0x6F,(byte)0x70,
+                       (byte)0x71,(byte)0x72,(byte)0x73,(byte)0x74,(byte)0x75,(byte)0x76,(byte)0x77,(byte)0x78,(byte)0x79,(byte)0x7A,(byte)0x7B,(byte)0x7C,(byte)0x7D,(byte)0x7E,(byte)0x7F,(byte)0x80,
+                       (byte)0x81,(byte)0x82,(byte)0x83,(byte)0x84,(byte)0x85,(byte)0x86,(byte)0x87,(byte)0x88,(byte)0x89,(byte)0x8A,(byte)0x8B,(byte)0x8C,(byte)0x8D,(byte)0x8E,(byte)0x8F,(byte)0x90,
+                       (byte)0x91,(byte)0x92,(byte)0x93,(byte)0x94,(byte)0x95,(byte)0x96,(byte)0x97,(byte)0x98,(byte)0x99,(byte)0x9A,(byte)0x9B,(byte)0x9C,(byte)0x9D,(byte)0x9E,(byte)0x9F,(byte)0xA0,
+                       (byte)0xA1,(byte)0xA2,(byte)0xA3,(byte)0xA4,(byte)0xA5,(byte)0xA6,(byte)0xA7,(byte)0xA8,(byte)0xA9,(byte)0xAA,(byte)0xAB,(byte)0xAC,(byte)0xAD,(byte)0xAE,(byte)0xAF,(byte)0xB0,
+                       (byte)0xB1,(byte)0xB2,(byte)0xB3,(byte)0xB4,(byte)0xB5,(byte)0xB6,(byte)0xB7,(byte)0xB8,(byte)0xB9,(byte)0xBA,(byte)0xBB,(byte)0xBC,(byte)0xBD,(byte)0xBE,(byte)0xBF,(byte)0xC0,
+                       (byte)0xC1,(byte)0xC2,(byte)0xC3,(byte)0xC4,(byte)0xC5,(byte)0xC6,(byte)0xC7,(byte)0xC8,(byte)0xC9,(byte)0xCA,(byte)0xCB,(byte)0xCC,(byte)0xCD,(byte)0xCE,(byte)0xCF,(byte)0xD0,
+                       (byte)0xD1,(byte)0xD2,(byte)0xD3,(byte)0xD4,(byte)0xD5,(byte)0xD6,(byte)0xD7,(byte)0xD8,(byte)0xD9,(byte)0xDA,(byte)0xDB,(byte)0xDC,(byte)0xDD,(byte)0xDE,(byte)0xDF,(byte)0xE0,
+                       (byte)0xE1,(byte)0xE2,(byte)0xE3,(byte)0xE4,(byte)0xE5,(byte)0xE6,(byte)0xE7,(byte)0xE8,(byte)0xE9,(byte)0xEA,(byte)0xEB,(byte)0xEC,(byte)0xED,(byte)0xEE,(byte)0xEF,(byte)0xF0,
+                       (byte)0xF1,(byte)0xF2,(byte)0xF3,(byte)0xF4,(byte)0xF5,(byte)0xF6,(byte)0xF7,(byte)0xF8,(byte)0xF9,(byte)0xFA,(byte)0xFB,(byte)0xFC,(byte)0xFD,(byte)0xFE,(byte)0xFF,(byte)0x00
+                      };
+
+    /**
+    * Constructor of the applet
+    */
+    public Api_2_Erh_Facrbbs_Bss_1() 
+    {
+    }
+
+    /**
+    * Method called by the JCRE at the installation of the applet
+    */
+    public static void install(byte bArray[], short bOffset, byte bLength) 
+    {
+        // Create a new applet instance
+        Api_2_Erh_Facrbbs_Bss_1  thisApplet = new Api_2_Erh_Facrbbs_Bss_1();
+
+        // Register the new applet instance to the JCRE            
+        thisApplet.register(bArray, (short)(bOffset+1), bArray[bOffset]);
+
+        // Initialise the data of the test applet
+        thisApplet.init();
+        
+        // Register on UNRECOGNIZED ENVELOPE
+        thisApplet.obReg.setEvent(EVENT_UNRECOGNIZED_ENVELOPE);
+    }
+
+    public void processToolkit(short event) {
+        // Result of tests
+        boolean bRes ;
+
+        // Number of tests
+        byte testCaseNb = (byte) 0x00 ;
+        
+        // Get the system instance of the EnvelopeResponseHandler class
+        EnvelopeResponseHandler EnvRespHdlr = EnvelopeResponseHandlerSystem.getTheHandler() ;
+
+        // --------------------------------------------
+        // Test Case 1 : Null as compareBuffer
+        testCaseNb = (byte) 1 ;
+        bRes = false ;
+
+        byte[] compareBuffer5=new byte[5];
+        byte[] TLVBuffer=new byte[20];
+
+        try {
+            // initialise the buffer
+            for(short i=1;i<17;i++)
+                TLVBuffer[i]=(byte)(i-1);
+            TLVBuffer[0]=(byte)4;
+
+            //built the first tlv
+            EnvRespHdlr.appendTLV((byte)0x0D,TLVBuffer,(short) 0x00, (short) 17);
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte) 1, (short) 0, null, (short) 0, (short) 1) ;
+            }
+            catch (NullPointerException e) {
+                bRes = true ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 2 : compareOffset >= compareBuffer.length
+        testCaseNb = (byte) 2 ;
+        bRes = false ;
+
+        try {
+            
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, compareBuffer5, (short)5, (short)1) ;
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+                bRes = true ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 3 : compareOffset < 0
+        testCaseNb = (byte) 3 ;
+        bRes = false ;
+        
+        try {
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, compareBuffer5, (short)-1, (short)1) ;
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+                bRes = true ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 4 : compareLength > compareBufferLength
+        testCaseNb = (byte) 4 ;
+        bRes = false ;
+
+        try {
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, compareBuffer5, (short)0, (short)6) ;
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+                bRes = true ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+        // --------------------------------------------
+        // Test Case 5 : compareOffset + compareLength > compareBuffer.length
+        testCaseNb = (byte) 5 ;
+        bRes = false ;
+
+        try {
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, compareBuffer5, (short)3, (short)3) ;
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+                bRes = true ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 6 : compareLength < 0
+        testCaseNb = (byte) 6 ;
+        bRes = false ;
+
+        try {
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0 , compareBuffer5, (short)0 , (short)-1) ;
+            }
+            catch (ArrayIndexOutOfBoundsException e) {
+                bRes = true ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 7 : valueOffset >= Text String Length
+        testCaseNb = (byte) 7 ;
+        bRes = false ;
+
+        byte[] compareBuffer15=new byte[15];
+        try {
+
+            // initialise the buffer
+            for(short i=1;i<17;i++)
+                TLVBuffer[i]=(byte)(i-1);
+            TLVBuffer[0]=(byte)4;
+
+            //built the first tlv
+            EnvRespHdlr.clear();
+            EnvRespHdlr.appendTLV((byte)0x0D,TLVBuffer,(short) 0x00, (short) 6);
+
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)6, compareBuffer15, (short)0, (short)1) ;
+            }
+            catch (ToolkitException e) {
+                bRes = (e.getReason()==ToolkitException.OUT_OF_TLV_BOUNDARIES) ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 8 : valueOffset < 0
+        testCaseNb = (byte) 8 ;
+        bRes = false ;
+
+        try {
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)-1, compareBuffer15, (short)0, (short)1) ;
+            }
+            catch (ToolkitException e) {
+                bRes = (e.getReason()==ToolkitException.OUT_OF_TLV_BOUNDARIES) ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 9 : compareLength > Text String length
+        testCaseNb = (byte) 9 ;
+        bRes = false ;
+
+        try {
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, compareBuffer15, (short)0, (short)7) ;
+            }
+            catch (ToolkitException e) {
+                bRes = (e.getReason()==ToolkitException.OUT_OF_TLV_BOUNDARIES) ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 10 : valueOffset + compareLength > Text String Length
+        testCaseNb = (byte) 10 ;
+        bRes = false ;
+
+        try {
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)2, compareBuffer15, (short)0, (short)5) ;
+            }
+            catch (ToolkitException e) {
+                bRes = (e.getReason()==ToolkitException.OUT_OF_TLV_BOUNDARIES) ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 11 : Invalid parameter
+        testCaseNb = (byte) 11 ;
+        bRes = false ;
+
+        try {
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)0, (short)0, compareBuffer15, (short)0, (short)1) ;
+            }
+            catch (ToolkitException e) {
+                bRes = (e.getReason()==ToolkitException.BAD_INPUT_PARAMETER) ;
+            }
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 12 : Unavailable Element
+        testCaseNb = (byte) 12 ;
+        bRes = false ;
+
+        // Initialise the handler
+        EnvRespHdlr.appendTLV((byte)0x02,TLVBuffer,(short) 0x00, (short) 2);
+    
+        // Select a TLV
+        EnvRespHdlr.findTLV(TAG_DEVICE_IDENTITIES, (byte)1) ;
+
+        // FindAndCompareValue
+        try {
+            EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)2, (short)0, compareBuffer15, (short)0, (short)1) ;
+        }
+        catch (ToolkitException e) {
+            bRes = (e.getReason()==ToolkitException.UNAVAILABLE_ELEMENT) ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 13 : verify the current TLV
+        testCaseNb = (byte) 13 ;
+        bRes = false ;
+
+        // Verify there is no selected TLV
+        try {
+            EnvRespHdlr.getValueLength() ;
+        }
+        catch (ToolkitException e) {
+            bRes = (e.getReason()==ToolkitException.UNAVAILABLE_ELEMENT) ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+        // --------------------------------------------
+        // Test Case 14 : Successful call
+        testCaseNb = (byte) 14 ;
+        bRes = false ;
+
+        byte[] compareBuffer17=new byte[17];
+
+        try {
+
+            // initialise the buffer
+            for(short i=1;i<17;i++) {
+                compareBuffer17[i]=(byte)(i-1);
+                TLVBuffer[i]=(byte)(i-1);
+            }
+            TLVBuffer[0]=(byte)4;
+            compareBuffer17[0]=(byte)4;
+
+            //built the first tlv
+            EnvRespHdlr.clear();
+            EnvRespHdlr.appendTLV((byte)0x0D,TLVBuffer,(short) 0x00, (short) 17);
+
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, compareBuffer17, (short)0, (short)17)==0)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 15 : Verify current TLV
+        testCaseNb = (byte) 15 ;
+        bRes = false ;
+
+        try {
+            if(EnvRespHdlr.getValueLength()==(short)17)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 16 : Successful call
+        testCaseNb = (byte) 16;
+        bRes = false ;
+
+        try {
+            // Initialise buffers
+            compareBuffer17[16] = 0x10 ;
+
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, compareBuffer17, (short)0, (short)17)==-1)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+        // --------------------------------------------
+        // Test Case 17 : Successful call
+        testCaseNb = (byte) 17;
+        bRes = false ;
+
+        try {
+            // Initialise buffers
+            compareBuffer17[16] = 0x0F ;
+            compareBuffer17[0] = 0x03 ;
+                                    
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, compareBuffer17, (short)0, (short)17)==+1)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 18 : Successful call
+        testCaseNb = (byte) 18;
+        bRes = false ;
+
+        EnvRespHdlr.clear();
+        EnvRespHdlr.appendTLV((byte)0x0D,ref_data,(short)0,(short)0x81);
+        TLVBuffer = new byte[134];
+        Util.arrayFillNonAtomic(TLVBuffer,(short)0,(short)TLVBuffer.length,(byte)0x55);
+        Util.arrayCopyNonAtomic(ref_data,(short)0,TLVBuffer,(short)3,(short)0x81);
+        
+        try {
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, TLVBuffer, (short)3, (short)0x81)==0)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+        // --------------------------------------------
+        // Test Case 19 : Successful call
+        testCaseNb = (byte) 19;
+        bRes = false ;
+
+        try {
+            // Initialise buffers
+            TLVBuffer[130]=(byte)0x7F ;
+                                    
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, TLVBuffer, (short)3, (short)0x81)==-1)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 20 : Successful call
+        testCaseNb = (byte) 20;
+        bRes = false ;
+
+        try {
+            // Initialise buffers
+            TLVBuffer[130]=(byte)0x80 ;
+            TLVBuffer[131]=(byte)0x80 ;
+                                    
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, TLVBuffer, (short)3, (short)0x81)==+1)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 21 : Successful call
+        testCaseNb = (byte)21 ;
+        bRes = false ;
+
+        try {
+
+            // Append a 2nd Text String TLV
+            TLVBuffer[0] = (byte)0x00 ;
+            TLVBuffer[1] = (byte)0x11 ;
+            TLVBuffer[2] = (byte)0x22 ;
+            TLVBuffer[3] = (byte)0x33 ;
+            TLVBuffer[4] = (byte)0x44 ;
+            TLVBuffer[5] = (byte)0x55 ;
+
+            EnvRespHdlr.appendTLV((byte)0x0D, TLVBuffer, (short)0, (short)6) ;
+
+            // initialise the buffer
+            Util.arrayFillNonAtomic(TLVBuffer,(short)0,(short)TLVBuffer.length,(byte)0x55);
+            Util.arrayCopyNonAtomic(ref_data,(short)0,TLVBuffer,(short)3,(short)0x81);
+
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)1, (short)0, TLVBuffer, (short)3, (short)0x81)==0)
+                bRes=true;    
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 22 : Successful call
+        testCaseNb = (byte)22 ;
+        bRes = false ;
+
+        try {
+
+            // Append a 2nd Text String TLV
+            TLVBuffer[0] = (byte)0x00 ;
+            TLVBuffer[1] = (byte)0x11 ;
+            TLVBuffer[2] = (byte)0x22 ;
+            TLVBuffer[3] = (byte)0x33 ;
+            TLVBuffer[4] = (byte)0x44 ;
+            TLVBuffer[5] = (byte)0x55 ;
+
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)2, (short)0, TLVBuffer, (short)0, (short)6)==0)
+                bRes=true;    
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 23 : Successful call
+        testCaseNb = (byte)23 ;
+        bRes = false ;
+
+        try {
+            // Initialise buffers
+            TLVBuffer[5] = (byte)0x66 ;
+                                    
+            if(EnvRespHdlr.findAndCompareValue((byte)0x0D, (byte)2, (short)0, TLVBuffer, (short)0, (short)6)==-1)
+                bRes=true;    
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 24 : Successful call : search tag 8Dh
+        testCaseNb = (byte) 24 ;
+        bRes = false ;
+
+        TLVBuffer = new byte[17];
+        try {
+            // initialise the buffer
+            for(short i=1;i<17;i++) 
+                TLVBuffer[i]=(byte)(i-1);
+            TLVBuffer[0]=(byte)4;
+
+            EnvRespHdlr.clear();
+            EnvRespHdlr.appendTLV((byte)0x0D, TLVBuffer, (short)0, (short)17) ;
+
+            if(EnvRespHdlr.findAndCompareValue((byte)0x8D, (byte)1, (short)0, TLVBuffer, (short)0, (short)17)==0)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 25 : Successful call : search tag 8Fh
+        testCaseNb = (byte) 25 ;
+        bRes = false ;
+
+        byte[] compareBuffer16=new byte[16];
+
+        try {
+            // Append tag 0Fh
+            EnvRespHdlr.appendTLV((byte)0x0F, TLVBuffer, (short)1, (short)16) ;
+            
+            for(short i=0;i<16;i++) 
+                TLVBuffer[i]=TLVBuffer[(short)(i+1)];
+            
+            if(EnvRespHdlr.findAndCompareValue((byte)0x8F, (byte)1, (short)0, TLVBuffer, (short)0, (short)16)==0)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+
+        // --------------------------------------------
+        // Test Case 26 : Successful call (with the length = 0 and the offset = length of the comparaison buffer)
+        testCaseNb = (byte) 26 ;
+        bRes = false ;
+
+        try {
+            if(EnvRespHdlr.findAndCompareValue((byte)0x8F, (byte)1, (short)0, TLVBuffer, (short)TLVBuffer.length, (short)0)==0)
+                bRes=true;
+        }
+        catch (Exception e) {
+            bRes = false ;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+
+        // --------------------------------------------
+        // Test Case 27 : ToolkitException HANDLER_NOT_AVAILABLE
+        testCaseNb = (byte) 27 ;
+        bRes = false ;
+
+        try {
+            EnvRespHdlr.clear();
+            EnvRespHdlr.post(true);
+            try {
+                EnvRespHdlr.findAndCompareValue((byte)0x8F, (byte)1, (short)0, TLVBuffer, (short)0x0F, (short)0);
+            }
+            catch (ToolkitException e) {
+                if (e.getReason() == ToolkitException.HANDLER_NOT_AVAILABLE) {
+                    bRes = true;
+                } else {
+                    bRes = false;
+                }
+            }
+        }
+        catch (Exception e) {
+            bRes = false;
+        }
+        reportTestOutcome(testCaseNb, bRes) ;
+    }
+}
