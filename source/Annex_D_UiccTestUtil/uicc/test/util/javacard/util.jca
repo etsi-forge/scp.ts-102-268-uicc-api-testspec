@@ -1,0 +1,466 @@
+// converted by version 1.3
+// on Wed Sep 27 10:19:00 CEST 2006
+
+.package uicc/test/util {
+	.aid 0xA0:0x0:0x0:0x0:0x9:0x0:0x5:0xFF:0xFF:0xFF:0xFF:0x89:0xF0:0x0:0x0:0x0;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.2;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x9:0x0:0x5:0xFF:0xFF:0xFF:0xFF:0x89:0x12:0x0:0x0:0x0 1.0;		//uicc/toolkit
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef byte[] TestToolkitApplet/baTestAppletId;
+		// 1
+		instanceFieldRef byte[] TestToolkitApplet/baTestsResults;
+		// 2
+		instanceFieldRef 1.9 TestToolkitApplet/obReg;
+		// 3
+		instanceFieldRef byte[] UICCTestConstants/AID_ADF1;
+		// 4
+		instanceFieldRef byte[] UICCTestConstants/AID_ADF2;
+		// 5
+		staticMethodRef 0.8.9()S;		// javacard/framework/JCSystem.getVersion()S
+		// 6
+		staticMethodRef 0.13.1(S)V;		// javacard/framework/SystemException.throwIt(S)V
+		// 7
+		staticMethodRef 0.8.3()Ljavacard/framework/AID;;		// javacard/framework/JCSystem.getAID()Ljavacard/framework/AID;
+			.descriptor	Ljavacard/framework/AID;	0.6;
+
+		// 8
+		virtualMethodRef 0.6.3([BS)B;		// javacard/framework/AID.getBytes([BS)B
+		// 9
+		staticMethodRef 0.16.3([BSSB)S;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+		// 10
+		virtualMethodRef 0.3.3()Z;		// javacard/framework/Applet.selectingApplet()Z
+		// 11
+		virtualMethodRef 0.10.7()S;		// javacard/framework/APDU.setOutgoing()S
+		// 12
+		virtualMethodRef 0.10.9(S)V;		// javacard/framework/APDU.setOutgoingLength(S)V
+		// 13
+		virtualMethodRef 0.10.5([BSS)V;		// javacard/framework/APDU.sendBytesLong([BSS)V
+		// 14
+		staticMethodRef 0.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 15
+		staticMethodRef 2.0.0()V;		// java/lang/Object.<init>()V
+		// 16
+		staticMethodRef 1.16.0()Luicc/toolkit/ToolkitRegistry;;		// uicc/toolkit/ToolkitRegistrySystem.getEntry()Luicc/toolkit/ToolkitRegistry;
+			.descriptor	Luicc/toolkit/ToolkitRegistry;	1.9;
+
+		// 17
+		staticMethodRef 0.3.0()V;		// javacard/framework/Applet.<init>()V
+	}
+
+	.class public abstract TestToolkitApplet 0 extends 0.3 {		// extends javacard/framework/Applet
+
+		.shareable;
+
+		.fields {
+			protected 1.9 obReg 0;		// Luicc/toolkit/ToolkitRegistry;
+			private byte[] baTestAppletId 1;		// [B
+			private byte[] baTestsResults 2;		// [B
+			private static final short VERSION = 514;		// S
+		}
+
+		.publicMethodTable 5 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+			init()V;
+			reportTestOutcome(BZ)V;
+			processToolkit(S)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.implementedInterfaceInfoTable { 
+			.interface 0.2 { 		// javacard/framework/Shareable
+			}
+
+			.interface 1.8 { 		// uicc/toolkit/ToolkitInterface
+				10;		// processToolkit(S)V
+			}
+
+			.interface 1.7 { 		// uicc/toolkit/ToolkitConstants
+			}
+
+		}
+
+		.method public <init>()V 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 17;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					bspush 17;
+					newarray 11;
+					putfield_a 0;		// reference uicc/test/util/TestToolkitApplet.baTestAppletId
+					aload_0;
+					sspush 128;
+					newarray 11;
+					putfield_a 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					return;
+		}
+
+		.method public init()V 8 {
+			.stack 5;
+			.locals 0;
+
+				L0:	aload_0;
+					invokestatic 16;		// uicc/toolkit/ToolkitRegistrySystem.getEntry()Luicc/toolkit/ToolkitRegistry;
+					putfield_a 2;		// reference uicc/test/util/TestToolkitApplet.obReg
+					invokestatic 5;		// javacard/framework/JCSystem.getVersion()S
+					sspush 514;
+					if_scmpge L2;
+				L1:	sconst_1;
+					invokestatic 6;		// javacard/framework/SystemException.throwIt(S)V
+				L2:	getfield_a_this 0;		// reference uicc/test/util/TestToolkitApplet.baTestAppletId
+					sconst_0;
+					invokestatic 7;		// javacard/framework/JCSystem.getAID()Ljavacard/framework/AID;
+					getfield_a_this 0;		// reference uicc/test/util/TestToolkitApplet.baTestAppletId
+					sconst_1;
+					invokevirtual 8;		// javacard/framework/AID.getBytes([BS)B
+					bastore;
+					getfield_a_this 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					sconst_0;
+					getfield_a_this 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					arraylength;
+					sconst_0;
+					invokestatic 9;		// javacard/framework/Util.arrayFillNonAtomic([BSSB)S
+					pop;
+					return;
+		}
+
+		.method public getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable; 5 {
+			.stack 2;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/AID;	0.6;
+			.descriptor	Ljavacard/framework/Shareable;	0.2;
+
+				L0:	aload_1;
+					ifnonnull L3;
+				L1:	sload_2;
+					sconst_1;
+					if_scmpne L3;
+				L2:	aload_0;
+					areturn;
+				L3:	aconst_null;
+					areturn;
+		}
+
+		.method protected reportTestOutcome(BZ)V 9 {
+			.stack 3;
+			.locals 0;
+
+				L0:	getfield_a_this 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					sconst_0;
+					sload_1;
+					bastore;
+					sload_2;
+					ifeq L2;
+				L1:	getfield_a_this 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					sload_1;
+					bspush -52;
+					bastore;
+					goto L3;
+				L2:	getfield_a_this 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					sload_1;
+					sconst_0;
+					bastore;
+				L3:	return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 5;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	0.10;
+
+				L0:	aload_0;
+					invokevirtual 10;		// javacard/framework/Applet.selectingApplet()Z
+					ifeq L2;
+				L1:	aload_1;
+					invokevirtual 11;		// javacard/framework/APDU.setOutgoing()S
+					pop;
+					aload_1;
+					getfield_a_this 0;		// reference uicc/test/util/TestToolkitApplet.baTestAppletId
+					sconst_0;
+					baload;
+					getfield_a_this 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					sconst_0;
+					baload;
+					sadd;
+					sconst_2;
+					sadd;
+					invokevirtual 12;		// javacard/framework/APDU.setOutgoingLength(S)V
+					aload_1;
+					getfield_a_this 0;		// reference uicc/test/util/TestToolkitApplet.baTestAppletId
+					sconst_0;
+					getfield_a_this 0;		// reference uicc/test/util/TestToolkitApplet.baTestAppletId
+					sconst_0;
+					baload;
+					sconst_1;
+					sadd;
+					invokevirtual 13;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					aload_1;
+					getfield_a_this 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					sconst_0;
+					getfield_a_this 1;		// reference uicc/test/util/TestToolkitApplet.baTestsResults
+					sconst_0;
+					baload;
+					sconst_1;
+					sadd;
+					invokevirtual 13;		// javacard/framework/APDU.sendBytesLong([BSS)V
+					goto L3;
+				L2:	sspush 27904;
+					invokestatic 14;		// javacard/framework/ISOException.throwIt(S)V
+				L3:	return;
+		}
+
+		.method public abstract processToolkit(S)V 10 {
+		}
+
+	}
+
+	.class public UICCTestConstants 1 extends 2.0 {		// extends java/lang/Object
+
+		.fields {
+			public final byte[] AID_ADF1 0;		// [B
+			public final byte[] AID_ADF2 1;		// [B
+			public static final short FID_MF = 16128;		// S
+			public static final short FID_EF_RFU0 = 28457;		// S
+			public static final short FID_EF_RFU1 = 28458;		// S
+			public static final short FID_EF_RFU2 = 28459;		// S
+			public static final short FID_DF_RFU1 = 24321;		// S
+			public static final short FID_DF_RFU2 = 24322;		// S
+			public static final short FID_DF_RFU3 = 24323;		// S
+			public static final short FID_DF_TEST = 32586;		// S
+			public static final short FID_DF_SUB_TEST = 24336;		// S
+			public static final short FID_DF_ADF2 = 32587;		// S
+			public static final short FID_EF_TNR = 28417;		// S
+			public static final short FID_EF_TNU = 28418;		// S
+			public static final short FID_EF_TARU = 28419;		// S
+			public static final short FID_EF_CNR = 28420;		// S
+			public static final short FID_EF_CNU = 28421;		// S
+			public static final short FID_EF_CNIC = 28444;		// S
+			public static final short FID_EF_CNDE = 28423;		// S
+			public static final short FID_EF_CNAC = 28424;		// S
+			public static final short FID_EF_CARU = 28425;		// S
+			public static final short FID_EF_LNR = 28426;		// S
+			public static final short FID_EF_LNU = 28427;		// S
+			public static final short FID_EF_LARU = 28428;		// S
+			public static final short FID_EF_CINA = 28429;		// S
+			public static final short FID_EF_TRAC = 28430;		// S
+			public static final short FID_EF_TDAC = 28431;		// S
+			public static final short FID_EF_CIAC = 28432;		// S
+			public static final short FID_EF_CIAA = 28433;		// S
+			public static final short FID_EF_CNRA = 28434;		// S
+			public static final short FID_EF_CUAC = 28435;		// S
+			public static final short FID_EF_TAAC = 28436;		// S
+			public static final short FID_EF_LADA = 28437;		// S
+			public static final short FID_EF_TAAA = 28438;		// S
+			public static final short FID_EF_LRUA = 28439;		// S
+			public static final short FID_EF_LUPC = 28440;		// S
+			public static final short FID_EF_NOSH = 28441;		// S
+			public static final short FID_EF_LSEA = 28442;		// S
+			public static final short FID_EF_CSEA = 28443;		// S
+			public static final short FID_EF_TERM = 28464;		// S
+			public static final short FID_DF_TERM = 24368;		// S
+			public static final short FID_EF_TAA = 20240;		// S
+			public static final short FID_EF_LARR1 = 28577;		// S
+			public static final short FID_EF_LARR2 = 28578;		// S
+			public static final short FID_EF_LARR3 = 28579;		// S
+			public static final short FID_EF_LARR4 = 28580;		// S
+			public static final short FID_EF_LARR5 = 28581;		// S
+			public static final short FID_EF_TARR1 = 28593;		// S
+			public static final short FID_EF_TARR2 = 28594;		// S
+			public static final short FID_EF_TARR3 = 28595;		// S
+			public static final short FID_EF_TARR4 = 28596;		// S
+			public static final short FID_EF_TARR5 = 28597;		// S
+			public static final short FID_EF_CARR1 = 28609;		// S
+			public static final short FID_EF_CARR2 = 28610;		// S
+			public static final short FID_EF_CARR3 = 28611;		// S
+			public static final short FID_EF_CARR4 = 28612;		// S
+			public static final short FID_EF_CARR5 = 28613;		// S
+			public static final short FID_DF_ARR1 = 24337;		// S
+			public static final short FID_EF_TAR1T = 20241;		// S
+			public static final short FID_DF_ARR2 = 24338;		// S
+			public static final short FID_EF_TAR2T = 20242;		// S
+			public static final short FID_DF_ARR3 = 24339;		// S
+			public static final short FID_EF_TAR3T = 20243;		// S
+			public static final short FID_DF_ARR4 = 24340;		// S
+			public static final short FID_EF_TAR4T = 20244;		// S
+			public static final short FID_DF_ARR5 = 24341;		// S
+			public static final short FID_EF_TAR5T = 20245;		// S
+			public static final short FID_EF_ARR_MF = 12038;		// S
+			public static final short FID_EF_ARR_ADF = 28422;		// S
+			public static final short FID_EF_UICC = 12260;		// S
+			public static final short FID_ADF = 32767;		// S
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 5;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 15;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 16;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush -96;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_0;
+					bastore;
+					dup;
+					sconst_2;
+					sconst_0;
+					bastore;
+					dup;
+					sconst_3;
+					sconst_0;
+					bastore;
+					dup;
+					sconst_4;
+					bspush 9;
+					bastore;
+					dup;
+					sconst_5;
+					sconst_0;
+					bastore;
+					dup;
+					bspush 6;
+					sconst_5;
+					bastore;
+					dup;
+					bspush 7;
+					sconst_m1;
+					bastore;
+					dup;
+					bspush 8;
+					sconst_m1;
+					bastore;
+					dup;
+					bspush 9;
+					sconst_m1;
+					bastore;
+					dup;
+					bspush 10;
+					sconst_m1;
+					bastore;
+					dup;
+					bspush 11;
+					bspush -119;
+					bastore;
+					dup;
+					bspush 12;
+					bspush -32;
+					bastore;
+					dup;
+					bspush 13;
+					sconst_0;
+					bastore;
+					dup;
+					bspush 14;
+					sconst_0;
+					bastore;
+					dup;
+					bspush 15;
+					sconst_2;
+					bastore;
+					putfield_a 3;		// reference uicc/test/util/UICCTestConstants.AID_ADF1
+					aload_0;
+					bspush 16;
+					newarray 11;
+					dup;
+					sconst_0;
+					bspush -96;
+					bastore;
+					dup;
+					sconst_1;
+					sconst_0;
+					bastore;
+					dup;
+					sconst_2;
+					sconst_0;
+					bastore;
+					dup;
+					sconst_3;
+					sconst_0;
+					bastore;
+					dup;
+					sconst_4;
+					bspush 9;
+					bastore;
+					dup;
+					sconst_5;
+					sconst_0;
+					bastore;
+					dup;
+					bspush 6;
+					sconst_5;
+					bastore;
+					dup;
+					bspush 7;
+					sconst_m1;
+					bastore;
+					dup;
+					bspush 8;
+					sconst_m1;
+					bastore;
+					dup;
+					bspush 9;
+					sconst_m1;
+					bastore;
+					dup;
+					bspush 10;
+					sconst_m1;
+					bastore;
+					dup;
+					bspush 11;
+					bspush -119;
+					bastore;
+					dup;
+					bspush 12;
+					bspush -48;
+					bastore;
+					dup;
+					bspush 13;
+					sconst_0;
+					bastore;
+					dup;
+					bspush 14;
+					sconst_0;
+					bastore;
+					dup;
+					bspush 15;
+					sconst_2;
+					bastore;
+					putfield_a 4;		// reference uicc/test/util/UICCTestConstants.AID_ADF2
+					return;
+		}
+
+	}
+
+}
