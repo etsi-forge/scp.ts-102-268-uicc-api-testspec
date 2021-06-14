@@ -499,6 +499,26 @@ public class Api_2_Bte_Facybbs_Bss_1 extends TestToolkitApplet {
             bRes=false;
         }
         this.reportTestOutcome(testCaseNb,bRes);
+        //-------------- TESTCASE 24 --------------
+        try{
+            bRes = false;
+            testCaseNb = (byte) 0x18;
+
+            dstBuffer = new byte[17];
+            Util.arrayFillNonAtomic(dstBuffer, (short) 0, (short) 17, (byte) 0xFF);
+            if(	bte_handler.findAndCopyValue((byte)0x0D,(byte)0x00,(short)0,dstBuffer,(short)0,(short)17)==(short)17){
+                bRes=true;
+            }
+        }
+         catch(ToolkitException ex){
+                if(ex.getReason()==ToolkitException.BAD_INPUT_PARAMETER){
+                    bRes=true;
+                }
+        }
+        this.reportTestOutcome(testCaseNb,bRes);
+
+
+
     }
 
 }

@@ -27,7 +27,7 @@ public class Test_Cre_Tin_Genb extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -54,7 +54,7 @@ public class Test_Cre_Tin_Genb extends UiccTestModel {
         
         // Select applet1
         response = test.selectApplication(APPLET_AID_1);
-        result = response.checkData("4F4B2031 31"); // "OK 11"
+        addResult(response.checkData("4F4B2031 31")); // "OK 11"
         
         //delete Applet1
         test.reset();
@@ -81,7 +81,7 @@ public class Test_Cre_Tin_Genb extends UiccTestModel {
         
         // Select applet1
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("4F4B2031 31"); // "OK 11"
+        addResult(response.checkData("4F4B2031 31")); // "OK 11"
         
 
         /*********************************************************************/
@@ -99,7 +99,7 @@ public class Test_Cre_Tin_Genb extends UiccTestModel {
         
         // Select applet2
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("4F4B2032"); // "OK 2"
+        addResult(response.checkData("4F4B2032")); // "OK 2"
         
 
         /*********************************************************************/
@@ -116,6 +116,6 @@ public class Test_Cre_Tin_Genb extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

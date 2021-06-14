@@ -29,7 +29,7 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -54,11 +54,11 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
         
-        result = response.checkSw("6A80");
+        addResult(response.checkSw("6A80"));
         
         // Select applet1
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.getStatusWord().substring(1,3).compareTo("61") != 0;
+        addResult(response.getStatusWord().substring(1,3).compareTo("61") != 0);
         
 
         // Card Initialisation
@@ -83,6 +83,9 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
+
+
+	addResult(response.checkSw("9000"));
         
         // Fetch SetUpMenu
         test.fetch("20");
@@ -98,15 +101,15 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
         // Fetch 4 Open Channel send the Terminal Response OK on channel 1 to 4
         for (byte i = 1; i < 5; i++)
         {
-            result &= response.checkSw("911A");
+            addResult(response.checkSw("911A"));
             response = test.fetch("1A");
-            result &= response.checkData("D0188103 01400182 02818206 05815566" +
-                                         "77883502 03003902 000A");
+            addResult(response.checkData("D0188103 01400182 02818206 05815566" +
+                                         "77883502 03003902 000A"));
             response = test.terminalResponse("81030140 01820282 81830100 3802" +
                                              "8" + String.valueOf(i) + "00" +
                                              "35020300 3902000A");
         }
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -127,6 +130,9 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
         
+	addResult(response.checkSw("9000"));
+
+
         // Fetch SetUpMenu
         test.fetch("2A");
         test.terminalResponse("81030125 00820282 81830100");
@@ -141,19 +147,19 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
         // Fetch 3 Open Channel send the Terminal Response OK on channel 5 to 7
         for (byte i = 5; i < 8; i++)
         {
-            result &= response.checkSw("911A");
+            addResult(response.checkSw("911A"));
             response = test.fetch("1A");
-            result &= response.checkData("D0188103 01400182 02818206 05815566" +
-                                         "77883502 03003902 000A");
+            addResult(response.checkData("D0188103 01400182 02818206 05815566" +
+                                         "77883502 03003902 000A"));
             response = test.terminalResponse("81030140 01820282 81830100 3802" +
                                              "8" + String.valueOf(i) + "00" +
                                              "35020300 3902000A");
         }
-        result &= response.checkSw("911A");
+        addResult(response.checkSw("911A"));
         // Fetch last Open channel and send a NOK Terminal Response
         response = test.fetch("1A");
-        result &= response.checkData("D0188103 01400182 02818206 05815566" +
-                                     "77883502 03003902 000A");
+        addResult(response.checkData("D0188103 01400182 02818206 05815566" +
+                                     "77883502 03003902 000A"));
         test.terminalResponse("81030140 01820282 8183023A 01");
 
 
@@ -164,9 +170,9 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("10" + APPLET_AID_2 + "05" + "CCCCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "05" + "CCCCCCCC CC"));
         response = test.selectApplication(APPLET_AID_3);
-        result &= response.checkData("10" + APPLET_AID_3 + "04" + "CCCCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_3 + "04" + "CCCCCCCC"));
                                      
 
         /*********************************************************************/
@@ -183,6 +189,6 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

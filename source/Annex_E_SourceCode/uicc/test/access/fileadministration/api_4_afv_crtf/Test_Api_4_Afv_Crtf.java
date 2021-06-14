@@ -51,7 +51,7 @@ public class Test_Api_4_Afv_Crtf extends UiccTestModel {
     }
 
     public boolean run() {
-        boolean result = true;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -98,15 +98,15 @@ public class Test_Api_4_Afv_Crtf extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_RFU0);
         response = test.readBinary("0000", "03");
-        result &= response.checkData("123456");
+        addResult(response.checkData("123456"));
 
         test.selectFile(EF_RFU1);
         response = test.readRecord("01", "04", "01");
-        result &= response.checkData("02"); 
+        addResult(response.checkData("02"));
 
         test.selectFile(EF_RFU2);
         response = test.readRecord("01", "04", "03");
-        result &= response.checkData("123456");
+        addResult(response.checkData("123456"));
         
         
         /** test case 2
@@ -120,7 +120,7 @@ public class Test_Api_4_Afv_Crtf extends UiccTestModel {
         test.selectFile(DF_RFU1);
         test.selectFile(EF_RFU0);
         response = test.readBinary("0000", "03");
-        result &= response.checkData("123456");
+        addResult(response.checkData("123456"));
         
         
         /** test cases 3, 4, 5, 6, 7
@@ -166,7 +166,7 @@ public class Test_Api_4_Afv_Crtf extends UiccTestModel {
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "07CCCCCC CCCCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "07CCCCCC CCCCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -174,6 +174,6 @@ public class Test_Api_4_Afv_Crtf extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

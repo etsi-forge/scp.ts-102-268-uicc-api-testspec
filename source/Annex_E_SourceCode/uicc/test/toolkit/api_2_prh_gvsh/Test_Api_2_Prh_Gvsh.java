@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Gvsh extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -73,12 +73,12 @@ public class Test_Api_2_Prh_Gvsh extends UiccTestModel
         /*********************************************************************/   
                                                                                   
         response = test.unrecognizedEnvelope();                                   
-        result = response.checkSw("9116");                                        
+        addResult(response.checkSw("9116"));
         
         // Fetch the GET INPUT proactive command
         response = test.fetch("16");
-        result &= response.checkData("D0148103 01230082 0281828D 05045465"
-                                   + "78749102 00FF");
+        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+                                   + "78749102 00FF"));
         // Terminal Response (Text String length = 7Eh)
         response = test.terminalResponse("81030123 00020282 81030100 0D7F0401"
                                        + "02030405 06070809 0A0B0C0D 0E0F1011"
@@ -89,7 +89,7 @@ public class Test_Api_2_Prh_Gvsh extends UiccTestModel
                                        + "52535455 56575859 5A5B5C5D 5E5F6061"
                                        + "62636465 66676869 6A6B6C6D 6E6F7071"
                                        + "72737475 76777879 7A7B7C7D 7E");
-        result &= response.checkSw("9116");
+        addResult(response.checkSw("9116"));
 
         /*********************************************************************/   
         /** Testcase 6 to 8                                                  */   
@@ -97,8 +97,8 @@ public class Test_Api_2_Prh_Gvsh extends UiccTestModel
                                                                                   
         // Fetch the GET INPUT proactive command
         response = test.fetch("16");
-        result &= response.checkData("D0148103 01230082 0281828D 05045465"
-                                   + "78749102 00FF");
+        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+                                   + "78749102 00FF"));
         // Terminal Response (Text String length = EFh)
         response = test.terminalResponse("81030123 00020282 81030100 0D81F004"
                                        + "01020304 05060708 090A0B0C 0D0E0F10"
@@ -116,7 +116,7 @@ public class Test_Api_2_Prh_Gvsh extends UiccTestModel
                                        + "C1C2C3C4 C5C6C7C8 C9CACBCC CDCECFD0"
                                        + "D1D2D3D4 D5D6D7D8 D9DADBDC DDDEDFE0"
                                        + "E1E2E3E4 E5E6E7E8 E9EAEBEC EDEEEF");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -125,8 +125,8 @@ public class Test_Api_2_Prh_Gvsh extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "08CCCCCC CCCCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "08CCCCCC CCCCCCCC CC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -140,6 +140,6 @@ public class Test_Api_2_Prh_Gvsh extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

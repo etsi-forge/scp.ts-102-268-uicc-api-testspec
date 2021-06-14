@@ -316,35 +316,50 @@ public class Api_2_Bte_Aptlb_Bss_Bss_1 extends TestToolkitApplet {
             bRes=false;
         }
         this.reportTestOutcome(testCaseNb,bRes);
+
         //-------------- TESTCASE 16 --------------
         try {
             bRes = false;
             testCaseNb = (byte) 0x10;
             bte_handler.clear();
-            bte_handler.appendTLV((byte)0x81,new byte[]{(byte)0x11,(byte)0x22,(byte)0x33},(short)0,(short)3);
-            bte_handler.appendTLV((byte)0x82,new byte[]{(byte)0x99,(byte)0x77,},(short)0,(short)2);
+            bte_handler.appendTLV((byte)0x81, new byte[]{(byte)0x11,(byte)0x22,(byte)0x33}, (byte)0, (byte)3);
+            bte_handler.appendTLV((byte)0x82, new byte[]{(byte)0x99,(byte)0x77}, (byte)0, (byte)2);
             //-select Command details TLV
-            bte_handler.findTLV((byte)0x81,(byte)0x01);
-            //-successful call
-            buffer1= new byte[]{(byte)0xFF,(byte)0xFE,(byte)0xFD,(byte)0xFC,(byte)0xFB,(byte)0xFA,(byte)0x09,(byte)0x08};
-            buffer2= new byte[]{(byte)0xF7,(byte)0xF6,(byte)0xF5,(byte)0xF4,(byte)0xF3,(byte)0xF2,(byte)0xF1,(byte)0xF0};
-            bte_handler.appendTLV((byte)0x04,buffer1,(short)0,(short)8,buffer2,(short)0,(short)8);
-            if(bte_handler.getValueLength()==(short)3){
-                bRes=true;
-            }
-
+            bte_handler.findTLV((byte)0x81, (byte)0x01);
+			bte_handler.findTLV((byte)0x82, (byte)0x01);
+			bRes = true;
         }
         catch(Exception exp){
             bRes=false;
         }
         this.reportTestOutcome(testCaseNb,bRes);
-        //-------------- TESTCASE 17 --------------
+		
+		//-----------------TESTCASE 17----------------- 
         try {
             bRes = false;
-            testCaseNb = (byte) 0x11;
+            testCaseNb = (byte) 0x11; 
             bte_handler.clear();
             //-successful call
-            buffer1= new byte[]{(byte)0xFF,(byte)0xFE,(byte)0xFD,(byte)0xFC,(byte)0xFB,(byte)0xFA,(byte)0x09,(byte)0x08};
+            buffer1 = new byte[]{(byte)0xFF,(byte)0xFE,(byte)0xFD,(byte)0xFC,(byte)0xFB,(byte)0xFA,(byte)0xF9,(byte)0xF8};
+            buffer2 = new byte[]{(byte)0xF7,(byte)0xF6,(byte)0xF5,(byte)0xF4,(byte)0xF3,(byte)0xF2,(byte)0xF1,(byte)0xF0};
+            bte_handler.appendTLV((byte)0x04, buffer1, (short)0, (short)8, buffer2, (short)0, (short)8);
+			bte_handler.findTLV((byte)0x04, (byte)0x01);
+            if(bte_handler.getValueLength() == 16) {
+                bRes=true;
+            }
+	    }
+        catch(Exception exp){
+            bRes=false;
+        }
+        this.reportTestOutcome(testCaseNb,bRes);
+
+		//-------------- TESTCASE 18 --------------
+        try {
+            bRes = false;
+            testCaseNb = (byte) 0x12;
+            bte_handler.clear();
+            //-successful call
+            buffer1= new byte[]{(byte)0xFF,(byte)0xFE,(byte)0xFD,(byte)0xFC,(byte)0xFB,(byte)0xFA,(byte)0xF9,(byte)0xF8};
             buffer2= new byte[]{(byte)0xF7,(byte)0xF6,(byte)0xF5,(byte)0xF4,(byte)0xF3,(byte)0xF2,(byte)0xF1,(byte)0xF0};
             compareBuffer = new byte[42];
             compareBuffer[0]=(byte)0x04;
@@ -363,10 +378,10 @@ public class Api_2_Bte_Aptlb_Bss_Bss_1 extends TestToolkitApplet {
             bRes=false;
         }
         this.reportTestOutcome(testCaseNb,bRes);
-        //-------------- TESTCASE 18 --------------
+        //-------------- TESTCASE 19 --------------
         try {
             bRes = false;
-            testCaseNb = (byte) 0x12;
+            testCaseNb = (byte) 0x13;
 
             //-successful call
             buffer1= new byte[]{(byte)0x00,(byte)0x01,(byte)0x02,(byte)0x03,(byte)0x04,(byte)0x05,(byte)0x06,(byte)0x07};
@@ -387,10 +402,10 @@ public class Api_2_Bte_Aptlb_Bss_Bss_1 extends TestToolkitApplet {
             bRes=false;
         }
         this.reportTestOutcome(testCaseNb,bRes);
-        //-------------- TESTCASE 19 --------------
+        //-------------- TESTCASE 20 --------------
         try {
             bRes = false;
-            testCaseNb = (byte) 0x13;
+            testCaseNb = (byte) 0x14;
             //-successful call
             buffer1= new byte[]{(byte)0x11,(byte)0x22,(byte)0x33,(byte)0x44,(byte)0x55,(byte)0x66,(byte)0x77,(byte)0x88};
             buffer2= new byte[]{(byte)0x99,(byte)0xAA,(byte)0xBB,(byte)0xCC,(byte)0xDD,(byte)0xEE,(byte)0xFF,(byte)0x00};
@@ -410,10 +425,10 @@ public class Api_2_Bte_Aptlb_Bss_Bss_1 extends TestToolkitApplet {
             bRes=false;
         }
         this.reportTestOutcome(testCaseNb,bRes);
-        //-------------- TESTCASE 20 --------------
+        //-------------- TESTCASE 21 --------------
         try {
             bRes = false;
-            testCaseNb = (byte) 0x14;
+            testCaseNb = (byte) 0x15;
             //-successful call
             bte_handler.clear();
             buffer1 = new byte[128];
@@ -443,7 +458,5 @@ public class Api_2_Bte_Aptlb_Bss_Bss_1 extends TestToolkitApplet {
             bRes=false;
         }
         this.reportTestOutcome(testCaseNb,bRes);
-
-
     }
 }

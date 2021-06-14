@@ -27,7 +27,7 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         String[] menuList   = new String[3];
         String[] menuIdList = new String[3];
@@ -69,7 +69,7 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
         menuList[0] = "Menu1"; menuIdList[0] = "01";
         menuList[1] = "Menu2"; menuIdList[1] = "02";
         menuList[2] = "Menu3"; menuIdList[2] = "03";
-        result = fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
+        fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
         
 
         /*********************************************************************/
@@ -96,7 +96,7 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
         menuList[0] = "Menu1"; menuIdList[0] = "01";
         menuList[1] = "Menu2"; menuIdList[1] = "02";
         menuList[2] = "Menu3"; menuIdList[2] = "03";
-        result &= fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
+        fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
         
 
         /*********************************************************************/
@@ -106,9 +106,9 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "04" + "CCCCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "04" + "CCCCCCCC"));
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("10" + APPLET_AID_2 + "01" + "CC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
 
 
         /*********************************************************************/
@@ -125,14 +125,14 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
     
     // Fetch a sepUpMenu command, check it according to the parameters
     //   and send the Terminal Response.
-    // Return true if the recieved command correspond to the one rebuild using 
+    // Logs test result indicating whether the received command correspond to the one rebuild using
     //   the paramaters  
-    private boolean fetchSetUpMenu(
+    private void fetchSetUpMenu(
             String alphaId,             // AlphaId TLV Value
             String alphaIdTextAtt,      // AlphaId Text Attribute TLV Value
             byte nbMenu,                // Number of menus
@@ -141,7 +141,6 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
             String nextActionTLV,          // Next Action List TLV
             String itemTextAttListTLV)     // Item Text Attribute List TLV
     {
-        boolean result;
         String setUpMenuCmd = "";
         String endOfCmd = "";
         String Cmd = "";
@@ -179,11 +178,9 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
         setUpMenuCmd = "D0" + ToString((byte)(Cmd.length()/2)) + Cmd;
         
         response = test.fetch(ToString((byte)(setUpMenuCmd.length()/2)));
-        result = response.checkData(setUpMenuCmd);
+        addResult(response.checkData(setUpMenuCmd));
         
         test.terminalResponse("81030125 00820282 81830100"); 
-        
-        return result;
     }
     
     private String ByteToString( byte tab[] )

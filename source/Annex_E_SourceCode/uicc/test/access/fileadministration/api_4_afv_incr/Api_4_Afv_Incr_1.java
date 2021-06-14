@@ -502,13 +502,13 @@ public class Api_4_Afv_Incr_1 extends TestToolkitApplet implements UICCConstants
             // activate 
             UiccFileView.activateFile();
             // Restore Ef content
-            // Set records to 55 55 55
-            Util.arrayFillNonAtomic(data, (short)0, (short)data.length, (byte)0x55);
-            UiccFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, data, (short)0, (short)data.length);
             // Set records to AA AA AA
             Util.arrayFillNonAtomic(data, (short)0, (short)data.length, (byte)0xAA);
             UiccFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, data, (short)0, (short)data.length);
-            bRes &= true; 
+            // Set records to 55 55 55
+            Util.arrayFillNonAtomic(data, (short)0, (short)data.length, (byte)0x55);
+            UiccFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, data, (short)0, (short)data.length);
+			bRes &= true; 
         }
         catch (Exception e)
         {

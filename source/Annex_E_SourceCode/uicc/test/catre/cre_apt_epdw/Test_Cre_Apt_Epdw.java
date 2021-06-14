@@ -30,7 +30,7 @@ public class Test_Cre_Apt_Epdw extends UiccTestModel {
 
     public boolean run() {
 
-        boolean result;
+        initialiseResults();
 
 
         // start test
@@ -79,9 +79,9 @@ public class Test_Cre_Apt_Epdw extends UiccTestModel {
         test.terminalProfileSession("09018000 01");
         //***TEST CASE 1 OF THE APPLET 3 ***
         response = test.envelopeMenuSelection("100101", "");//Help Request not available
-        result   = response.checkSw("910B");
+        addResult(response.checkSw("910B"));
         response = test.fetch("0B");
-        result  &= response.checkData("D0098103 01010382 028182");
+        addResult(response.checkData("D0098103 01010382 028182"));
 
         //***TEST CASE 2 OF THE APPLETS 1 AND 2 ***
         test.terminalProfileSession("03010000 01");
@@ -92,11 +92,11 @@ public class Test_Cre_Apt_Epdw extends UiccTestModel {
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result  &= response.checkData("10"+APPLET_AID_1+"03CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
         response = test.selectApplication(APPLET_AID_2);
-        result  &= response.checkData("10"+APPLET_AID_2+"03CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
         response = test.selectApplication(APPLET_AID_3);
-        result  &= response.checkData("10"+APPLET_AID_3+"03CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_3+"03CCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -106,6 +106,6 @@ public class Test_Cre_Apt_Epdw extends UiccTestModel {
         test.deleteApplet(APPLET_AID_3);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

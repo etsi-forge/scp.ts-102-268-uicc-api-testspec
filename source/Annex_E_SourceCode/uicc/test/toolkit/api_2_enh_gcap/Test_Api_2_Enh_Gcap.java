@@ -39,7 +39,7 @@ public class Test_Api_2_Enh_Gcap extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -78,7 +78,7 @@ public class Test_Api_2_Enh_Gcap extends UiccTestModel
         
         // 1: Send Unrecognized Envelope to trig the Applet
         response = test.unrecognizedEnvelope();
-        result = response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -87,7 +87,7 @@ public class Test_Api_2_Enh_Gcap extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "01CC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "01CC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -100,6 +100,6 @@ public class Test_Api_2_Enh_Gcap extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

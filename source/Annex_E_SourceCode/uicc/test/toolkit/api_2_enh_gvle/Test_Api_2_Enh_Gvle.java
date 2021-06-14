@@ -39,7 +39,7 @@ public class Test_Api_2_Enh_Gvle extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -108,9 +108,9 @@ public class Test_Api_2_Enh_Gvle extends UiccTestModel
                                         + "01020304 05060708");
 
                 if(i == 0)
-                        result = response.checkSw("9000");
+                        addResult(response.checkSw("9000"));
                 else
-                        result &= response.checkSw("9000");
+                        addResult(response.checkSw("9000"));
         
         }
         /*********************************************************************/
@@ -120,8 +120,8 @@ public class Test_Api_2_Enh_Gvle extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "04CCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "04CCCCCC CC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -135,6 +135,6 @@ public class Test_Api_2_Enh_Gvle extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

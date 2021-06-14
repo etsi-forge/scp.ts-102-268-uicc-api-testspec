@@ -25,7 +25,7 @@ public class Test_Api_2_Tke_Coor extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -57,7 +57,7 @@ public class Test_Api_2_Tke_Coor extends UiccTestModel {
 
         // Trigger Applet
         response = test.envelopeMenuSelection("100101", "");
-        result = response.checkSw("9000");                                              
+        addResult(response.checkSw("9000"));
            
 
         /*********************************************************************/
@@ -67,7 +67,7 @@ public class Test_Api_2_Tke_Coor extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "01" + "CC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
                                      
         /*********************************************************************/
         /*********************************************************************/
@@ -81,6 +81,6 @@ public class Test_Api_2_Tke_Coor extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

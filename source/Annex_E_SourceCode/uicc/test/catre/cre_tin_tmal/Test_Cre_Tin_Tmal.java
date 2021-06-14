@@ -29,7 +29,7 @@ public class Test_Cre_Tin_Tmal extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -54,11 +54,11 @@ public class Test_Cre_Tin_Tmal extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
         
-        result = response.checkSw("6A80");
+        addResult(response.checkSw("6A80"));
         
         // Select applet1
         response = test.selectApplication(APPLET_AID_1);
-        result &= !(response.checkData("10" + APPLET_AID_1 + "00") && response.checkSw("9000"));
+        addResult(!(response.checkData("10" + APPLET_AID_1 + "00") && response.checkSw("9000")));
         
 
         // test script
@@ -71,7 +71,7 @@ public class Test_Cre_Tin_Tmal extends UiccTestModel {
         /*********************************************************************/
 
         // Install Applet2
-        test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
+        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
                                "04" +   // V Max. number of timers
@@ -84,19 +84,22 @@ public class Test_Cre_Tin_Tmal extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
 
-        test.reset();
+	addResult(response.checkSw("9000"));
+        
+
+	test.reset();
         test.terminalProfileSession("09030120");
         
         // Trigger Applet2
         response = test.envelopeMenuSelection("100102", "");
-        result &= response.checkSw("9000");        
+        addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /** Testcase 5-8                                                     */
         /*********************************************************************/
 
         // Install Applet3
-        test.installApplet(CAP_FILE_PATH, CLASS_AID_3, APPLET_AID_3, 
+        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_3, APPLET_AID_3, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
                                "08" +   // V Max. number of timers
@@ -109,12 +112,16 @@ public class Test_Cre_Tin_Tmal extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
         
-        test.reset();
+        
+	addResult(response.checkSw("9000"));
+
+
+	test.reset();
         test.terminalProfileSession("09030120");
 
         // Trigger Applet3
         response = test.envelopeMenuSelection("100103", "");
-        result &= response.checkSw("9000");        
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -124,9 +131,9 @@ public class Test_Cre_Tin_Tmal extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("10" + APPLET_AID_2 + "02" + "CCCC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "02" + "CCCC"));
         response = test.selectApplication(APPLET_AID_3);
-        result &= response.checkData("10" + APPLET_AID_3 + "03" + "CCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_3 + "03" + "CCCCCC"));
                                      
 
         /*********************************************************************/
@@ -146,6 +153,6 @@ public class Test_Cre_Tin_Tmal extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

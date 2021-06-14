@@ -31,7 +31,7 @@ public class Test_Cre_Uta_Dafs extends UiccTestModel {
     
     public boolean run() {
       
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -96,8 +96,8 @@ public class Test_Cre_Uta_Dafs extends UiccTestModel {
         /*********************************************************************/
         
         response = test.selectApplication(APPLET_AID_B_1);
-        result = response.checkData("10" + APPLET_AID_B_1 + 
-                                    "01CC");
+        addResult(response.checkData("10" + APPLET_AID_B_1 +
+                                    "01CC"));
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);                                             
@@ -114,6 +114,6 @@ public class Test_Cre_Uta_Dafs extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH_A);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

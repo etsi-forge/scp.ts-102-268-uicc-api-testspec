@@ -38,7 +38,7 @@ public class Test_Api_2_Enh_Facyb_Bs extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -102,9 +102,9 @@ public class Test_Api_2_Enh_Facyb_Bs extends UiccTestModel
                                          + "B1B2B3B4 B5B6B7B8 B9BABB BCBDBEBFC0"
                                          + "C1C2C3C4");
                 if(i==0)
-                        result = response.checkSw("90 00");
+                        addResult(response.checkSw("90 00"));
                 else
-                        result &= response.checkSw("90 00");
+                        addResult(response.checkSw("90 00"));
         }
         /*********************************************************************/
         /*********************************************************************/
@@ -113,8 +113,8 @@ public class Test_Api_2_Enh_Facyb_Bs extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "11CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC CCCC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "11CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC CCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -127,6 +127,6 @@ public class Test_Api_2_Enh_Facyb_Bs extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

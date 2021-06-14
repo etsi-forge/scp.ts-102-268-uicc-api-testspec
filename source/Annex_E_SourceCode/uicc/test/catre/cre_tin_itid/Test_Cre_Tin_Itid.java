@@ -29,7 +29,7 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         String[] menuList   = new String[4];
         String[] menuIdList = new String[4];
@@ -61,11 +61,11 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00" );  // V Maximum number of services
         
-        result = response.checkSw("6A80");
+        addResult(response.checkSw("6A80"));
         
         // Select applet1
         response = test.selectApplication(APPLET_AID_1);
-        result &= !(response.checkData("10" + APPLET_AID_1 + "00") && response.checkSw("9000"));
+        addResult(!(response.checkData("10" + APPLET_AID_1 + "00") && response.checkSw("9000")));
         
 
         /*********************************************************************/
@@ -92,11 +92,11 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
         // Card Initialisation
         test.reset();
         response = test.terminalProfile("09030020");
-        result &= response.checkSw("9128");
+        addResult(response.checkSw("9128"));
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu12"; menuIdList[1] = "7F";
-        result &= fetchSetUpMenu("UICC TEST", null, (byte)2, menuIdList, menuList, null, null);
+        fetchSetUpMenu("UICC TEST", null, (byte)2, menuIdList, menuList, null, null);
 
         /*********************************************************************/
         /** Testcase 3                                                       */
@@ -117,11 +117,11 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
                                "00" );  // V Maximum number of services
         
 
-        result &= response.checkSw("6A80");
+        addResult(response.checkSw("6A80"));
         
         // Select applet1
         response = test.selectApplication(APPLET_AID_2);
-        result &= !(response.checkData("10" + APPLET_AID_1 + "00") && response.checkSw("9000"));
+        addResult(!(response.checkData("10" + APPLET_AID_1 + "00") && response.checkSw("9000")));
 
 
         /*********************************************************************/
@@ -144,12 +144,12 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        result &= response.checkSw("9131");
+        addResult(response.checkSw("9131"));
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu12"; menuIdList[1] = "7F";
         menuList[2] = "Menu21"; menuIdList[2] = "80";
-        result &= fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
+        fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
 
 
         /*********************************************************************/
@@ -172,13 +172,13 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        result &= response.checkSw("913A");
+        addResult(response.checkSw("913A"));
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu12"; menuIdList[1] = "7F";
         menuList[2] = "Menu21"; menuIdList[2] = "80";
         menuList[3] = "Menu31"; menuIdList[3] = "81";
-        result &= fetchSetUpMenu("UICC TEST", null, (byte)4, menuIdList, menuList, null, null);
+        fetchSetUpMenu("UICC TEST", null, (byte)4, menuIdList, menuList, null, null);
 
 
         /*********************************************************************/
@@ -190,12 +190,12 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        result &= response.checkSw("9131");
+        addResult(response.checkSw("9131"));
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu12"; menuIdList[1] = "7F";
         menuList[2] = "Menu31"; menuIdList[2] = "81";
-        result &= fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
+        fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
 
         // Good Install Applet2
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
@@ -213,13 +213,13 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        result &= response.checkSw("913A");
+        addResult(response.checkSw("913A"));
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu12"; menuIdList[1] = "7F";
         menuList[2] = "Menu21"; menuIdList[2] = "80";
         menuList[3] = "Menu31"; menuIdList[3] = "81";
-        result &= fetchSetUpMenu("UICC TEST", null, (byte)4, menuIdList, menuList, null, null);
+        fetchSetUpMenu("UICC TEST", null, (byte)4, menuIdList, menuList, null, null);
 
 
         /*********************************************************************/
@@ -237,14 +237,14 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
     
     // Fetch a sepUpMenu command, check it according to the parameters
     //   and send the Terminal Response.
-    // Return true if the recieved command correspond to the one rebuild using 
+    // Logs test result indicating whether the received command correspond to the one rebuild using
     //   the paramaters  
-    private boolean fetchSetUpMenu(
+    private void fetchSetUpMenu(
             String alphaId,             // AlphaId TLV Value
             String alphaIdTextAtt,      // AlphaId Text Attribute TLV Value
             byte nbMenu,                // Number of menus
@@ -253,7 +253,6 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
             String nextActionTLV,          // Next Action List TLV
             String itemTextAttListTLV)     // Item Text Attribute List TLV
     {
-        boolean result;
         String setUpMenuCmd = "";
         String endOfCmd = "";
         String Cmd = "";
@@ -291,11 +290,9 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
         setUpMenuCmd = "D0" + ToString((byte)(Cmd.length()/2)) + Cmd;
         
         response = test.fetch(ToString((byte)(setUpMenuCmd.length()/2)));
-        result = response.checkData(setUpMenuCmd);
+        addResult(response.checkData(setUpMenuCmd));
         
         test.terminalResponse("81030125 00820282 81830100"); 
-        
-        return result;
     }
     
     private String ByteToString( byte tab[] )

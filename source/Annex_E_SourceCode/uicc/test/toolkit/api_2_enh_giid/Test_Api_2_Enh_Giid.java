@@ -36,7 +36,7 @@ public class Test_Api_2_Enh_Giid extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -98,13 +98,13 @@ public class Test_Api_2_Enh_Giid extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("13");
-        result = response.checkData("D0118103 01218082 0281028D 06044845"
-                                  + "4C4C4F");
+        addResult(response.checkData("D0118103 01218082 0281028D 06044845"
+                                  + "4C4C4F"));
         test.terminalResponse("81030121 80020282 81030100");
         
         // 7 : Send Unrecognized envelope with item Identifier TLV but without Item Number
         response = test.sendApdu("80C20000 08010682 02018110 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -113,8 +113,8 @@ public class Test_Api_2_Enh_Giid extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "07CCCCCC CCCCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "07CCCCCC CCCCCCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -128,7 +128,7 @@ public class Test_Api_2_Enh_Giid extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 
 }

@@ -17,7 +17,7 @@ import org.etsi.scp.wg3.uicc.jcapi.userinterface.*;
 /**
  * Test Area : uicc.test.access.api_1_fvw_updr
  *
- * @version 0.0.1 - 8 déc. 2005
+ * @version 0.0.1 - 8 dï¿½c. 2005
  * @author 3GPP T3 SWG API
  */
 public class Test_Api_1_Fvw_Updr extends UiccTestModel {
@@ -35,7 +35,7 @@ public class Test_Api_1_Fvw_Updr extends UiccTestModel {
     }
     
     public boolean run() {
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -75,9 +75,9 @@ public class Test_Api_1_Fvw_Updr extends UiccTestModel {
         test.unrecognizedEnvelope();               
         
         response = test.selectApplication(APPLET_AID_1);
-        result = response.checkData("10" + APPLET_AID_1 + 
+        addResult(response.checkData("10" + APPLET_AID_1 +
                                     "17CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
-                                    "CCCCCCCC CCCCCCCC");
+                                    "CCCCCCCC CCCCCCCC"));
 
         test.reset();
         test.terminalProfileSession("0101");
@@ -91,6 +91,6 @@ public class Test_Api_1_Fvw_Updr extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);                      
         test.deletePackage(CAP_FILE_PATH);
                
-        return result;
+        return getOverallResult();
     }
 }   

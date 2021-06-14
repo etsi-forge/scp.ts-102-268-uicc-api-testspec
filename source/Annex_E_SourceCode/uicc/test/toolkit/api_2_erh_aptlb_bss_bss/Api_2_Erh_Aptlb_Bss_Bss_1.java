@@ -74,6 +74,7 @@ public class Api_2_Erh_Aptlb_Bss_Bss_1 extends TestToolkitApplet {
         short value1Length = 0 ;
         short value2Length = 0 ;
         short value2Offset = 0 ;
+		short length = 0;
 
         
         // --------------------------------------------
@@ -348,22 +349,28 @@ public class Api_2_Erh_Aptlb_Bss_Bss_1 extends TestToolkitApplet {
  
         // --------------------------------------------
         // Test Case 13 : handler overflow
-        testCaseNb = (byte) 13 ;
-        bRes = false ;
-        
-        try {
-            tag = (byte)1 ;
-            EnvRespHdlr.appendArray(buffer256,(short)0,(short)(EnvRespHdlr.getCapacity() - 1));
-            
-            try {
-                EnvRespHdlr.appendTLV(tag, buffer256,(short)0,(short)1,buffer256,(short)0,(short)1) ;
-            }
-            catch (ToolkitException e) {
-                bRes = (e.getReason() == ToolkitException.HANDLER_OVERFLOW) ;
-            }
-        } catch (Exception e) {
-            bRes = false ;
-        }
+        testCaseNb = (byte) 13 ;		
+		bRes = false ;
+		
+		try {
+			tag = (byte)1 ;
+			length = (short)(EnvRespHdlr.getCapacity() - 1);
+			while (length > 255){
+				EnvRespHdlr.appendArray(buffer256, (short)0, (short) 255) ;
+				length = (short) (length - (short) 255);
+			}
+			EnvRespHdlr.appendArray(buffer256, (short)0, length);
+			
+			try {
+				EnvRespHdlr.appendTLV(tag, buffer256,(short)0,(short)1,buffer256,(short)0,(short)1) ;
+			}
+			catch (ToolkitException e) {
+				bRes = (e.getReason() == ToolkitException.HANDLER_OVERFLOW) ;
+			}
+		} catch (Exception e) {
+			bRes = false ;
+		}
+			
         reportTestOutcome(testCaseNb, bRes) ;
         
         

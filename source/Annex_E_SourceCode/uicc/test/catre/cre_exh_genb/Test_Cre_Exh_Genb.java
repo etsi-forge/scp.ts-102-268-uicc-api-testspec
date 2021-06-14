@@ -27,7 +27,7 @@ public class Test_Cre_Exh_Genb extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -76,11 +76,11 @@ public class Test_Cre_Exh_Genb extends UiccTestModel {
 
         // Trigger applets
         response = test.envelopeEventDownloadMTCall();
-        result = response.checkSw("9000");        
+        addResult(response.checkSw("9000"));
 
         // Trigger applets
         response = test.envelopeEventDownloadMTCall();
-        result &= response.checkSw("9000");        
+        addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /** Testcase 2                                                       */
@@ -88,11 +88,11 @@ public class Test_Cre_Exh_Genb extends UiccTestModel {
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9300");        
+        addResult(response.checkSw("9300"));
 
         // Trigger Applet2
         response = test.envelopeEventDownloadUserActivity();
-        result &= response.checkSw("9300");        
+        addResult(response.checkSw("9300"));
 
         /*********************************************************************/
         /** Testcase 3                                                       */
@@ -100,11 +100,11 @@ public class Test_Cre_Exh_Genb extends UiccTestModel {
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");        
+        addResult(response.checkSw("9000"));
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");        
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -114,9 +114,9 @@ public class Test_Cre_Exh_Genb extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "05" + "CCCCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "05" + "CCCCCCCC CC"));
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("10" + APPLET_AID_2 + "03" + "CCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "03" + "CCCCCC"));
                                      
         /*********************************************************************/
         /*********************************************************************/
@@ -132,6 +132,6 @@ public class Test_Cre_Exh_Genb extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

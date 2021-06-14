@@ -35,7 +35,7 @@ public class Test_Api_2_Pah_Send extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -73,50 +73,50 @@ public class Test_Api_2_Pah_Send extends UiccTestModel
         /*********************************************************************/
 
         response = test.unrecognizedEnvelope();
-        result = response.checkSw("9112");
+        addResult(response.checkSw("9112"));
         
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81030100");
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 3,4                                                     */
         /*********************************************************************/
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81030101");
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 5,6                                                     */
         /*********************************************************************/
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81030201 55");
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
         
         /*********************************************************************/
         /** Testcase 7,8                                                     */
         /*********************************************************************/
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81030402 654321");
-        result &= response.checkSw("9181");
+        addResult(response.checkSw("9181"));
 
         /*********************************************************************/
         /** Testcase 9                                                       */
         /*********************************************************************/
         response = test.fetch("81");
-        result &= response.checkData("D07F8103 01210082 0281028D 74045555"
+        addResult(response.checkData("D07F8103 01210082 0281028D 74045555"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
@@ -124,16 +124,16 @@ public class Test_Api_2_Pah_Send extends UiccTestModel
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
-                                   + "55");
+                                   + "55"));
         
         response = test.terminalResponse("81030121 00020282 81030100");
-        result &= response.checkSw("9183");
+        addResult(response.checkSw("9183"));
 
         /*********************************************************************/
         /** Testcase 10                                                      */
         /*********************************************************************/
         response = test.fetch("83");
-        result &= response.checkData("D0818081 03012100 82028102 8D750455"
+        addResult(response.checkData("D0818081 03012100 82028102 8D750455"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
@@ -141,16 +141,16 @@ public class Test_Api_2_Pah_Send extends UiccTestModel
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
-                                   + "555555");
+                                   + "555555"));
         
         response = test.terminalResponse("81030121 00020282 81030100");
-        result &= response.checkSw("9100");
+        addResult(response.checkSw("9100"));
 
         /*********************************************************************/
         /** Testcase 11                                                      */
         /*********************************************************************/
         response = test.fetch("00");
-        result &= response.checkData("D081FD81 03012100 82028102 8D81F104"
+        addResult(response.checkData("D081FD81 03012100 82028102 8D81F104"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
@@ -165,61 +165,61 @@ public class Test_Api_2_Pah_Send extends UiccTestModel
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
                                    + "55555555 55555555 55555555 55555555"
-                                   + "55555555 55555555 55555555 55555555");
+                                   + "55555555 55555555 55555555 55555555"));
         
         response = test.terminalResponse("81030121 00020282 81030100");
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 12                                                      */
         /*********************************************************************/
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81030100");
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 13                                                      */
         /*********************************************************************/
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81030100");
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 14                                                      */
         /*********************************************************************/
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81030202 12030303"
                                        + "3456");
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 15                                                      */
         /*********************************************************************/
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81");
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 16                                                      */
         /*********************************************************************/
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
         
         response = test.terminalResponse("81030121 00020282 810300");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -228,9 +228,9 @@ public class Test_Api_2_Pah_Send extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
+        addResult(response.checkData("10" + APPLET_AID_1
                                    + "10CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"
-                                   + "CC");
+                                   + "CC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -244,6 +244,6 @@ public class Test_Api_2_Pah_Send extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

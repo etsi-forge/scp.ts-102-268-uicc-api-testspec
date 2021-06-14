@@ -27,7 +27,7 @@ public class Test_Cre_Apt_Edlg extends UiccTestModel {
 
     public boolean run() {
 
-        boolean result;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -66,7 +66,7 @@ public class Test_Cre_Apt_Edlg extends UiccTestModel {
 
         // check results
         response  = test.selectApplication(APPLET_AID_1);
-        result    = response.checkData("10"+APPLET_AID_1+"05CCCCCC CCCC");
+        addResult(response.checkData("10"+APPLET_AID_1+"05CCCCCC CCCC"));
 
 
 
@@ -76,6 +76,6 @@ public class Test_Cre_Apt_Edlg extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

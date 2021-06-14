@@ -41,7 +41,7 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
     
     public boolean run() {
         
-        boolean result = true;
+        initialiseResults();
         
         // start test
         test.reset();
@@ -79,21 +79,21 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
         test.unrecognizedEnvelope();
 
         // update binary EF_TARU and check that applet is correctly triggered
-        result &= modifyEFandCheck(MF, EF_TARU, true);
-        result &= modifyEFandCheck(MF, EF_CARU, true);
-        result &= modifyEFandCheck(MF, EF_LARU, true);
+        modifyEFandCheck(MF, EF_TARU, true);
+        modifyEFandCheck(MF, EF_CARU, true);
+        modifyEFandCheck(MF, EF_LARU, true);
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(MF, EF_TARU, false);
+        modifyEFandCheck(MF, EF_TARU, false);
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(MF, EF_CARU, false);
+        modifyEFandCheck(MF, EF_CARU, false);
         
         test.unrecognizedEnvelope();
     
-        result &= modifyEFandCheck(MF, EF_LARU, false);
+        modifyEFandCheck(MF, EF_LARU, false);
             
         test.unrecognizedEnvelope();
         
@@ -104,11 +104,11 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
 
         test.unrecognizedEnvelope();
 
-        result &= modifyEFandCheck(MF, EF_TARU, true);        
+        modifyEFandCheck(MF, EF_TARU, true);
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(MF, EF_TARU, true);        
+        modifyEFandCheck(MF, EF_TARU, true);
         
         
         /** Testcase 3 *****************************************
@@ -117,12 +117,12 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(MF, EF_TARU, true);        
+        modifyEFandCheck(MF, EF_TARU, true);
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(MF, EF_TARU, true);        
-        result &= modifyEFandCheck(MF, EF_LARU, true);        
+        modifyEFandCheck(MF, EF_TARU, true);
+        modifyEFandCheck(MF, EF_LARU, true);
         
         
         /** Testcase 4 *****************************************
@@ -131,21 +131,21 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
         
         test.unrecognizedEnvelope();
 
-        result &= modifyEFandCheck(ADF, EF_TARU, true);        
-        result &= modifyEFandCheck(ADF, EF_CARU, true);        
-        result &= modifyEFandCheck(ADF, EF_LARU, true);        
+        modifyEFandCheck(ADF, EF_TARU, true);
+        modifyEFandCheck(ADF, EF_CARU, true);
+        modifyEFandCheck(ADF, EF_LARU, true);
 
         test.unrecognizedEnvelope();
 
-        result &= modifyEFandCheck(ADF, EF_TARU, false);        
+        modifyEFandCheck(ADF, EF_TARU, false);
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(ADF, EF_CARU, false);        
+        modifyEFandCheck(ADF, EF_CARU, false);
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(ADF, EF_LARU, false);        
+        modifyEFandCheck(ADF, EF_LARU, false);
         
         
         /** Testcase 5 *****************************************
@@ -154,11 +154,11 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(ADF, EF_TARU, true);        
+        modifyEFandCheck(ADF, EF_TARU, true);
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(ADF, EF_TARU, true);        
+        modifyEFandCheck(ADF, EF_TARU, true);
         
         
         /** Testcase 6 *****************************************
@@ -167,12 +167,12 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(ADF, EF_TARU, true);        
+        modifyEFandCheck(ADF, EF_TARU, true);
         
         test.unrecognizedEnvelope();
         
-        result &= modifyEFandCheck(ADF, EF_TARU, true);        
-        result &= modifyEFandCheck(ADF, EF_LARU, true);        
+        modifyEFandCheck(ADF, EF_TARU, true);
+        modifyEFandCheck(ADF, EF_LARU, true);
 
 
         
@@ -213,8 +213,8 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 +
-                                     "0CCCCCCC CCCCCCCC CCCCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1 +
+                                     "0CCCCCCC CCCCCCCC CCCCCCCC CC"));
         
         // delete applet and package
         test.reset();
@@ -222,19 +222,18 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
     
     
     /** 
      * Check the File List which caused the latest EXTERNAL_FILE_UDPATE
      * and compare it whith the File List given in parameter.
-     * If the applet has not been triggered it will return "000100"
      */
     
-    private boolean appletTriggered(String data) {
+    private void appletTriggered(String data) {
         response = test.envelopeCallControlByNAA();
-        return response.checkData(data);
+        addResult(response.checkData(data));
     }
     
 
@@ -243,7 +242,7 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
      * if the test applet is triggered with an EXTERNAL_FILE_UDPATE event.
      */
     
-    private boolean modifyEFandCheck(String mfadf, String fid, boolean shouldTrigger) {
+    private void modifyEFandCheck(String mfadf, String fid, boolean shouldTrigger) {
         
         // select correct file
         if (mfadf == ADF) test.selectApplication(AID_ADF_1);
@@ -266,8 +265,7 @@ public class Test_Api_2_Tkr_Drfeso extends UiccTestModel {
         else if (fid == EF_CARU) checkString += (DF_TEST + EF_CARU);
         else if (fid == EF_LARU) checkString += (DF_TEST + EF_LARU);
         
-        // return the result of the triggering
-        return appletTriggered(checkString);
+        appletTriggered(checkString);
     }
     
 }

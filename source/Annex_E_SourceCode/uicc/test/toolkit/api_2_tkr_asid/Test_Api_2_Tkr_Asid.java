@@ -35,7 +35,7 @@ public class Test_Api_2_Tkr_Asid extends UiccTestModel {
     
     public boolean run() {
 
-        boolean result = true;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -91,59 +91,59 @@ public class Test_Api_2_Tkr_Asid extends UiccTestModel {
             char serviceID;
             String check, data;
             
-            result &= response.checkSw("9110");
+            addResult(response.checkSw("9110"));
             response = test.fetch("10");
     
             // check that we received a ADD SERVICE command
             data = response.getData();
             serviceID = data.charAt(data.lastIndexOf("4103000") + 7);
             check = "D00E8103 01470082 02818241 03000X00".replace('X', serviceID);
-            result &= response.checkData(check);
+            addResult(response.checkData(check));
             
             response = test.terminalResponse("81030147 00820282 81830100");
         } 
 
         // test case 2: trigger applet1 with EVENT_EVENT_DOWNLOAD_LOCAL_CONNECTION event
         response = test.envelopeEventDownloadLocalConnection("41030000 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeEventDownloadLocalConnection("41030002 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeEventDownloadLocalConnection("41030006 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeEventDownloadLocalConnection("41030003 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeEventDownloadLocalConnection("41030007 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeEventDownloadLocalConnection("41030005 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeEventDownloadLocalConnection("41030001 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeEventDownloadLocalConnection("41030004 00");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // test case 3: trigger applet1, applet2 then applet1
         response = test.envelopeMenuSelection("100101","");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeMenuSelection("100102","");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeMenuSelection("100101","");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // test case 4: trigger applet3 then applet2
         response = test.envelopeMenuSelection("100103","");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         response = test.envelopeMenuSelection("100102","");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "0BCCCCCC CCCCCCCC CCCCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "0BCCCCCC CCCCCCCC CCCCCCCC"));
 
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("10" + APPLET_AID_2 + "02CCCC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "02CCCC"));
 
         response = test.selectApplication(APPLET_AID_3);
-        result &= response.checkData("10" + APPLET_AID_3 + "01CC");
+        addResult(response.checkData("10" + APPLET_AID_3 + "01CC"));
 
         // delete applet and package
         test.reset();
@@ -153,7 +153,7 @@ public class Test_Api_2_Tkr_Asid extends UiccTestModel {
         test.deleteApplet(APPLET_AID_3);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }
 

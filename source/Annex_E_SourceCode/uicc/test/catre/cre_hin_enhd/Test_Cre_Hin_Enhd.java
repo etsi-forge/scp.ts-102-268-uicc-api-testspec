@@ -33,7 +33,7 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
     }
     
     public boolean run() {
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -73,26 +73,26 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeMenuSelection("100102", "1500");  
         
         //Open Channel
-        result = response.checkSw("911A");
+        addResult(response.checkSw("911A"));
         response  = test.fetch("1A");
-        result &= response.checkData("D0188103 01400182 02818206 05815566" +
-                "77883502 03003902 000A");
+        addResult(response.checkData("D0188103 01400182 02818206 05815566" +
+                "77883502 03003902 000A"));
         response = test.terminalResponse("81030140 01820282 81830100 38028100" +
                 "35020300 3902000A");
         
         //Declare Service
-        result &= response.checkSw("9110");
+        addResult(response.checkSw("9110"));
         response  = test.fetch("10");
         declareService = response.getData();  
         serviceRecordTLV =  declareService.substring(22,32);  //to get ServiceId      
-        result &= response.checkData("D00E8103 01470082 028182" + serviceRecordTLV);    
+        addResult(response.checkData("D00E8103 01470082 028182" + serviceRecordTLV));
         response = test.terminalResponse("81030147 00820282 81830100");        
             
         //Display Text
-        result &= response.checkSw("9114");                 
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");      
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");          
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();        
         test.terminalResponse("81030121 80820282 81030100");      
 
@@ -100,10 +100,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeMenuSelection("100101", "");
                 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();         
         response = test.terminalResponse("81030121 80820282 81030100");  
   
@@ -111,10 +111,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeTimerExpiration("240101");
         
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -122,10 +122,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeCallControlByNAA();  
         
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
         
@@ -133,10 +133,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadMTCall();
                 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
         
@@ -144,10 +144,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadCallConnected();
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -155,10 +155,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadCallDisconnected();
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -166,10 +166,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadLocationStatus();
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -177,10 +177,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadUserActivity();
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -188,10 +188,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadIdleScreenAvailable();
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -199,10 +199,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadCardReaderStatus();
            
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -210,10 +210,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.unrecognizedEnvelope();
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -221,10 +221,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadLanguageSelection();
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -232,10 +232,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadBrowserTermination();
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -243,10 +243,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadDataAvailable("38028100");
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -254,10 +254,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadChannelStatus("38028100");
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -265,10 +265,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadAccessTechnologyChange();
  
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -276,10 +276,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadDisplayParametersChanged();
  
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -287,10 +287,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadLocalConnection(serviceRecordTLV);
 
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -298,10 +298,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadNetworkSearchModeChange();
  
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -309,10 +309,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.envelopeEventDownloadBrowsingStatus();
  
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -324,10 +324,10 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.updateBinary("0000", "FFFFFF");    
  
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
@@ -339,19 +339,19 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         response = test.updateRecord("01", "04", "55555555");    
  
         //Display Text
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01218082 0281028D 07045445" +
-                                     "58542031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045445" +
+                                     "58542031"));
         response = test.envelopeCallControlByNAA();                 
         response = test.terminalResponse("81030121 80820282 81030100");  
 
 
       
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + 
+        addResult(response.checkData("10" + APPLET_AID_1 +
                                      "17CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
-                                     "CCCCCCCC CCCCCCCC"); 
+                                     "CCCCCCCC CCCCCCCC"));
 
         test.reset();       
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -366,6 +366,6 @@ public class Test_Cre_Hin_Enhd extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }   

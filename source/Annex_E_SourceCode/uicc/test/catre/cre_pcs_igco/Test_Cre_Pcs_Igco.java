@@ -25,7 +25,7 @@ public class Test_Cre_Pcs_Igco extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -58,32 +58,32 @@ public class Test_Cre_Pcs_Igco extends UiccTestModel {
         // Terminal Profile with Set Up Menu
         response = test.terminalProfile("09010020");
         // SW1 shall be 91
-        result = response.checkSw("9126");
+        addResult(response.checkSw("9126"));
         
         // select MF
         response = test.selectFile("3F00");
-        result &= response.getData().regionMatches(16, "3F00", 0, 4);
-        result &= response.checkSw("9126");
+        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        addResult(response.checkSw("9126"));
 
         // select failed
         response = test.selectFile("03FF");
         // SW = 6A82
-        result &= response.checkSw("6A82");
+        addResult(response.checkSw("6A82"));
         
         // Fetch the Set Up Menu
         response = test.fetch("26");
-        result &= response.checkData("D0248103 01250082 02818285 09554943" +
+        addResult(response.checkData("D0248103 01250082 02818285 09554943" +
                                      "43205445 53548F06 014D656E 75318F06" +
-                                     "024D656E 7532");
+                                     "024D656E 7532"));
         
         // select MF
         response = test.selectFile("3F00");
-        result &= response.getData().regionMatches(16, "3F00", 0, 4);
-        result &= response.checkSw("9000");
+        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        addResult(response.checkSw("9000"));
        
         // Terminal Response
         response = test.terminalResponse("81030125 00820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -93,31 +93,31 @@ public class Test_Cre_Pcs_Igco extends UiccTestModel {
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
         // SW1 shall be 91
-        result = response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         
         // select MF
         response = test.selectFile("3F00");
-        result &= response.getData().regionMatches(16, "3F00", 0, 4);
-        result &= response.checkSw("9114");
+        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        addResult(response.checkSw("9114"));
 
         // select failed
         response = test.selectFile("03FF");
         // SW = 6A82
-        result &= response.checkSw("6A82");
+        addResult(response.checkSw("6A82"));
         
         // Fetch display Text
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01210082 0281028D 07045465" +
-                                     "73742041");
+        addResult(response.checkData("D0128103 01210082 0281028D 07045465" +
+                                     "73742041"));
         
         // select MF
         response = test.selectFile("3F00");
-        result &= response.getData().regionMatches(16, "3F00", 0, 4);
-        result &= response.checkSw("9000");
+        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        addResult(response.checkSw("9000"));
        
         // Terminal Response
         response = test.terminalResponse("81030121 00820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         
         /*********************************************************************/
@@ -129,45 +129,45 @@ public class Test_Cre_Pcs_Igco extends UiccTestModel {
 
         // select MF (Testcase 3-1)
         response = test.selectFile("3F00");
-        result &= response.getData().regionMatches(16, "3F00", 0, 4);
-        result &= response.checkSw("9114");
+        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        addResult(response.checkSw("9114"));
         // Fetch display Text
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01210082 0281028D 07045465" +
-                                     "73742042");
+        addResult(response.checkData("D0128103 01210082 0281028D 07045465" +
+                                     "73742042"));
         
         // select MF (Testcase 3-4)
         response = test.selectFile("3F00");
-        result &= response.getData().regionMatches(16, "3F00", 0, 4);
-        result &= response.checkSw("9000");
+        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        addResult(response.checkSw("9000"));
         // select failed
         response = test.selectFile("03FF");
         // SW = 6A82
-        result &= response.checkSw("6A82");
+        addResult(response.checkSw("6A82"));
         // Terminal Response
         response = test.terminalResponse("81030121 00820282 81830100");
-        result &= response.checkSw("9114");
+        addResult(response.checkSw("9114"));
 
         // select MF (Testcase 3-8)
         response = test.selectFile("3F00");
-        result &= response.getData().regionMatches(16, "3F00", 0, 4);
-        result &= response.checkSw("9114");
+        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        addResult(response.checkSw("9114"));
         // select failed
         response = test.selectFile("03FF");
         // SW = 6A82
-        result &= response.checkSw("6A82");
+        addResult(response.checkSw("6A82"));
         // Fetch display Text
         response = test.fetch("14");
-        result &= response.checkData("D0128103 01210082 0281028D 07045465" +
-                                     "73742043");
+        addResult(response.checkData("D0128103 01210082 0281028D 07045465" +
+                                     "73742043"));
 
         // select MF (Testcase 3-12)
         response = test.selectFile("3F00");
-        result &= response.getData().regionMatches(16, "3F00", 0, 4);
-        result &= response.checkSw("9000");
+        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        addResult(response.checkSw("9000"));
         // Terminal Response
         response = test.terminalResponse("81030121 00820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -177,7 +177,7 @@ public class Test_Cre_Pcs_Igco extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "02" + "CCCC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "02" + "CCCC"));
                                      
         /*********************************************************************/
         /*********************************************************************/
@@ -192,6 +192,6 @@ public class Test_Cre_Pcs_Igco extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

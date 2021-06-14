@@ -27,7 +27,7 @@ public class Test_Cre_Tin_Prlv_5 extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -82,7 +82,7 @@ public class Test_Cre_Tin_Prlv_5 extends UiccTestModel {
         
         // Trigger the applets
         response = test.envelopeEventDownloadUserActivity();
-        result = response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -92,11 +92,11 @@ public class Test_Cre_Tin_Prlv_5 extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "01" + "CC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("10" + APPLET_AID_2 + "01" + "CC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_3);
-        result &= response.checkData("10" + APPLET_AID_3 + "01" + "CC");
+        addResult(response.checkData("10" + APPLET_AID_3 + "01" + "CC"));
 
 
         /*********************************************************************/
@@ -114,6 +114,6 @@ public class Test_Cre_Tin_Prlv_5 extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

@@ -30,7 +30,7 @@ public class Test_Cre_Apt_Estc extends UiccTestModel {
 
     public boolean run() {
 
-        boolean result;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -80,10 +80,10 @@ public class Test_Cre_Apt_Estc extends UiccTestModel {
         //***TEST CASE 2: 1-APPLET3 IS TRIGGERED***
         response  = test.envelopeMenuSelection("100101", "");//Help Request not available
         //DISPLAY TEXT BY APPLET3
-        result    = response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response  = test.fetch("14");
-        result   &= response.checkData("D0128103 01218082 0281028D 07045465" +
-                                       "78742031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045465" +
+                                       "78742031"));
         //***TEST CASE 2: 3-APPLET1,APPLET2 ARE TRIGGERED***
         test.status("00", "0C", "00"); //No data requested
         //TERMINAL RESPONSE TO THE DISPLAY TEXT OF THE APPLET3
@@ -95,11 +95,11 @@ public class Test_Cre_Apt_Estc extends UiccTestModel {
 
         // check results
         response  = test.selectApplication(APPLET_AID_1);
-        result   &= response.checkData("10"+APPLET_AID_1+"03CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
         response  = test.selectApplication(APPLET_AID_2);
-        result   &= response.checkData("10"+APPLET_AID_2+"03CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
         response  = test.selectApplication(APPLET_AID_3);
-        result   &= response.checkData("10"+APPLET_AID_3+"03CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_3+"03CCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -109,6 +109,6 @@ public class Test_Cre_Apt_Estc extends UiccTestModel {
         test.deleteApplet(APPLET_AID_3);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

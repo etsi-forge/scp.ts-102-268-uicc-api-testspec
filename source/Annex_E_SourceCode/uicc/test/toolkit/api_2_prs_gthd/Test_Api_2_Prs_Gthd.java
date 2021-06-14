@@ -37,7 +37,7 @@ public class Test_Api_2_Prs_Gthd extends UiccTestModel
     public boolean run() {
 
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -87,8 +87,8 @@ public class Test_Api_2_Prs_Gthd extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result = response.checkData("10" + APPLET_AID_1 
-                                   + "03CCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "03CCCCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -103,6 +103,6 @@ public class Test_Api_2_Prs_Gthd extends UiccTestModel
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }

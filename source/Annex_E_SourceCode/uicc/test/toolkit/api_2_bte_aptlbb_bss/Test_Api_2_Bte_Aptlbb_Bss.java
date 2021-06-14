@@ -28,8 +28,6 @@ public class Test_Api_2_Bte_Aptlbb_Bss extends UiccTestModel{
     private UiccAPITestCardService	test				= null;
     /** contains the response from the executed command */
     private APDUResponse			response			= null;
-    /** stores the test result */
-    private boolean					testresult			= false;
 
     /**
      *
@@ -41,7 +39,9 @@ public class Test_Api_2_Bte_Aptlbb_Bss extends UiccTestModel{
      * Installs the applet, runs the tests and checks the test result.
      */
     public boolean run(){
-         test.reset();
+        initialiseResults();
+
+        test.reset();
          test.terminalProfileSession("13");
         //Install package
         test.loadPackage(CAP_FILE_PATH);
@@ -67,15 +67,15 @@ public class Test_Api_2_Bte_Aptlbb_Bss extends UiccTestModel{
         test.unrecognizedEnvelope();
         // check test results
         response = test.selectApplication(APPLET_AID_1);
-        testresult =  response.checkData("10"+APPLET_AID_1+
-                                         "0ECCCCCC CCCCCCCC CCCCCCCC CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_1+
+                                         "0ECCCCCC CCCCCCCC CCCCCCCC CCCCCC"));
         // delete applet and package
         test.reset();
         test.terminalProfileSession("13");
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-         return testresult;
+         return getOverallResult();
     }
 
 }

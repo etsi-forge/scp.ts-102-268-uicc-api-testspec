@@ -30,7 +30,7 @@ public class Test_Api_2_Tkr_Cevt extends UiccTestModel {
 
     public boolean run() {
 
-        boolean result = false;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -59,15 +59,15 @@ public class Test_Api_2_Tkr_Cevt extends UiccTestModel {
 
         // test case 1 to 3: trigger applet1
         response = test.unrecognizedEnvelope();
-        result = response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // test case 4: trigger applet1
         response = test.envelopeEventDownloadUserActivity();
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "04CCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "04CCCCCC CC"));
 
         // delete applet and package
         test.reset();
@@ -75,7 +75,7 @@ public class Test_Api_2_Tkr_Cevt extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }
 
