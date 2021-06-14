@@ -29,7 +29,7 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -95,7 +95,7 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
         // SW = 9000
-        result = response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -105,42 +105,42 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
         // Trigger Applet2
         response = test.envelopeMenuSelection("100102","");
         // SW = 9000
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
         // SW = 9000
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // Trigger Applet2
         response = test.envelopeMenuSelection("100102","");
         // SW = 9000
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
         // SW = 9000
-        result &= response.checkSw("9113");
+        addResult(response.checkSw("9113"));
         
         // Fecth 3 Timer Management proactive commands
         response = test.fetch("13");
-        result &= response.checkData("D0118103 01270082 02818224 01012503" +
-                                     "000100");
+        addResult(response.checkData("D0118103 01270082 02818224 01012503" +
+                                     "000100"));
         response = test.terminalResponse("81030127 00820282 81030100 24010125" +
                                          "03000100");
-        result &= response.checkSw("9113");
+        addResult(response.checkSw("9113"));
         response = test.fetch("13");
-        result &= response.checkData("D0118103 01270082 02818224 01022503" +
-                                     "000100");
+        addResult(response.checkData("D0118103 01270082 02818224 01022503" +
+                                     "000100"));
         response = test.terminalResponse("81030127 00820282 81030100 24010125" +
                                          "03000100");
-        result &= response.checkSw("9113");
+        addResult(response.checkSw("9113"));
         response = test.fetch("13");
-        result &= response.checkData("D0118103 01270082 02818224 01032503" +
-                                     "000100");
+        addResult(response.checkData("D0118103 01270082 02818224 01032503" +
+                                     "000100"));
         response = test.terminalResponse("81030127 00820282 81030100 24010125" +
                                          "03000100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -150,7 +150,7 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
         // SW = 9000
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -160,44 +160,44 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
         // Trigger Applet3
         response = test.envelopeMenuSelection("100103","");
         // SW = 911C
-        result &= response.checkSw("911C");
+        addResult(response.checkSw("911C"));
         // Fetch the Open Channel
         response = test.fetch("1C");
-        result &= response.checkData("D01A8103 01400182 02818206 05911122" +
-                                     "33443504 01000000 39020080");
+        addResult(response.checkData("D01A8103 01400182 02818206 05911122" +
+                                     "33443504 01000000 39020080"));
         // Terminal Response OK on channel 7
         response = test.terminalResponse("81030140 01820282 81030100 38028700" +
                                          "35040100 00003902 0080");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
                                          
         // Trigger Applet2
         response = test.envelopeMenuSelection("100102","");
         // SW = 911C
-        result &= response.checkSw("911C");
+        addResult(response.checkSw("911C"));
         // Fetch the Open Channel CSD
         response = test.fetch("1C");
-        result &= response.checkData("D01A8103 01400182 02818206 05911122" +
-                                     "33443504 01000000 39020080");
+        addResult(response.checkData("D01A8103 01400182 02818206 05911122" +
+                                     "33443504 01000000 39020080"));
         // Terminal Response OK on channel 1
         response = test.terminalResponse("81030140 01820282 81030100 38028100" +
                                          "35040100 00003902 0080");
-        result &= response.checkSw("9117");
+        addResult(response.checkSw("9117"));
         // Fetch the Open Channel GPRS
         response = test.fetch("17");
-        result &= response.checkData("D0158103 01400182 02818235 06020101" +
-                                     "02013139 020080");
+        addResult(response.checkData("D0158103 01400182 02818235 06020101" +
+                                     "02013139 020080"));
         // Terminal Response OK on channel 2
         response = test.terminalResponse("81030140 01820282 81030100 38028200" +
                                          "35060201 01020131 39020080");
-        result &= response.checkSw("911C");
+        addResult(response.checkSw("911C"));
         // Fetch the Open Channel CSD
         response = test.fetch("1C");
-        result &= response.checkData("D01A8103 01400182 02818206 05911122" +
-                                     "33443504 01000000 39020080");
+        addResult(response.checkData("D01A8103 01400182 02818206 05911122" +
+                                     "33443504 01000000 39020080"));
         // Terminal Response OK on channel 3
         response = test.terminalResponse("81030140 01820282 81030100 38028300" +
                                          "35040100 00003902 0080");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -209,43 +209,43 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // Trigger Applet2
         response = test.envelopeMenuSelection("100102","");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
-        result &= response.checkSw("9110");
+        addResult(response.checkSw("9110"));
         
         // Fecth 3 Declare Service "Add" proactive commands
         response = test.fetch("10");
-        result &= response.checkData("D00E8103 01470082 02818241 03000000");
+        addResult(response.checkData("D00E8103 01470082 02818241 03000000"));
         response = test.terminalResponse("81030147 00820282 81030100");
-        result &= response.checkSw("9110");
+        addResult(response.checkSw("9110"));
         response = test.fetch("10");
-        result &= response.checkData("D00E8103 01470082 02818241 03000100");
+        addResult(response.checkData("D00E8103 01470082 02818241 03000100"));
         response = test.terminalResponse("81030147 00820282 81030100");
-        result &= response.checkSw("9110");
+        addResult(response.checkSw("9110"));
         response = test.fetch("10");
-        result &= response.checkData("D00E8103 01470082 02818241 03000200");
+        addResult(response.checkData("D00E8103 01470082 02818241 03000200"));
         response = test.terminalResponse("81030147 00820282 81030100");
-        result &= response.checkSw("9110");
+        addResult(response.checkSw("9110"));
         
         // Fecth 3 Declare Service "Delete" proactive commands
         response = test.fetch("10");
-        result &= response.checkData("D00E8103 01470182 02818241 03000000");
+        addResult(response.checkData("D00E8103 01470182 02818241 03000000"));
         response = test.terminalResponse("81030147 01820282 81030100");
-        result &= response.checkSw("9110");
+        addResult(response.checkSw("9110"));
         response = test.fetch("10");
-        result &= response.checkData("D00E8103 01470182 02818241 03000100");
+        addResult(response.checkData("D00E8103 01470182 02818241 03000100"));
         response = test.terminalResponse("81030147 01820282 81030100");
-        result &= response.checkSw("9110");
+        addResult(response.checkSw("9110"));
         response = test.fetch("10");
-        result &= response.checkData("D00E8103 01470182 02818241 03000200");
+        addResult(response.checkData("D00E8103 01470182 02818241 03000200"));
         response = test.terminalResponse("81030147 01820282 81030100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
 
 
@@ -255,13 +255,13 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
-        result &= response.checkSw("910F");
+        addResult(response.checkSw("910F"));
 
         // Fecth 3 unknown proactive commande
         response = test.fetch("0F");
-        result &= response.checkData("D00D8103 01000082 02810000 020000");
+        addResult(response.checkData("D00D8103 01000082 02810000 020000"));
         response = test.terminalResponse("81030100 00820282 81030100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         
         
@@ -272,14 +272,14 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "12" + 
+        addResult(response.checkData("10" + APPLET_AID_1 + "12" +
             "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
-            "CCCC");
+            "CCCC"));
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("10" + APPLET_AID_2 + "0B" + 
-            "CCCCCCCC CCCCCCCC CCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "0B" +
+            "CCCCCCCC CCCCCCCC CCCCCC"));
         response = test.selectApplication(APPLET_AID_3);
-        result &= response.checkData("10" + APPLET_AID_3 + "01" + "CC");
+        addResult(response.checkData("10" + APPLET_AID_3 + "01" + "CC"));
                                      
         /*********************************************************************/
         /*********************************************************************/
@@ -296,6 +296,6 @@ public class Test_Cre_Pcs_Pcco extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

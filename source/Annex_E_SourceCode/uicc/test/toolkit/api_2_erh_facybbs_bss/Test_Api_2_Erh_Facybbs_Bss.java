@@ -37,7 +37,7 @@ public class Test_Api_2_Erh_Facybbs_Bss extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -83,9 +83,9 @@ public class Test_Api_2_Erh_Facybbs_Bss extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result = response.checkData("10" + APPLET_AID_1 
+        addResult(response.checkData("10" + APPLET_AID_1
                                   + "1ACCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"
-                                  + "CCCCCCCC CCCCCCCC CCCCCC");
+                                  + "CCCCCCCC CCCCCCCC CCCCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -100,7 +100,7 @@ public class Test_Api_2_Erh_Facybbs_Bss extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }
 

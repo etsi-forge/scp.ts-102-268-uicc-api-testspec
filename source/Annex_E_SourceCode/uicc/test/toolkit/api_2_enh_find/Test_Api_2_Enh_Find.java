@@ -39,7 +39,7 @@ public class Test_Api_2_Enh_Find extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -90,9 +90,9 @@ public class Test_Api_2_Enh_Find extends UiccTestModel
                                         + "04 0D"
                                         + "01020304 05060708 090A0B0C 0D");
                 if(i == 0)
-                        result = response.checkSw("90 00");
+                        addResult(response.checkSw("90 00"));
                 else
-                        result &= response.checkSw("90 00");
+                        addResult(response.checkSw("90 00"));
         }
         /*********************************************************************/
         /*********************************************************************/
@@ -101,8 +101,8 @@ public class Test_Api_2_Enh_Find extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "0DCCCCCC CCCCCCCC CCCCCCCC CCCC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "0DCCCCCC CCCCCCCC CCCCCCCC CCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -116,7 +116,7 @@ public class Test_Api_2_Enh_Find extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }
 

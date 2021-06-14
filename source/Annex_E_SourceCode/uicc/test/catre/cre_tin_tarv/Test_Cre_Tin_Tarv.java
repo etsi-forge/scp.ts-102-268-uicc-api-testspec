@@ -27,7 +27,7 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -41,7 +41,7 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
         /** Testcase 1                                                       */
         /*********************************************************************/
 
-        // Install Applet2 with TAR "020202é
+        // Install Applet2 with TAR "020202ï¿½
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "800B" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -55,8 +55,8 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
                                "00");   // V Maximum number of services
         
         // Check correct installation
-        result = response.checkSw("9000");
-        result = response.checkData("00");
+        addResult(response.checkSw("9000"));
+        addResult(response.checkData("00"));
 
 
         test.reset();
@@ -76,7 +76,7 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
                                "09010101020202030303" +    
                                "00");   // V Maximum number of services
 
-        result &= response.checkSw("6A80");
+        addResult(response.checkSw("6A80"));
 
         /*********************************************************************/
         /** Testcase 2                                                       */
@@ -97,7 +97,7 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
                                "050101010303" +    
                                "00");   // V Maximum number of services
 
-        result &= response.checkSw("6A80");        
+        addResult(response.checkSw("6A80"));
 
 
         /*********************************************************************/
@@ -114,6 +114,6 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }   

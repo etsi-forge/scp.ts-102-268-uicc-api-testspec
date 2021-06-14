@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -73,16 +73,16 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
         /*********************************************************************/   
                                                                                   
         response = test.unrecognizedEnvelope();                                   
-        result = response.checkSw("9112");                                        
+        addResult(response.checkSw("9112"));
         
         // Fetch the DISPLAY TEXT proactive command
         response = test.fetch("12");                                              
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");                             
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
 
         // Terminal response with no CHANNEL STATUS TLV
         response = test.terminalResponse("81030121 00020282 81030100");   
-        result &= response.checkSw("911C");
+        addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 2                                                       */   
@@ -90,21 +90,21 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
                                                                                   
         // Fetch the OPEN CHANNEL proactive command
         response = test.fetch("1C");
-        result &= response.checkData("D01A8103 01400182 02818206 05911122"
-                                   + "33443504 01000000 39020080");                                     
+        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+                                   + "33443504 01000000 39020080"));
 
         // Successful terminal response with channel status value set to 0x8100
         response = test.terminalResponse("81030140 01820282 81830100 38028100" 
                                        + "35020300 3902000A");
-        result &= response.checkSw("910B");
+        addResult(response.checkSw("910B"));
 
         // Fetch the CLOSE CHANNEL proactive command
         response = test.fetch("0B");
-        result &= response.checkData("D0098103 01410082 028121");
+        addResult(response.checkData("D0098103 01410082 028121"));
 
         // Successful terminal response
         response = test.terminalResponse("81030141 00820282 81830100");
-        result &= response.checkSw("911C");
+        addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 3                                                       */   
@@ -112,13 +112,13 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
                                                                                   
         // Fetch the OPEN CHANNEL proactive command
         response = test.fetch("1C");
-        result &= response.checkData("D01A8103 01400182 02818206 05911122"
-                                   + "33443504 01000000 39020080");                                     
+        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+                                   + "33443504 01000000 39020080"));
 
         // Unsuccessful terminal response with channel status TLV length set to 0
         response = test.terminalResponse("81030140 01820282 81830130 38003502"
                                        + "03003902 000A");
-        result &= response.checkSw("911C");
+        addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 4                                                       */   
@@ -126,13 +126,13 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
                                                                                   
         // Fetch the OPEN CHANNEL proactive command
         response = test.fetch("1C");
-        result &= response.checkData("D01A8103 01400182 02818206 05911122"
-                                   + "33443504 01000000 39020080");                                     
+        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+                                   + "33443504 01000000 39020080"));
 
         // Unsuccessful terminal response with channel status TLV length set to 1
         response = test.terminalResponse("81030140 01820282 81830130 38018135"
                                        + "02030039 02000A");
-        result &= response.checkSw("911C");
+        addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 5                                                       */   
@@ -140,13 +140,13 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
                                                                                   
         // Fetch the OPEN CHANNEL proactive command
         response = test.fetch("1C");
-        result &= response.checkData("D01A8103 01400182 02818206 05911122"
-                                   + "33443504 01000000 39020080");                                     
+        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+                                   + "33443504 01000000 39020080"));
 
         // Successful terminal response with channel status TLV value set to 0x8100
         response = test.terminalResponse("81030140 01820282 81830100 38028100"
                                        + "35020300 3902000A");
-        result &= response.checkSw("910B");
+        addResult(response.checkSw("910B"));
 
         /*********************************************************************/   
         /** Testcase 6                                                       */   
@@ -154,12 +154,12 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
                                                                                   
         // Fetch the GET CHANNEL STATUS proactive command
         response = test.fetch("0B");
-        result &= response.checkData("D0098103 01440082 028182");                                     
+        addResult(response.checkData("D0098103 01440082 028182"));
 
         // Successful terminal response with 2 channel status TLVs 
         response = test.terminalResponse("81030144 01820282 81830100 38028100"
                                        + "38028101 35020300 3902000A");
-        result &= response.checkSw("910B");
+        addResult(response.checkSw("910B"));
 
         /*********************************************************************/   
         /** Testcase 7                                                       */   
@@ -167,20 +167,20 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
                                                                                   
          // Fetch the GET CHANNEL STATUS proactive command
         response = test.fetch("0B");
-        result &= response.checkData("D0098103 01440082 028182");                                     
+        addResult(response.checkData("D0098103 01440082 028182"));
 
         // Successful terminal response with 2 channel status TLVs 
         response = test.terminalResponse("81030144 01820282 81830100 38028200"
                                        + "38028100 35020300 3902000A");
-        result &= response.checkSw("910B");
+        addResult(response.checkSw("910B"));
 
         // Fetch the CLOSE CHANNEL proactive command
         response = test.fetch("0B");
-        result &= response.checkData("D0098103 01410082 028121");
+        addResult(response.checkData("D0098103 01410082 028121"));
 
         // Successful terminal response
         response = test.terminalResponse("81030141 00820282 81830100");
-        result &= response.checkSw("911C");
+        addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 8                                                       */   
@@ -188,21 +188,21 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
                                                                                   
         // Fetch the OPEN CHANNEL proactive command
         response = test.fetch("1C");
-        result &= response.checkData("D01A8103 01400182 02818206 05911122"
-                                   + "33443504 01000000 39020080");                                     
+        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+                                   + "33443504 01000000 39020080"));
 
         // Successful terminal response with 1 channel status TLVs 
         response = test.terminalResponse("81030140 01820282 81830100 38028304"
                                        + "35020300 3902000A");
-        result &= response.checkSw("910B");
+        addResult(response.checkSw("910B"));
 
         // Fetch the CLOSE CHANNEL proactive command
         response = test.fetch("0B");
-        result &= response.checkData("D0098103 01410082 028123");
+        addResult(response.checkData("D0098103 01410082 028123"));
 
         // Successful terminal response
         response = test.terminalResponse("81030141 00820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -211,8 +211,8 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "08CCCCCC CCCCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "08CCCCCC CCCCCCCC CC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -226,6 +226,6 @@ public class Test_Api_2_Prh_Gcst extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

@@ -22,15 +22,25 @@ public class Api_1_Fvw_Incr_1 extends TestToolkitApplet implements UICCConstants
     private ViewHandler createEFCmd = null;
 
     private static byte[] MenuInit = {(byte)'M',(byte)'e',(byte)'n',(byte)'u',(byte)'1'};
-    private byte [] abCreateEF = {
+    private byte [] abCreateEF_2C00 = {
             (byte)0x82,(byte)0x04,                       // Tag, Length - File descriptor
-            (byte)0x46,(byte)0x21,(byte)0x00,(byte)0x7F, // Value - File descriptor (Cyclic) and record length (0x7F)
+            (byte)0x46,(byte)0x21,(byte)0x00,(byte)0x00, // Value - File descriptor (Cyclic) and record length (0x00)
             (byte)0x83,(byte)0x02,                       // Tag, Length - File Id
-            (byte)0x2C,(byte)0x7F,                       // Value - File Id
+            (byte)0x2C,(byte)0x00,                       // Value - File Id
             (byte)0x8A,(byte)0x01,(byte)0x05,            // Tag, Length, Value - LCSI (Activated)
             (byte)0x8B,(byte)0x03,                       // Tag, Length - Security attribute
             (byte)0x2F,(byte)0x06,(byte)0x01,            // Value - Security attribute (EF Arr, record nb)
-            (byte)0x80,(byte)0x02,(byte)0x00,(byte)0x7F, // Tag, Length, value - File size (0 bytes => no record)
+            (byte)0x80,(byte)0x02,(byte)0x00,(byte)0x00, // Tag, Length, value - File size (0 bytes => no record)
+            (byte)0x88,(byte)0x00};                      // Tag, Length - SFI (no SFI)
+    private byte [] abCreateEF_2CFD = {
+            (byte)0x82,(byte)0x04,                       // Tag, Length - File descriptor
+            (byte)0x46,(byte)0x21,(byte)0x00,(byte)0xFD, // Value - File descriptor (Cyclic) and record length (0xFD)
+            (byte)0x83,(byte)0x02,                       // Tag, Length - File Id
+            (byte)0x2C,(byte)0xFD,                       // Value - File Id
+            (byte)0x8A,(byte)0x01,(byte)0x05,            // Tag, Length, Value - LCSI (Activated)
+            (byte)0x8B,(byte)0x03,                       // Tag, Length - Security attribute
+            (byte)0x2F,(byte)0x06,(byte)0x01,            // Value - Security attribute (EF Arr, record nb)
+            (byte)0x80,(byte)0x02,(byte)0x00,(byte)0xFD, // Tag, Length, value - File size (0 bytes => no record)
             (byte)0x88,(byte)0x00};                      // Tag, Length - SFI (no SFI)
     byte testCaseNb = (byte) 0x00;
     byte incr[] = null;
@@ -502,13 +512,14 @@ public class Api_1_Fvw_Incr_1 extends TestToolkitApplet implements UICCConstants
             // activate 
             UiccFileView.activateFile();
             // Restore Ef content
-            // Set records to 55 55 55
-            Util.arrayFillNonAtomic(data, (short)0, (short)data.length, (byte)0x55);
-            UiccFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, data, (short)0, (short)data.length);
             // Set records to AA AA AA
             Util.arrayFillNonAtomic(data, (short)0, (short)data.length, (byte)0xAA);
             UiccFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, data, (short)0, (short)data.length);
-            bRes &= true;
+            // Set records to 55 55 55
+            Util.arrayFillNonAtomic(data, (short)0, (short)data.length, (byte)0x55);
+            UiccFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, data, (short)0, (short)data.length);
+
+			bRes &= true;
         }
         catch (Exception e)
         {
@@ -517,34 +528,68 @@ public class Api_1_Fvw_Incr_1 extends TestToolkitApplet implements UICCConstants
         reportTestOutcome(testCaseNb, bRes);
 
         // -----------------------------------------------------------------
-        // Test Case 15 : incrLength out of range
-        // -----------------------------------------------------------------
+        // Test Case 15 : Record not found
+        //
         testCaseNb = 15;
+        try
+        {
+        	incr = new byte[3];
+        	resp = new byte[3];
+        	createEFCmd = HandlerBuilder.buildTLVHandler(HandlerBuilder.EDIT_HANDLER, (short)abCreateEF_2C00.length, abCreateEF_2C00, (short)0x00, (short)abCreateEF_2C00.length);
+            UiccAdminFileView.createFile(createEFCmd);
+            UiccAdminFileView.select((short)0x2C00);
+            
+            incrOffset = 0;
+            incrLength = 3;
+            respOffset = 0;
+            
+            respLength = UiccFileView.increase(incr, incrOffset, incrLength, resp, respOffset);
+            bRes = false;
+        }
+        catch (UICCException e)
+        {
+            if (e.getReason() == UICCException.RECORD_NOT_FOUND)
+                bRes = true;
+            else
+                bRes = false;
+        }
+        catch(Exception e)
+        {
+        	bRes = false;
+        }
+        
+        UiccAdminFileView.deleteFile((short)0x2C00);
+        reportTestOutcome(testCaseNb, bRes);
+        
+        // -----------------------------------------------------------------
+        // Test Case 16 : incrLength out of range
+        // -----------------------------------------------------------------
+        testCaseNb = 16;
         try 
         {
             // Create EF 0x2CFD
             incr = new byte[128];
             resp = new byte[0xFF];
             comp = new byte[0xFF];
-            createEFCmd = HandlerBuilder.buildTLVHandler(HandlerBuilder.EDIT_HANDLER, (short)abCreateEF.length, abCreateEF, (short)0x00, (short)abCreateEF.length);
+            createEFCmd = HandlerBuilder.buildTLVHandler(HandlerBuilder.EDIT_HANDLER, (short)abCreateEF_2CFD.length, abCreateEF_2CFD, (short)0x00, (short)abCreateEF_2CFD.length);
             UiccAdminFileView.createFile(createEFCmd);
-            UiccAdminFileView.select((short)0x2C7F);
+            UiccAdminFileView.select((short)0x2CFD);
 
-            Util.arrayFillNonAtomic(comp, (short)0, (short)127, (byte)0xFF);
-            comp[0] = (byte)0x00;
-            UiccAdminFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, comp, (short)0, (short)127);
+            Util.arrayFillNonAtomic(comp, (short)0, (short)126, (byte)0x00);
+            Util.arrayFillNonAtomic(comp, (short)126, (short)(0xFD-126), (byte)0xFF);
+            UiccAdminFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, comp, (short)0, (short)0xFD);
             // increase
             Util.arrayFillNonAtomic(incr, (short)0, (short)incr.length, (byte)0);
             Util.arrayFillNonAtomic(resp, (short)0, (short)resp.length, (byte)0);
             Util.arrayFillNonAtomic(comp, (short)0, (short)resp.length, (byte)0);
             incr[127] = (byte)0x01;
-            comp[0] = (byte)0x01;
+            comp[125] = (byte)0x01;
             incrOffset = 1;
             incrLength = 127;
             respOffset = 0;
             respLength = UiccAdminFileView.increase(incr, incrOffset, incrLength, resp, respOffset);
             // Check result
-            if ((respLength == (short)0x7F) &&
+            if ((respLength == (short)0xFD) &&
                 (Util.arrayCompare(resp, (short)0, comp, (short)0, respLength) == 0))
                 bRes = true;
             else
@@ -568,7 +613,59 @@ public class Api_1_Fvw_Incr_1 extends TestToolkitApplet implements UICCConstants
             bRes &= true;
         }
         reportTestOutcome(testCaseNb, bRes);
-        UiccAdminFileView.deleteFile((short)0x2C7F);
-
+        UiccAdminFileView.deleteFile((short)0x2CFD);
     }
 }
+
+/*
+testCaseNb = 16;
+try 
+{
+    // Create EF 0x2CFD
+    incr = new byte[128];
+    resp = new byte[0xFF];
+    comp = new byte[0xFF];
+    createEFCmd = HandlerBuilder.buildTLVHandler(HandlerBuilder.EDIT_HANDLER, (short)abCreateEF.length, abCreateEF, (short)0x00, (short)abCreateEF.length);
+    UiccAdminFileView.createFile(createEFCmd);
+    UiccAdminFileView.select((short)0x2C7F);
+
+    Util.arrayFillNonAtomic(comp, (short)0, (short)127, (byte)0xFF);
+    comp[0] = (byte)0x00;
+    UiccAdminFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, comp, (short)0, (short)127);
+    // increase
+    Util.arrayFillNonAtomic(incr, (short)0, (short)incr.length, (byte)0);
+    Util.arrayFillNonAtomic(resp, (short)0, (short)resp.length, (byte)0);
+    Util.arrayFillNonAtomic(comp, (short)0, (short)resp.length, (byte)0);
+    incr[127] = (byte)0x01;
+    comp[0] = (byte)0x01;
+    incrOffset = 1;
+    incrLength = 127;
+    respOffset = 0;
+    respLength = UiccAdminFileView.increase(incr, incrOffset, incrLength, resp, respOffset);
+    // Check result
+    if ((respLength == (short)0x7F) &&
+        (Util.arrayCompare(resp, (short)0, comp, (short)0, respLength) == 0))
+        bRes = true;
+    else
+        bRes = false;
+}
+catch (Exception e)
+{
+    bRes = false;
+}
+try 
+{
+    // increase
+    incrOffset = 0;
+    incrLength = 128;
+    respOffset = 0;
+    respLength = UiccAdminFileView.increase(incr, incrOffset, incrLength, resp, respOffset);
+    bRes = false;
+}
+catch (Exception e)
+{
+    bRes &= true;
+}
+reportTestOutcome(testCaseNb, bRes);
+UiccAdminFileView.deleteFile((short)0x2C7F);
+*/

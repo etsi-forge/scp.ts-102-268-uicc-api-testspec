@@ -31,7 +31,7 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
     }
 
     public boolean run() {
-        boolean result = true;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -80,26 +80,26 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        result = response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         /** Test case 2
          *  Normal execution 
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");         
+        addResult(response.checkSw("9000"));
         
         test.reset();
         test.terminalProfileSession("0101");
 
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");         
+        addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession("0101");
 
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");         
+        addResult(response.checkSw("9000"));
 
         response = test.selectApplication(APPLET_AID_1);
         response = test.selectApplication(AID_ADF_2);
@@ -110,7 +110,7 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
         test.terminalProfileSession("0101");
         
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");         
+        addResult(response.checkSw("9000"));
 
         
         /** Test case 3
@@ -118,7 +118,7 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
          */
         
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");   
+        addResult(response.checkSw("9000"));
 
 
         /** Test case 4
@@ -126,7 +126,7 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         
         /** Test case 5
@@ -134,7 +134,7 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
          */
        
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");  
+        addResult(response.checkSw("9000"));
        
        
         /** Test case 6
@@ -153,14 +153,14 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
          */
        
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");  
+        addResult(response.checkSw("9000"));
 
         /** Test case 8
          *  NullPointerException 
          */
        
         response = test.envelopeMenuSelection("100101", "");
-        result &= response.checkSw("9000");  
+        addResult(response.checkSw("9000"));
         
         
         /** 
@@ -172,7 +172,7 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
        
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "08CCCCCC CCCCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "08CCCCCC CCCCCCCC CC"));
 
         // delete applet and package
         test.reset();
@@ -180,6 +180,6 @@ public class Test_Api_4_Afb_Gtafob extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

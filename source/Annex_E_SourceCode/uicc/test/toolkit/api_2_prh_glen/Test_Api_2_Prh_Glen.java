@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Glen extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -73,16 +73,16 @@ public class Test_Api_2_Prh_Glen extends UiccTestModel
         /*********************************************************************/   
                                                                                   
         response = test.unrecognizedEnvelope();                                   
-        result = response.checkSw("9112");                                        
+        addResult(response.checkSw("9112"));
                                                                                   
         // Fetch the DISPLAY TEXT proactive command                                            
         response = test.fetch("12");                                              
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");                             
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
 
         // Terminal response with no additional information
         response = test.terminalResponse("81030121 00020282 81030100");   
-        result &= response.checkSw("9112");
+        addResult(response.checkSw("9112"));
         
         /*********************************************************************/   
         /** Testcase 2                                                       */   
@@ -90,8 +90,8 @@ public class Test_Api_2_Prh_Glen extends UiccTestModel
                                                                                   
         // Fetch the GET INPUT proactive command                                            
         response = test.fetch("12");                                              
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");                             
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
 
         // Terminal response (F2h additional bytes)
         response = test.terminalResponse("81030121 00020282 810381F3 01000102"
@@ -110,7 +110,7 @@ public class Test_Api_2_Prh_Glen extends UiccTestModel
                                        + "C3C4C5C6 C7C8C9CA CBCCCDCE CFD0D1D2"
                                        + "D3D4D5D6 D7D8D9DA DBDCDDDE DFE0E1E2"
                                        + "E3E4E5E6 E7E8E9EA EBECEDEE EFF0F1");
-        result &= response.checkSw("9000");                                   
+        addResult(response.checkSw("9000"));
                                                                           
         /*********************************************************************/
         /*********************************************************************/
@@ -119,8 +119,8 @@ public class Test_Api_2_Prh_Glen extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "02CCCC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "02CCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -134,6 +134,6 @@ public class Test_Api_2_Prh_Glen extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

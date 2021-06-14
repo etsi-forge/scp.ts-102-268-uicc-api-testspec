@@ -38,7 +38,7 @@ public class Test_Api_2_Enh_Cprv extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -90,9 +90,9 @@ public class Test_Api_2_Enh_Cprv extends UiccTestModel
                                         + "13027000 000E0D08 00000028 83850000"
                                         + "00000100");
                 if(i == 0)
-                        result = response.checkSw("90 00");
+                        addResult(response.checkSw("90 00"));
                 else
-                        result &= response.checkSw("90 00");
+                        addResult(response.checkSw("90 00"));
         }
         /*********************************************************************/
         /*********************************************************************/
@@ -101,8 +101,8 @@ public class Test_Api_2_Enh_Cprv extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + 
-                                     "12CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC CCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1 +
+                                     "12CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC CCCCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -115,6 +115,6 @@ public class Test_Api_2_Enh_Cprv extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

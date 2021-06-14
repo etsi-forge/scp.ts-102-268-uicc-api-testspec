@@ -30,7 +30,7 @@ public class Test_Api_4_Afv_Dltf extends UiccTestModel {
     }
 
     public boolean run() {
-        boolean result = true;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -92,7 +92,7 @@ public class Test_Api_4_Afv_Dltf extends UiccTestModel {
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "06CCCCCC CCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "06CCCCCC CCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -100,6 +100,6 @@ public class Test_Api_4_Afv_Dltf extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

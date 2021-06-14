@@ -73,26 +73,31 @@ public class Api_2_Erh_Aptlbbs_1 extends TestToolkitApplet {
         // --------------------------------------------
         // Test Case 1 : handler overflow
         testCaseNb = (byte) 1 ;
-        bRes = false ;
-        
-        try {
-            
-            // Initialise the handler
-            offset = (short)0 ;
-            length = (short)(EnvRespHdlr.getCapacity() - 1) ;
-            EnvRespHdlr.appendArray(buffer, offset, length) ;
-            
-            // appendTLV
-            try {
-                EnvRespHdlr.appendTLV(tag, value1, value2) ;
-            }
-            catch (ToolkitException e) {
-                bRes = (e.getReason() == ToolkitException.HANDLER_OVERFLOW) ;
-            }
-        }
-        catch (Exception e) {
-            bRes = false ;
-        }
+		bRes = false ;
+		
+		try {
+			
+			// Initialise the handler
+			offset = (short)0 ;
+			length = (short)(EnvRespHdlr.getCapacity() - 1) ;
+			while (length > 255){
+				EnvRespHdlr.appendArray(buffer, offset, (short) 255) ;
+				length = (short) (length - (short) 255);
+			}
+			EnvRespHdlr.appendArray(buffer, offset, length) ;
+			
+			// appendTLV
+			try {
+				EnvRespHdlr.appendTLV(tag, value1, value2) ;
+			}
+			catch (ToolkitException e) {
+				bRes = (e.getReason() == ToolkitException.HANDLER_OVERFLOW) ;
+			}
+		}
+		catch (Exception e) {
+			bRes = false ;
+		}
+				
         reportTestOutcome(testCaseNb, bRes) ;
         
 

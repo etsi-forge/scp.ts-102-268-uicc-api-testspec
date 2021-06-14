@@ -36,7 +36,7 @@ public class Test_Api_2_Tkr_Sevt extends UiccTestModel {
 
     public boolean run() {
 
-        boolean result = true;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -118,16 +118,16 @@ public class Test_Api_2_Tkr_Sevt extends UiccTestModel {
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "0BCCCCCC CCCCCCCC CCCCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "0BCCCCCC CCCCCCCC CCCCCCCC"));
 
         response = test.selectApplication(APPLET_AID_2);
-        result &= response.checkData("10" + APPLET_AID_2 + "01CC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "01CC"));
 
         response = test.selectApplication(APPLET_AID_3);
-        result &= response.checkData("10" + APPLET_AID_3 + "01CC");
+        addResult(response.checkData("10" + APPLET_AID_3 + "01CC"));
 
         response = test.selectApplication(APPLET_AID_4);
-        result &= response.checkData("10" + APPLET_AID_4 + "03CCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_4 + "03CCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -138,7 +138,7 @@ public class Test_Api_2_Tkr_Sevt extends UiccTestModel {
         test.deleteApplet(APPLET_AID_4);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }
 

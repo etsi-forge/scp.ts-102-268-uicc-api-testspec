@@ -90,10 +90,7 @@ public class Api_2_Erh_Gcap_1 extends TestToolkitApplet {
             {
                 envRespHdlr.appendTLV((byte)0xAA, Buffer, (short)0x00, (short)(sCapacity - 3));
             }
-            else if (sCapacity > 0x102)
-            {
-                envRespHdlr.appendTLV((byte)0xAA, Buffer, (short)0x00, (short)(sCapacity - 4));
-            }
+
             bRes &= true;
         }
         catch (Exception e)  {    
@@ -121,7 +118,7 @@ public class Api_2_Erh_Gcap_1 extends TestToolkitApplet {
             }
             else if (sCapacity > 0x102)
             {
-                envRespHdlr.appendTLV((byte)0xAA, Buffer, (short)0x00, (short)(sCapacity - 3));
+                ToolkitException.throwIt(ToolkitException.HANDLER_OVERFLOW);
             }
             bRes = false;
         }

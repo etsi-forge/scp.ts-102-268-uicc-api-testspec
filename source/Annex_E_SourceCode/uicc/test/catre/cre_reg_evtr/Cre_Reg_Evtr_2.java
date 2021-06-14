@@ -47,10 +47,10 @@ public class Cre_Reg_Evtr_2 extends TestToolkitApplet {
     }
 
     public Shareable getShareableInterfaceObject(AID clientAID, byte parameter) {
-        testCounter++;
         // According to CAT Runtime Environment behaviour for ToolkitInterface object retrieval
         if ((clientAID == null) && (parameter == (byte)0x01)) {
-            return((Shareable) this);
+            testCounter++;
+			return((Shareable) this);
         } else {
             return(null);
         }

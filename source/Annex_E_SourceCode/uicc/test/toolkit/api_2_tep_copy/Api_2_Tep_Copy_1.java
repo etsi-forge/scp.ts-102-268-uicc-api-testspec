@@ -269,22 +269,6 @@ public class Api_2_Tep_Copy_1 extends TestToolkitApplet {
             }
             reportTestOutcome(testCaseNb, bRes);
 
-            /** Test Case 12: startOffset < 0 */
-            testCaseNb = (byte)12;
-            bRes = false;
-            try {
-                Util.arrayFillNonAtomic(dstBuffer, (short)0, (short)dstBuffer.length, (byte)0);
-                TerminalProfile.copy((short)-1, dstBuffer, (short)0, (short)6);
-            }
-            catch (ToolkitException e) {
-                if (isBufferEmpty(dstBuffer))
-                    if (e.getReason() == ToolkitException.BAD_INPUT_PARAMETER) 
-                        bRes = true;
-            }
-            catch (Exception e) {
-                   bRes = false;
-            }
-            reportTestOutcome(testCaseNb, bRes);
         }
     }
 

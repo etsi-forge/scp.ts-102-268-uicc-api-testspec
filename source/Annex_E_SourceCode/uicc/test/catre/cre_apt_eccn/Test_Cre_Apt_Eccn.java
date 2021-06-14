@@ -29,7 +29,7 @@ public class Test_Cre_Apt_Eccn extends UiccTestModel {
 
     public boolean run() {
 
-        boolean result;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -68,22 +68,22 @@ public class Test_Cre_Apt_Eccn extends UiccTestModel {
         test.envelopeCallControlByNAA();
         //***TEST CASE 2: 1-APPLET 2 IS TRIGGERED***
         response = test.envelopeMenuSelection("100101", "");//Help Request not available
-        result   = response.checkSw("9114");
+        addResult(response.checkSw("9114"));
         response = test.fetch("14");
-        result  &= response.checkData("D0128103 01218082 0281028D 07045465" +
-                                      "78742031");
+        addResult(response.checkData("D0128103 01218082 0281028D 07045465" +
+                                      "78742031"));
         //***TEST CASE 2: 3-APPLET 1 IS TRIGGERED***
         test.envelopeCallControlByNAA();
         //***TERMINAL RESPONSE TO THE DISPLAY TEXT***
         response = test.terminalResponse("81030121 80820282 81030100");
-        result  &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         //***TEST CASE 3: APPLET 2 IS TRIGGERED, APPLET1 IS NOT TRIGGERED***
         test.envelopeCallControlByNAA();
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result  &= response.checkData("10"+APPLET_AID_1+"03CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
         response = test.selectApplication(APPLET_AID_2);
-        result  &= response.checkData("10"+APPLET_AID_2+"03CCCCCC");
+        addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
 
 
         // delete applet and package
@@ -93,6 +93,6 @@ public class Test_Cre_Apt_Eccn extends UiccTestModel {
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

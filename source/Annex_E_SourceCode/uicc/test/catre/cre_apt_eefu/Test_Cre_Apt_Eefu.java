@@ -47,7 +47,7 @@ public class Test_Cre_Apt_Eefu extends UiccTestModel {
 
     public boolean run() {
 
-        boolean result;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -182,9 +182,9 @@ public class Test_Cre_Apt_Eefu extends UiccTestModel {
 
         // check results
         response  = test.selectApplication(APPLET_AID_1);
-        result    = response.checkData("10"+APPLET_AID_1+"1FCCCCCC CCCCCCCC"+
+        addResult(response.checkData("10"+APPLET_AID_1+"1FCCCCCC CCCCCCCC"+
                                        "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-                                       "CCCCCCCC CCCCCCCC");
+                                       "CCCCCCCC CCCCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -192,7 +192,7 @@ public class Test_Cre_Apt_Eefu extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }
 

@@ -25,7 +25,7 @@ public class Test_Cre_Uta_Odel extends UiccTestModel {
     }
     
     public boolean run() {
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -55,8 +55,8 @@ public class Test_Cre_Uta_Odel extends UiccTestModel {
         test.terminalProfile("0101");        
         
         response = test.selectApplication(APPLET_AID_1);
-        result = response.checkData("10" + APPLET_AID_1 + 
-                                    "01CC");
+        addResult(response.checkData("10" + APPLET_AID_1 +
+                                    "01CC"));
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);        
@@ -71,6 +71,6 @@ public class Test_Cre_Uta_Odel extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);                      
         test.deletePackage(CAP_FILE_PATH);
                
-        return result;
+        return getOverallResult();
     }
 }   

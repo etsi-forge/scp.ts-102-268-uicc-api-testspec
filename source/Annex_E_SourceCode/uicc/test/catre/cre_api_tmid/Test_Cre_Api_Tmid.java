@@ -31,7 +31,7 @@ public class Test_Cre_Api_Tmid extends UiccTestModel {
 
     public boolean run() {
         
-        boolean result = false;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -72,11 +72,11 @@ public class Test_Cre_Api_Tmid extends UiccTestModel {
 
         // test case 1: trigger second instance
         response = test.envelopeMenuSelection("900102", "");
-        result = response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_2);
-        result = result & response.checkData("10" + APPLET_AID_2 + "01CC");
+        addResult(response.checkData("10" + APPLET_AID_2 + "01CC"));
 
         // delete applets and package
         test.reset();
@@ -85,6 +85,6 @@ public class Test_Cre_Api_Tmid extends UiccTestModel {
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

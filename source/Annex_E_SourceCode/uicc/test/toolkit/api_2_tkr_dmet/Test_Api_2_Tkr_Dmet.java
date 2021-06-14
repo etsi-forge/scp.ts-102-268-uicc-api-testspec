@@ -30,7 +30,7 @@ public class Test_Api_2_Tkr_Dmet extends UiccTestModel {
     
     public boolean run() {
         
-        boolean result = false;
+        initialiseResults();
         
         // start test
         test.reset();
@@ -53,52 +53,52 @@ public class Test_Api_2_Tkr_Dmet extends UiccTestModel {
         // test script
         test.reset();
         response = test.terminalProfile("09010020");
-        result = response.checkSw("9124");
+        addResult(response.checkSw("9124"));
         response = test.fetch("24");
-        result &= response.checkData("D0228103 01250082 02818285 09554943" +
+        addResult(response.checkData("D0228103 01250082 02818285 09554943" +
                                      "43205445 53548F05 01496E69 748F0502" +
-                                     "496E6974");
+                                     "496E6974"));
         response = test.terminalResponse("81030125 00820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // test case 1
         response = test.unrecognizedEnvelope();
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // test case 2
         response = test.unrecognizedEnvelope();
-        result &= response.checkSw("911D");
+        addResult(response.checkSw("911D"));
         response = test.fetch("1D");
-        result &= response.checkData("D01B8103 01250082 02818285 09554943" +
-                                     "43205445 53548F05 02496E69 74");
+        addResult(response.checkData("D01B8103 01250082 02818285 09554943" +
+                                     "43205445 53548F05 02496E69 74"));
         response = test.terminalResponse("81030125 00820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // test case 3
         response = test.unrecognizedEnvelope();
-        result &= response.checkSw("911D");
+        addResult(response.checkSw("911D"));
         response = test.fetch("1D");
-        result &= response.checkData("D01B8103 01258082 02818285 09554943" +
-                                     "43205445 53548F05 02496E69 74");
+        addResult(response.checkData("D01B8103 01258082 02818285 09554943" +
+                                     "43205445 53548F05 02496E69 74"));
         response = test.terminalResponse("81030125 80820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // test case 4
         response = test.unrecognizedEnvelope();
-        result &= response.checkSw("9118");
+        addResult(response.checkSw("9118"));
         response = test.fetch("18");
-        result &= response.checkData("D0168103 01250082 02818285 09554943" +
-                                     "43205445 53548F00");
+        addResult(response.checkData("D0168103 01250082 02818285 09554943" +
+                                     "43205445 53548F00"));
         response = test.terminalResponse("81030125 00820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // test case 5
         response = test.unrecognizedEnvelope();
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "05CCCCCC CCCC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "05CCCCCC CCCC"));
 
         // delete applet and package
         test.reset();
@@ -106,7 +106,7 @@ public class Test_Api_2_Tkr_Dmet extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }
 

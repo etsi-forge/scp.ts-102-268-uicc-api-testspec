@@ -37,7 +37,7 @@ public class Test_Api_2_Ers_Gthd extends UiccTestModel
     public boolean run() {
 
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -82,11 +82,11 @@ public class Test_Api_2_Ers_Gthd extends UiccTestModel
         
         // Test case 4
         response = test.unrecognizedEnvelope();
-        result = response.checkSw("910B");
+        addResult(response.checkSw("910B"));
         response = test.fetch("0B");
-        result &= response.checkData("D0098103 01020082 028182");
+        addResult(response.checkData("D0098103 01020082 028182"));
         response = test.terminalResponse("81030102 00020282 81030100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -95,8 +95,8 @@ public class Test_Api_2_Ers_Gthd extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "04CCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "04CCCCCC CC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -111,6 +111,6 @@ public class Test_Api_2_Ers_Gthd extends UiccTestModel
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return result;
+        return getOverallResult();
     }
 }

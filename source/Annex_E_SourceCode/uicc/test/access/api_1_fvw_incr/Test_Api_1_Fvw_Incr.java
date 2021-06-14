@@ -81,8 +81,8 @@ public class Test_Api_1_Fvw_Incr extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "0F" + 
-                "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCC");
+        result &= response.checkData("10" + APPLET_AID_1 + "10" + 
+                "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC");
                                      
         /*********************************************************************/
         /*********************************************************************/

@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Gcap extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -73,14 +73,14 @@ public class Test_Api_2_Prh_Gcap extends UiccTestModel
         /*********************************************************************/   
                                                                                   
         response = test.unrecognizedEnvelope();                                   
-        result = response.checkSw("9112");                                        
+        addResult(response.checkSw("9112"));
         
         response = test.fetch("12");
-        result &= response.checkData("D0108103 01210082 0281028D 05045465"
-                                   + "7874");                                     
+        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+                                   + "7874"));
 
         response = test.terminalResponse("81030121 00020282 81030100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -89,8 +89,8 @@ public class Test_Api_2_Prh_Gcap extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "03CCCCCC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "03CCCCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -104,6 +104,6 @@ public class Test_Api_2_Prh_Gcap extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

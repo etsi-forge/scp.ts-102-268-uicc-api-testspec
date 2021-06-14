@@ -30,7 +30,7 @@ public class Test_Api_2_Tkr_Imet extends UiccTestModel {
     
     public boolean run() {
         
-        boolean result = false;
+        initialiseResults();
         
         // start test
         test.reset();
@@ -56,55 +56,55 @@ public class Test_Api_2_Tkr_Imet extends UiccTestModel {
         
         // test Case 16
         response = test.fetch("76");
-        result = response.checkData("D0748103 01258082 02818285 09554943" +
+        addResult(response.checkData("D0748103 01258082 02818285 09554943" +
                                     "43205445 53548F0F 01544F4F 4C4B4954" +
                                     "20544553 5420318F 0F02544F 4F4C4B49" +
                                     "54205445 53542032 8F0F0354 4F4F4C4B" +
                                     "49542054 45535420 338F0F04 544F4F4C" +
                                     "4B495420 54455354 20348F0F 05544F4F" +
                                     "4C4B4954 20544553 5420358F 01061806" +
-                                    "00000000 2400");
-        result &= response.checkSw("9000");
+                                    "00000000 2400"));
+        addResult(response.checkSw("9000"));
         
         response = test.terminalResponse("81030125 80820282 81830100");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         test.unrecognizedEnvelope();
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // test case 17
         response = test.envelopeMenuSelection("900101", "");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // test case 18
         response = test.envelopeMenuSelection("900102", "");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // test case 19
         response = test.envelopeMenuSelection("900103", "");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // test case 20
         response = test.envelopeMenuSelection("900104", "");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // test case 21
         response = test.envelopeMenuSelection("900105", "");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // test case 22
         response = test.envelopeMenuSelection("900103", "9500");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // test case 23
         response = test.envelopeMenuSelection("900106", "");
-        result &= response.checkSw("9000");
+        addResult(response.checkSw("9000"));
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 +
+        addResult(response.checkData("10" + APPLET_AID_1 +
                                      "17CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
-                                     "CCCCCCCC CCCCCCCC");
+                                     "CCCCCCCC CCCCCCCC"));
         
         // delete applet and package
         test.reset();
@@ -112,7 +112,7 @@ public class Test_Api_2_Tkr_Imet extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }
 

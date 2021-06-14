@@ -39,7 +39,7 @@ public class Test_Api_2_Enh_Gttg   extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        boolean result = false;
+        initialiseResults();
         
         // test script
         test.reset();
@@ -87,8 +87,8 @@ public class Test_Api_2_Enh_Gttg   extends UiccTestModel
                                 + "01020304 05060708 090A0B");
         
         response = test.fetch("15");
-        result = response.checkData("D0138103 01210082  0281028D  08F64150"  
-                                  + "504C4554 31");
+        addResult(response.checkData("D0138103 01210082  0281028D  08F64150"
+                                  + "504C4554 31"));
         test.terminalResponse("81030121  00020282  81030100");
 
         /*********************************************************************/
@@ -98,8 +98,8 @@ public class Test_Api_2_Enh_Gttg   extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 
-                                   + "02CCCC");
+        addResult(response.checkData("10" + APPLET_AID_1
+                                   + "02CCCC"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -113,6 +113,6 @@ public class Test_Api_2_Enh_Gttg   extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return result;
+        return getOverallResult();
     }
 }

@@ -51,7 +51,7 @@ public class Test_Api_4_Afv_Rszf extends UiccTestModel {
     }
 
     public boolean run() {
-        boolean result = true;
+        initialiseResults();
 
         // start test
         test.reset();
@@ -98,7 +98,7 @@ public class Test_Api_4_Afv_Rszf extends UiccTestModel {
         test.selectFile(DF_TEST);
         response = test.selectFile(EF_TARU);
         
-        result &= (response.getData().indexOf("8002000A") != -1);
+        addResult(response.getData().indexOf("8002000A") != -1);
         
         test.resizeFile(EF_TARU, "0104");
         
@@ -113,7 +113,7 @@ public class Test_Api_4_Afv_Rszf extends UiccTestModel {
         test.selectFile(DF_TEST);
         response = test.selectFile(EF_LARU);
 
-        result &= (response.getData().indexOf("80020010") != -1);
+        addResult(response.getData().indexOf("80020010") != -1);
 
         test.resizeFile(EF_LARU, "08");
 
@@ -141,7 +141,7 @@ public class Test_Api_4_Afv_Rszf extends UiccTestModel {
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        result &= response.checkData("10" + APPLET_AID_1 + "08CCCCCC CCCCCCCC CC");
+        addResult(response.checkData("10" + APPLET_AID_1 + "08CCCCCC CCCCCCCC CC"));
 
         // delete applet and package
         test.reset();
@@ -149,6 +149,6 @@ public class Test_Api_4_Afv_Rszf extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return result;
+        return getOverallResult();
     }
 }

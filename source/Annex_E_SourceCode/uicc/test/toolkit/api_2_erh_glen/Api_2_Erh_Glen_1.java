@@ -69,6 +69,14 @@ public class Api_2_Erh_Glen_1 extends TestToolkitApplet {
     }
 
     public void processToolkit(short event) {
+	
+		short length = (short) 0x00 ;
+		short offset = (short) 0x00 ;
+		
+		// additional byte if TLV length < 0x7F
+		short adjustLen = 0;
+
+	
         // Result of tests
         boolean bRes ;
 
@@ -113,19 +121,28 @@ public class Api_2_Erh_Glen_1 extends TestToolkitApplet {
 
         case (byte) 2 :
             // --------------------------------------------
-            // Test Case 3 : length = getCapacity()
-            testCaseNb = (byte) 3 ;
-            bRes = false ;
+            // Test Case 3 : length = getCapacity() 
+			testCaseNb = (byte) 3 ;            
+			bRes = false ;
 
-            try {
-                EnvRespHdlr.clear();
-                EnvRespHdlr.appendTLV((byte)0x01,data,(short) 0x00, (short)(EnvRespHdlr.getCapacity()- 3));
-                bRes = (EnvRespHdlr.getLength() == (short)EnvRespHdlr.getCapacity()) ;
+			try {
+			
+				EnvRespHdlr.clear();
+				length = (short)(EnvRespHdlr.getCapacity()- 3);
+				while (length > 253){
+					EnvRespHdlr.appendTLV((byte)0x01,data, offset, (short) 252);
+					length = (short) (length - (short) 255);
+				}
+				if (length < 0x80) adjustLen = 1;
+				
+				EnvRespHdlr.appendTLV((byte)0x01,data, offset, length);
+				bRes = (EnvRespHdlr.getLength() == (short)(EnvRespHdlr.getCapacity() - adjustLen)) ;
 
-            }
-            catch (Exception e) {
-                bRes = false ;
-            }
+			}
+			catch (Exception e) {
+				bRes = false ;
+			}
+				
             reportTestOutcome(testCaseNb, bRes) ;
             return;
 
