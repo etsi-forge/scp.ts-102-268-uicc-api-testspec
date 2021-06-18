@@ -106,6 +106,10 @@ public class UICCTestConstants {
     
     public final static short FID_ADF      = (short)0x7FFF;
 
+    public final static short FID_EF_NOSH2 = (short)0x6FC6;
+    public final static short FID_EF_LTERM = (short)0x6FC7;
+    public final static short FID_EF_CTERM = (short)0x6FC8;
+
     public final byte[] AID_ADF1 = {(byte)0xA0, (byte)0x00, (byte)0x00, (byte)0x00,
                                     (byte)0x09, (byte)0x00, (byte)0x05, (byte)0xFF,
                                     (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0x89,

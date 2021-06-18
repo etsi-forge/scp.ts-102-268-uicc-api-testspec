@@ -1,0 +1,2026 @@
+export file {		// uicc/test/util
+	magic	00FACADE		 // in hex
+	minor_version	1
+	major_version	2
+	constant_pool_count	186
+	constant_pool {
+		Constant_Utf8_info {
+			tag	1
+			length	5
+			bytes	obReg
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	30
+			bytes	Luicc/toolkit/ToolkitRegistry;
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	6
+			bytes	<init>
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	3
+			bytes	()V
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	6
+			bytes	equals
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	21
+			bytes	(Ljava/lang/Object;)Z
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	8
+			bytes	register
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	7
+			bytes	([BSB)V
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	15
+			bytes	selectingApplet
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	3
+			bytes	()Z
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	8
+			bytes	deselect
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	27
+			bytes	getShareableInterfaceObject
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	57
+			bytes	(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	6
+			bytes	select
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	7
+			bytes	process
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	28
+			bytes	(Ljavacard/framework/APDU;)V
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	4
+			bytes	init
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	17
+			bytes	reportTestOutcome
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	5
+			bytes	(BZ)V
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	14
+			bytes	processToolkit
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	4
+			bytes	(S)V
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	32
+			bytes	uicc/test/util/TestToolkitApplet
+		}
+		Constant_Classref_info {
+			tag	7
+			name_index	21		// uicc/test/util/TestToolkitApplet
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	16
+			bytes	java/lang/Object
+		}
+		Constant_Classref_info {
+			tag	7
+			name_index	23		// java/lang/Object
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	25
+			bytes	javacard/framework/Applet
+		}
+		Constant_Classref_info {
+			tag	7
+			name_index	25		// javacard/framework/Applet
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	28
+			bytes	javacard/framework/Shareable
+		}
+		Constant_Classref_info {
+			tag	7
+			name_index	27		// javacard/framework/Shareable
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	29
+			bytes	uicc/toolkit/ToolkitInterface
+		}
+		Constant_Classref_info {
+			tag	7
+			name_index	29		// uicc/toolkit/ToolkitInterface
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	29
+			bytes	uicc/toolkit/ToolkitConstants
+		}
+		Constant_Classref_info {
+			tag	7
+			name_index	31		// uicc/toolkit/ToolkitConstants
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	8
+			bytes	AID_ADF1
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	2
+			bytes	[B
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	8
+			bytes	AID_ADF2
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	6
+			bytes	FID_MF
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	1
+			bytes	S
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	13
+			bytes	ConstantValue
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	16128
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_RFU0
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28457
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_RFU1
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28458
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_RFU2
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28459
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_RFU1
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24321
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_RFU2
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24322
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_RFU3
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24323
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_TEST
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	32586
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	15
+			bytes	FID_DF_SUB_TEST
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24336
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_ADF2
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	32587
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	10
+			bytes	FID_EF_TNR
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28417
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	10
+			bytes	FID_EF_TNU
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28418
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_TARU
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28419
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	10
+			bytes	FID_EF_CNR
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28420
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	10
+			bytes	FID_EF_CNU
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28421
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CNIC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28444
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CNDE
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28423
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CNAC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28424
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CARU
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28425
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	10
+			bytes	FID_EF_LNR
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28426
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	10
+			bytes	FID_EF_LNU
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28427
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_LARU
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28428
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CINA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28429
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_TRAC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28430
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_TDAC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28431
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CIAC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28432
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CIAA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28433
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CNRA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28434
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CUAC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28435
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_TAAC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28436
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_LADA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28437
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_TAAA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28438
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_LRUA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28439
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_LUPC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28440
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_NOSH
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28441
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_LSEA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28442
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_CSEA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28443
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_TERM
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28464
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_TERM
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24368
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	10
+			bytes	FID_EF_TAA
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	20240
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_LARR1
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28577
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_LARR2
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28578
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_LARR3
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28579
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_LARR4
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28580
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_LARR5
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28581
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TARR1
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28593
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TARR2
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28594
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TARR3
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28595
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TARR4
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28596
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TARR5
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28597
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_CARR1
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28609
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_CARR2
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28610
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_CARR3
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28611
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_CARR4
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28612
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_CARR5
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28613
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_ARR1
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24337
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TAR1T
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	20241
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_ARR2
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24338
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TAR2T
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	20242
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_ARR3
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24339
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TAR3T
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	20243
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_ARR4
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24340
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TAR4T
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	20244
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_DF_ARR5
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	24341
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_TAR5T
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	20245
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	13
+			bytes	FID_EF_ARR_MF
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	12038
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	14
+			bytes	FID_EF_ARR_ADF
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28422
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	11
+			bytes	FID_EF_UICC
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	12260
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	7
+			bytes	FID_ADF
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	32767
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_NOSH2
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28614
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_LTERM
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28615
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	12
+			bytes	FID_EF_CTERM
+		}
+		Constant_Integer_info {
+			tag	3
+			bytes	28616
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	32
+			bytes	uicc/test/util/UICCTestConstants
+		}
+		Constant_Classref_info {
+			tag	7
+			name_index	182		// uicc/test/util/UICCTestConstants
+		}
+		Constant_Utf8_info {
+			tag	1
+			length	14
+			bytes	uicc/test/util
+		}
+		CONSTANT_Package_info {
+			tag	13
+			flags	1
+			name_index	184		// uicc/test/util
+			minor_version	0
+			major_version	1
+			aid_length	16
+			aid	0xA0:0x0:0x0:0x0:0x9:0x0:0x5:0xFF:0xFF:0xFF:0xFF:0x89:0xF0:0x0:0x0:0x0
+		}
+	}
+	this_package	185
+	export_class_count	2
+	export_classes {
+		class_info {		// uicc/test/util/TestToolkitApplet
+			token	0
+			access_flags	public abstract shareable
+			name_index	22		// uicc/test/util/TestToolkitApplet
+			export_supers_count	2
+			supers {
+				constant_pool_index	24		// java/lang/Object
+				constant_pool_index	26		// javacard/framework/Applet
+			}
+			export_interfaces_count	3
+			interfaces {
+				constant_pool_index	28		// javacard/framework/Shareable
+				constant_pool_index	30		// uicc/toolkit/ToolkitInterface
+				constant_pool_index	32		// uicc/toolkit/ToolkitConstants
+			}
+			export_fields_count	1
+			fields {
+			field_info {
+				token	0
+				access_flags	protected
+				name_index	0		// obReg
+				Descriptor_Index	1		// Luicc/toolkit/ToolkitRegistry;
+				attributes_count	0
+				attributes {
+				}
+			}
+			}
+			export_methods_count	12
+			methods {
+				method_info {
+					token	0
+					access_flags	public
+					name_index	2		// <init>
+					Descriptor_Index	3		// ()V
+				}
+				method_info {
+					token	0
+					access_flags	public
+					name_index	4		// equals
+					Descriptor_Index	5		// (Ljava/lang/Object;)Z
+				}
+				method_info {
+					token	1
+					access_flags	protected final
+					name_index	6		// register
+					Descriptor_Index	3		// ()V
+				}
+				method_info {
+					token	2
+					access_flags	protected final
+					name_index	6		// register
+					Descriptor_Index	7		// ([BSB)V
+				}
+				method_info {
+					token	3
+					access_flags	protected final
+					name_index	8		// selectingApplet
+					Descriptor_Index	9		// ()Z
+				}
+				method_info {
+					token	4
+					access_flags	public
+					name_index	10		// deselect
+					Descriptor_Index	3		// ()V
+				}
+				method_info {
+					token	5
+					access_flags	public
+					name_index	11		// getShareableInterfaceObject
+					Descriptor_Index	12		// (Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;
+				}
+				method_info {
+					token	6
+					access_flags	public
+					name_index	13		// select
+					Descriptor_Index	9		// ()Z
+				}
+				method_info {
+					token	7
+					access_flags	public
+					name_index	14		// process
+					Descriptor_Index	15		// (Ljavacard/framework/APDU;)V
+				}
+				method_info {
+					token	8
+					access_flags	public
+					name_index	16		// init
+					Descriptor_Index	3		// ()V
+				}
+				method_info {
+					token	9
+					access_flags	protected
+					name_index	17		// reportTestOutcome
+					Descriptor_Index	18		// (BZ)V
+				}
+				method_info {
+					token	10
+					access_flags	public abstract
+					name_index	19		// processToolkit
+					Descriptor_Index	20		// (S)V
+				}
+			}
+		}
+		class_info {		// uicc/test/util/UICCTestConstants
+			token	1
+			access_flags	public
+			name_index	183		// uicc/test/util/UICCTestConstants
+			export_supers_count	1
+			supers {
+				constant_pool_index	24		// java/lang/Object
+			}
+			export_interfaces_count	0
+			interfaces {
+			}
+			export_fields_count	74
+			fields {
+			field_info {
+				token	0
+				access_flags	public final
+				name_index	33		// AID_ADF1
+				Descriptor_Index	34		// [B
+				attributes_count	0
+				attributes {
+				}
+			}
+			field_info {
+				token	1
+				access_flags	public final
+				name_index	35		// AID_ADF2
+				Descriptor_Index	34		// [B
+				attributes_count	0
+				attributes {
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	36		// FID_MF
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	39		// value = 16128
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	40		// FID_EF_RFU0
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	41		// value = 28457
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	42		// FID_EF_RFU1
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	43		// value = 28458
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	44		// FID_EF_RFU2
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	45		// value = 28459
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	46		// FID_DF_RFU1
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	47		// value = 24321
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	48		// FID_DF_RFU2
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	49		// value = 24322
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	50		// FID_DF_RFU3
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	51		// value = 24323
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	52		// FID_DF_TEST
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	53		// value = 32586
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	54		// FID_DF_SUB_TEST
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	55		// value = 24336
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	56		// FID_DF_ADF2
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	57		// value = 32587
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	58		// FID_EF_TNR
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	59		// value = 28417
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	60		// FID_EF_TNU
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	61		// value = 28418
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	62		// FID_EF_TARU
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	63		// value = 28419
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	64		// FID_EF_CNR
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	65		// value = 28420
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	66		// FID_EF_CNU
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	67		// value = 28421
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	68		// FID_EF_CNIC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	69		// value = 28444
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	70		// FID_EF_CNDE
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	71		// value = 28423
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	72		// FID_EF_CNAC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	73		// value = 28424
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	74		// FID_EF_CARU
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	75		// value = 28425
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	76		// FID_EF_LNR
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	77		// value = 28426
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	78		// FID_EF_LNU
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	79		// value = 28427
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	80		// FID_EF_LARU
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	81		// value = 28428
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	82		// FID_EF_CINA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	83		// value = 28429
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	84		// FID_EF_TRAC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	85		// value = 28430
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	86		// FID_EF_TDAC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	87		// value = 28431
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	88		// FID_EF_CIAC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	89		// value = 28432
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	90		// FID_EF_CIAA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	91		// value = 28433
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	92		// FID_EF_CNRA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	93		// value = 28434
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	94		// FID_EF_CUAC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	95		// value = 28435
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	96		// FID_EF_TAAC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	97		// value = 28436
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	98		// FID_EF_LADA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	99		// value = 28437
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	100		// FID_EF_TAAA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	101		// value = 28438
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	102		// FID_EF_LRUA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	103		// value = 28439
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	104		// FID_EF_LUPC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	105		// value = 28440
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	106		// FID_EF_NOSH
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	107		// value = 28441
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	108		// FID_EF_LSEA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	109		// value = 28442
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	110		// FID_EF_CSEA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	111		// value = 28443
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	112		// FID_EF_TERM
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	113		// value = 28464
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	114		// FID_DF_TERM
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	115		// value = 24368
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	116		// FID_EF_TAA
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	117		// value = 20240
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	118		// FID_EF_LARR1
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	119		// value = 28577
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	120		// FID_EF_LARR2
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	121		// value = 28578
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	122		// FID_EF_LARR3
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	123		// value = 28579
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	124		// FID_EF_LARR4
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	125		// value = 28580
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	126		// FID_EF_LARR5
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	127		// value = 28581
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	128		// FID_EF_TARR1
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	129		// value = 28593
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	130		// FID_EF_TARR2
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	131		// value = 28594
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	132		// FID_EF_TARR3
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	133		// value = 28595
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	134		// FID_EF_TARR4
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	135		// value = 28596
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	136		// FID_EF_TARR5
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	137		// value = 28597
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	138		// FID_EF_CARR1
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	139		// value = 28609
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	140		// FID_EF_CARR2
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	141		// value = 28610
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	142		// FID_EF_CARR3
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	143		// value = 28611
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	144		// FID_EF_CARR4
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	145		// value = 28612
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	146		// FID_EF_CARR5
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	147		// value = 28613
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	148		// FID_DF_ARR1
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	149		// value = 24337
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	150		// FID_EF_TAR1T
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	151		// value = 20241
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	152		// FID_DF_ARR2
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	153		// value = 24338
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	154		// FID_EF_TAR2T
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	155		// value = 20242
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	156		// FID_DF_ARR3
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	157		// value = 24339
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	158		// FID_EF_TAR3T
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	159		// value = 20243
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	160		// FID_DF_ARR4
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	161		// value = 24340
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	162		// FID_EF_TAR4T
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	163		// value = 20244
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	164		// FID_DF_ARR5
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	165		// value = 24341
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	166		// FID_EF_TAR5T
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	167		// value = 20245
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	168		// FID_EF_ARR_MF
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	169		// value = 12038
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	170		// FID_EF_ARR_ADF
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	171		// value = 28422
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	172		// FID_EF_UICC
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	173		// value = 12260
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	174		// FID_ADF
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	175		// value = 32767
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	176		// FID_EF_NOSH2
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	177		// value = 28614
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	178		// FID_EF_LTERM
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	179		// value = 28615
+				}
+				}
+			}
+			field_info {
+				token	255
+				access_flags	public static final
+				name_index	180		// FID_EF_CTERM
+				Descriptor_Index	37		// S
+				attributes_count	1
+				attributes {
+				ConstantValue_attribute {
+					attribute_name_index	38		// ConstantValue
+					attribute_length	2
+					constantvalue_index	181		// value = 28616
+				}
+				}
+			}
+			}
+			export_methods_count	2
+			methods {
+				method_info {
+					token	0
+					access_flags	public
+					name_index	2		// <init>
+					Descriptor_Index	3		// ()V
+				}
+				method_info {
+					token	0
+					access_flags	public
+					name_index	4		// equals
+					Descriptor_Index	5		// (Ljava/lang/Object;)Z
+				}
+			}
+		}
+	}
+}
