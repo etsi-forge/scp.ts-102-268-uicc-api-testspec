@@ -56,16 +56,7 @@ public class Test_Api_3_Upf_Gvba extends UiccTestModel {
 
         // install client package and applet for shareable test case
         test.loadPackage(CAP_FILE_PATH2);
-        test.installApplet(CAP_FILE_PATH2, CLASS_AID_2, APPLET_AID_2,
-                          "8008" + // TLV UICC Toolkit application specific parameters
-                            "01" + // V Priority Level
-                            "00" + // V Max. number of timers
-                            "0A" + // V Maximum text length for a menu entry
-                            "00" + // V Maximum number of menu entries
-                            "00" + // V Maximum number of channels
-                            "00" + // LV Minimum Security Level field
-                            "00" + // LV TAR Value(s)
-                            "00"); // V Maximum number of services
+        test.installApplet(CAP_FILE_PATH2, CLASS_AID_2, APPLET_AID_2, "");
 
         // test script
         test.reset();
