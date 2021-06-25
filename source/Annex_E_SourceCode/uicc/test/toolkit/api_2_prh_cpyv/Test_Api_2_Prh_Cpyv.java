@@ -90,7 +90,7 @@ public class Test_Api_2_Prh_Cpyv extends UiccTestModel
                                    + "78749102 0010"));
         
         response = test.terminalResponse("81030123 00020282 81030100 0D110400"
-                + "02030405060708090A0B0C0D0E0F");
+                + "0102030405060708090A0B0C0D0E0F");
         addResult(response.checkSw("9000"));
 
         /*********************************************************************/
