@@ -528,39 +528,10 @@ public class Api_1_Fvw_Incr_1 extends TestToolkitApplet implements UICCConstants
         reportTestOutcome(testCaseNb, bRes);
 
         // -----------------------------------------------------------------
-        // Test Case 15 : Record not found
+        // Test Case 15 : Void
+        // Note: this means that baTestsResults will contain '00' for this test case, indicating Void in this case
         //
-        testCaseNb = 15;
-        try
-        {
-        	incr = new byte[3];
-        	resp = new byte[3];
-        	createEFCmd = HandlerBuilder.buildTLVHandler(HandlerBuilder.EDIT_HANDLER, (short)abCreateEF_2C00.length, abCreateEF_2C00, (short)0x00, (short)abCreateEF_2C00.length);
-            UiccAdminFileView.createFile(createEFCmd);
-            UiccAdminFileView.select((short)0x2C00);
-            
-            incrOffset = 0;
-            incrLength = 3;
-            respOffset = 0;
-            
-            respLength = UiccFileView.increase(incr, incrOffset, incrLength, resp, respOffset);
-            bRes = false;
-        }
-        catch (UICCException e)
-        {
-            if (e.getReason() == UICCException.RECORD_NOT_FOUND)
-                bRes = true;
-            else
-                bRes = false;
-        }
-        catch(Exception e)
-        {
-        	bRes = false;
-        }
-        
-        UiccAdminFileView.deleteFile((short)0x2C00);
-        reportTestOutcome(testCaseNb, bRes);
-        
+
         // -----------------------------------------------------------------
         // Test Case 16 : incrLength out of range
         // -----------------------------------------------------------------

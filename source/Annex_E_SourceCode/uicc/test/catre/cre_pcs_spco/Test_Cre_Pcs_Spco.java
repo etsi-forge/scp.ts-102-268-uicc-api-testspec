@@ -659,6 +659,8 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         
         //Lock Applet3 (testcase 14-14)
         response = test.lockApplication(APPLET_AID_3);
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        response = test.status("00","0C","00");
         // Fetch the SetUpMenu
         response = test.fetch(response.getStatusWord().substring(2));
         addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
@@ -697,7 +699,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                      "034D656E 75335108 00000390 00000390") ||
                   response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
-                                     "024D656E 7533D108 00000390 00000390"));
+                                     "034D656E 7533D108 00000390 00000390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
         addResult(response.checkSw("9000"));
 
