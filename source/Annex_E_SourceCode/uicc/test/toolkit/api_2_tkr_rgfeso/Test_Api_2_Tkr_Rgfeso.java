@@ -227,7 +227,7 @@ public class Test_Api_2_Tkr_Rgfeso extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_TARU);
         String FFx130 = "";
-        for (int i=0; i<=130; i++)
+        for (int i=0; i<130; i++)
             FFx130 += "FF";
         test.updateBinary("0000", FFx130);
         test.updateBinary("0082", FFx130);
