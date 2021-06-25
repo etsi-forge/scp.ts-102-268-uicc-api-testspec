@@ -38,7 +38,9 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
     private UiccAPITestCardService    test               = null;
     /** contains the response from the executed command */
     private APDUResponse            response             = null;
-    
+    /** stores the test result */
+    private boolean                    testresult        = false;
+
 
     /**
      *
@@ -50,11 +52,9 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
      * Installs the applet, runs the tests and checks the test result.
      */
     public boolean run(){
-        initialiseResults();
-
         // test script
         test.reset();
-        test.terminalProfileSession("03010000 0102");
+        test.terminalProfileSession("0301");
 
         // Install Applet
         test.loadPackage(CAP_FILE_PATH);
@@ -94,85 +94,91 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
         response = test.terminalProfileSession("FFFFFFF FFEFF1FFF FF0000FF FF9FFFEF" +
                                                "03FF000 0007FE300 01");
         response = test.envelopeMenuSelection("900102","9500");
-        addResult(response.checkSw("9000"));
+        testresult = response.checkSw("9000");
         //TC 4
         response = test.envelopeMenuSelection("900101","");
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 5
         response = test.envelopeTimerExpiration("A40101");
         //TC 6
         response = test.envelopeCallControlByNAA();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 7
         response = test.envelopeEventDownloadMTCall();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 8
         response = test.envelopeEventDownloadCallConnected();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 9
         response = test.envelopeEventDownloadCallDisconnected();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 10
         response = test.envelopeEventDownloadLocationStatus();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 11
         response = test.envelopeEventDownloadUserActivity();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 12
         response = test.envelopeEventDownloadIdleScreenAvailable();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 13
         response = test.envelopeEventDownloadCardReaderStatus();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 14
         response = test.envelopeEventDownloadLanguageSelection();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 15
         response = test.envelopeEventDownloadBrowserTermination();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 16
         response = test.status("00","0C","00");
-        addResult(response.checkSw("911A"));
+        testresult &= response.checkSw("911A");
         //TC 17
         response = test.fetch("1A");
         response = test.terminalResponse("81030140 01820282 8183010038 0281003502 " +
                                          "03003902 000A");
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         response = test.envelopeEventDownloadDataAvailable("B8028100");
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 18
         response = test.envelopeEventDownloadChannelStatus("B8028100");
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 19
         response = test.unrecognizedEnvelope();
         response = test.fetch("10");//fetch declare service
         //get the service record tlv from declare service command
         String servrectlv = getServiceRecordTLV(response.getData());
         response = test.terminalResponse("81030147 0082028281 830100");
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 20
         response = test.envelopeEventDownloadLocalConnection("C1040000FFFF");
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 21
         response = test.envelopeEventDownloadAccessTechnologyChange();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 22
         response = test.envelopeEventDownloadDisplayParametersChanged();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 23
         //envelope handler availability with
         //event proactive handler available
         //TC 24 APPLICATION DESELECT
         response = test.selectApplication ("A0000000 090005FF FFFFFF89 E0000002");
         response = test.sendApdu ("00A4044C 10A00000 00090005 FFFFFFFF 89E00000 02");
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 25
         response = test.envelopeEventDownloadNetworkSearchModeChange();
-        addResult(response.checkSw("9000"));
+        testresult &= response.checkSw("9000");
         //TC 26
         response = test.envelopeEventDownloadBrowsingStatus();
-        addResult(response.checkSw("9000"));
-        //TC 27
+        testresult &= response.checkSw("9000");
+        //TC 28
+        response = test.envelopeEventDownloadFramesInformationChanged();
+        testresult &= response.checkSw("9000");
+        //TC 29
+        response = test.envelopeEventDownloadHCIConnectivity();
+        testresult &= response.checkSw("9000");
+        //TC 27 + 2
         test.reset();
         response = test.terminalProfileSession("FFFFFFF FFEFF1FFF FF0000FF FF9FFFEF" +
                                                "03FF000 0007FE300 01");
@@ -188,21 +194,21 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
                             "00" +   // LV TAR Value(s)
                             "00" );  // V Maximum number of services
         response = test.selectApplication(APPLET_AID_3);
-       addResult(response.checkSw("9000"));
+       testresult &= response.checkSw("9000");
 
         //CHECK TEST RESULT
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" +APPLET_AID_1 +
-                                        "1ACCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-                                        "CCCCCCCC CCCCCCCC CCCCCC"));
+        testresult &=  response.checkData("10" +APPLET_AID_1 +
+                                        "1CCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
+                                        "CCCCCCCC CCCCCCCC CCCCCC");
 
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" +APPLET_AID_2 +
+        testresult &=  response.checkData("10" +APPLET_AID_2 +
                                         "13CCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-                                        "CCCCCC CCCC"));
+                                        "CCCCCC CCCC");
 
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" +APPLET_AID_3 + "01CC"));
+        testresult &=  response.checkData("10" +APPLET_AID_3 + "01CC");
 
         //  delete applet and package
         test.reset();
@@ -212,7 +218,7 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
         test.deleteApplet(APPLET_AID_3);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return testresult;
     }
 
     /**

@@ -58,7 +58,9 @@ public class Cre_Mha_Prhd_1 extends TestToolkitApplet {
                                                 EVENT_EVENT_DOWNLOAD_DISPLAY_PARAMETER_CHANGED,
                                                 EVENT_EVENT_DOWNLOAD_NETWORK_SEARCH_MODE_CHANGE,
                                                 EVENT_EVENT_BROWSING_STATUS,
-                                                EVENT_APPLICATION_DESELECT
+                                                EVENT_APPLICATION_DESELECT,
+                                                EVENT_EVENT_DOWNLOAD_FRAMES_INFORMATION_CHANGED,
+                                                EVENT_EVENT_DOWNLOAD_HCI_CONNECTIVITY
                                               };
 
 
@@ -227,7 +229,7 @@ public class Cre_Mha_Prhd_1 extends TestToolkitApplet {
             //- TC 3,4,5,6,7,9,10,11,12
             // 13,14,15,17,18,19,20,22 <-handler available
             // 24,25,26,27,28,29,31,32,33,34,35,36,37
-            // 38,39,40,
+            // 38,39,40,48,49
             default:
                  checkProactiveHandler();
             break;

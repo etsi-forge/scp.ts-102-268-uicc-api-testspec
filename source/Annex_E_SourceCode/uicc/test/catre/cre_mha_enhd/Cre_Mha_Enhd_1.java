@@ -57,7 +57,9 @@ public class Cre_Mha_Enhd_1 extends TestToolkitApplet
                                             EVENT_FIRST_COMMAND_AFTER_ATR,
                                             EVENT_PROFILE_DOWNLOAD,
                                             EVENT_EVENT_DOWNLOAD_NETWORK_SEARCH_MODE_CHANGE,
-                                            EVENT_EVENT_BROWSING_STATUS};
+                                            EVENT_EVENT_BROWSING_STATUS,
+                                            EVENT_EVENT_DOWNLOAD_FRAMES_INFORMATION_CHANGED,
+                                            EVENT_EVENT_DOWNLOAD_HCI_CONNECTIVITY};
 
 
 
