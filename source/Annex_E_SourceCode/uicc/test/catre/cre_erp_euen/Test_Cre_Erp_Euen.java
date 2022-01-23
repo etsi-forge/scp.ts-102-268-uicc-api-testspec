@@ -25,7 +25,7 @@ public class Test_Cre_Erp_Euen extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -60,13 +60,13 @@ public class Test_Cre_Erp_Euen extends UiccTestModel {
 
         // Trigger Applet1
         response = test.unrecognizedEnvelope();
-        addResult(response.checkData("0CAB"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("0CAB"));
+        test.addResult(response.checkSw("9000"));
         
         // Trigger Applet1
         response = test.unrecognizedEnvelope();
-        addResult(response.checkData("0CAB"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("0CAB"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -76,7 +76,7 @@ public class Test_Cre_Erp_Euen extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "02" + "CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "02" + "CCCC"));
                                     
 
         /*********************************************************************/
@@ -92,6 +92,6 @@ public class Test_Cre_Erp_Euen extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

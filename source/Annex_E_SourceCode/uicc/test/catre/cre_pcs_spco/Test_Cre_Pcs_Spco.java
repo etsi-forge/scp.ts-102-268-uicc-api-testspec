@@ -76,7 +76,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         setUpMenuCmd = "D0" + ToString((byte)(Cmd.length()/2)) + Cmd;
         
         response = test.fetch(ToString((byte)(setUpMenuCmd.length()/2)));
-        addResult(response.checkData(setUpMenuCmd));
+        test.addResult(response.checkData(setUpMenuCmd));
         
         test.terminalResponse("81030125 00820282 81830100"); 
     }
@@ -122,7 +122,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -170,7 +170,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         // Update EFsume with the new menu title "TEST MENU" in bold
         test.selectFile(DF_TELECOM);
         response = test.selectFile(EF_SUME);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         test.sendApdu("00D60000 11850954 45535420 4D454E55" +
                       "50040000 1390");
         
@@ -196,7 +196,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         // restaure EFsume with the menu title "UICC TEST" and no attribute
         test.selectFile(DF_TELECOM);
         response = test.selectFile(EF_SUME);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         test.sendApdu("00D60000 11850955 49434320 54455354" +
                       "FFFFFFFF FFFF");
 
@@ -285,10 +285,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
 
         // Fetch SetUpEventList command
         response = test.fetch("0F");
-        addResult(response.checkData("D00D8103 01050082 02818219 020003") ||
+        test.addResult(response.checkData("D00D8103 01050082 02818219 020003") ||
                   response.checkData("D00D8103 01050082 02818299 020003"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -299,10 +299,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.lockApplication(APPLET_AID_1);
         // Fetch SetUpEventList command
         response = test.fetch("0D");
-        addResult(response.checkData("D00B8103 01050082 02818219 00") ||
+        test.addResult(response.checkData("D00B8103 01050082 02818219 00") ||
                   response.checkData("D00B8103 01050082 02818299 00"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -313,10 +313,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.unlockApplication(APPLET_AID_1);
         // Fetch SetUpEventList command
         response = test.fetch("0F");
-        addResult(response.checkData("D00D8103 01050082 02818219 020003") ||
+        test.addResult(response.checkData("D00D8103 01050082 02818219 020003") ||
                   response.checkData("D00D8103 01050082 02818299 020003"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -327,46 +327,46 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.envelopeMenuSelection("100101", "");
         // Fetch SetUpEventList command
         response = test.fetch("0E");
-        addResult(response.checkData("D00C8103 01050082 02818219 0103") ||
+        test.addResult(response.checkData("D00C8103 01050082 02818219 0103") ||
                   response.checkData("D00C8103 01050082 02818299 0103"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Trigger Applet2
         test.unrecognizedEnvelope();
         // Fetch SetUpEventList command
         response = test.fetch("0F");
-        addResult(response.checkData("D00D8103 01050082 02818219 020307") ||
+        test.addResult(response.checkData("D00D8103 01050082 02818219 020307") ||
                   response.checkData("D00D8103 01050082 02818299 020307"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Trigger Applets
         test.envelopeEventDownloadLocationStatus();
         // Fetch SetUpEventList command
         response = test.fetch("0D");
-        addResult(response.checkData("D00B8103 01050082 02818219 00") ||
+        test.addResult(response.checkData("D00B8103 01050082 02818219 00") ||
                   response.checkData("D00B8103 01050082 02818299 00"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // Trigger Applet1
         test.envelopeMenuSelection("100101", "");
         // Fetch SetUpEventList command
         response = test.fetch("0E");
-        addResult(response.checkData("D00C8103 01050082 02818219 0100") ||
+        test.addResult(response.checkData("D00C8103 01050082 02818219 0100") ||
                   response.checkData("D00C8103 01050082 02818299 0100"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // Delete Applet1
         test.deleteApplet(APPLET_AID_1);
         // Fetch SetUpEventList command
         response = test.fetch("0D");
-        addResult(response.checkData("D00B8103 01050082 02818219 00") ||
+        test.addResult(response.checkData("D00B8103 01050082 02818219 00") ||
                   response.checkData("D00B8103 01050082 02818299 00"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Install Applet1
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
@@ -383,10 +383,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                "00" );  // V Maximum number of services
         // Fetch SetUpEventList command
         response = test.fetch("0F");
-        addResult(response.checkData("D00D8103 01050082 02818219 020003") ||
+        test.addResult(response.checkData("D00D8103 01050082 02818219 020003") ||
                   response.checkData("D00D8103 01050082 02818299 020003"));
         response = test.terminalResponse("81030105 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -399,12 +399,12 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         // Fetch Poll Interval command
         response = test.fetch("0F");
         String pollInterCmd = response.getData();
-        addResult(pollInterCmd.regionMatches(0, "D00D8103010300820281820402",
+        test.addResult(pollInterCmd.regionMatches(0, "D00D8103010300820281820402",
                                              0, "D00D8103010300820281820402".length()) ||
                   pollInterCmd.regionMatches(0, "D00D8103010300820281828402",
                                              0, "D00D8103010300820281828402".length()));
         response = test.terminalResponse("81030103 00820282 81830100 84020010");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -415,9 +415,9 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.lockApplication(APPLET_AID_1);
         // Fetch Polling Off command
         response = test.fetch("0B");
-        addResult(response.checkData("D0098103 01040082 028182"));
+        test.addResult(response.checkData("D0098103 01040082 028182"));
         response = test.terminalResponse("81030104 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -428,9 +428,9 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.unlockApplication(APPLET_AID_1);
         // Fetch Poll Interval command
         response = test.fetch("0F");
-        addResult(response.checkData(pollInterCmd));
+        test.addResult(response.checkData(pollInterCmd));
         response = test.terminalResponse("81030103 00820282 81830100 84020010");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -441,25 +441,25 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.status("00", "00", "16");
         // Fetch Polling Off command
         response = test.fetch("0B");
-        addResult(response.checkData("D0098103 01040082 028182"));
+        test.addResult(response.checkData("D0098103 01040082 028182"));
         response = test.terminalResponse("81030104 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
          
         // Trigger Applet1
         test.unrecognizedEnvelope();
         // Fetch Poll Interval command
         response = test.fetch("0F");
-        addResult(response.checkData(pollInterCmd));
+        test.addResult(response.checkData(pollInterCmd));
         response = test.terminalResponse("81030103 00820282 81830100 84020010");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // Delete Applet1
         test.deleteApplet(APPLET_AID_1);
         // Fetch Polling Off command
         response = test.fetch("0B");
-        addResult(response.checkData("D0098103 01040082 028182"));
+        test.addResult(response.checkData("D0098103 01040082 028182"));
         response = test.terminalResponse("81030104 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Install Applet1
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
@@ -476,9 +476,9 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                "00" );  // V Maximum number of services
         // Fetch Poll Interval command
         response = test.fetch("0F");
-        addResult(response.checkData(pollInterCmd));
+        test.addResult(response.checkData(pollInterCmd));
         response = test.terminalResponse("81030103 00820282 81830100 84020010");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -492,21 +492,21 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.unrecognizedEnvelope();
         // Fetch Diplay text
         response = test.fetch("13");
-        addResult(response.checkData("D0118103 01210082 0281028D 06045465" +
+        test.addResult(response.checkData("D0118103 01210082 0281028D 06045465" +
                                      "787431"));
         response = test.terminalResponse("81030121 00820282 81830100");                                    
-        addResult(response.checkSw("9114"));
+        test.addResult(response.checkSw("9114"));
 
         // Fetch Diplay text
         response = test.fetch("14");
-        addResult(response.checkData("D0128103 01210082 0281028D 07045465" +
+        test.addResult(response.checkData("D0128103 01210082 0281028D 07045465" +
                                      "78743231"));
         response = test.terminalResponse("81030121 00820282 81830100");                                    
-        addResult(response.checkSw("9114"));
+        test.addResult(response.checkSw("9114"));
 
         // Fetch Diplay text
         response = test.fetch("14");
-        addResult(response.checkData("D0128103 01210082 0281028D 07045465" +
+        test.addResult(response.checkData("D0128103 01210082 0281028D 07045465" +
                                      "78743232"));
         response = test.terminalResponse("81030121 00820282 81830100");                                    
         
@@ -517,24 +517,24 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                 case 0x9118:
                     // Fetch an empty SetUpMenu
                     response = test.fetch("18");
-                    addResult(response.checkData("D0168103 01250082 02818285 09554943" +
+                    test.addResult(response.checkData("D0168103 01250082 02818285 09554943" +
                                                  "43205445 53548F00"));
                     response = test.terminalResponse("81030125 00820282 81830100");                                    
                     break;
                 case 0x910E:
                     response = test.fetch("0E");
-                    addResult(response.checkData("D00C8103 01050082 02818219 0103") ||
+                    test.addResult(response.checkData("D00C8103 01050082 02818219 0103") ||
                               response.checkData("D00C8103 01050082 02818299 0103"));
                     response = test.terminalResponse("81030105 00820282 81830100");                                    
                     break;
                 case 0x910B:
                     // Fetch Polling Off command
                     response = test.fetch("0B");
-                    addResult(response.checkData("D0098103 01040082 028182"));
+                    test.addResult(response.checkData("D0098103 01040082 028182"));
                     response = test.terminalResponse("81030104 00820282 81830100");                                    
                     break;
                 default:
-                    addResult(false);
+                    test.addResult(false);
                     break;
             }
         }
@@ -563,7 +563,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                         "00000000 00000000 0000003F 7F");
         // Fetch the SetUpMenu
         response = test.fetch(response.getStatusWord().substring(2));
-        addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 034D656E 7533") ||
                   response.checkData("D0228103 01250082 02818285 09554943" +
                                      "43205445 53548F06 034D656E 75335104" +
@@ -572,13 +572,13 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                      "43205445 53548F06 034D656E 7533D104" +
                                      "00000390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //Trigger Applet2 (testcase 14-2)
         response = test.unrecognizedEnvelope();
         // Fetch the SetUpMenu
         response = test.fetch(response.getStatusWord().substring(2));
-        addResult(response.checkData("D0248103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D0248103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 7533") ||
                   response.checkData("D02E8103 01250082 02818285 09554943" +
@@ -588,26 +588,26 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "024D656E 7533D108 00000390 00000390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         //Trigger Applet2 (testcase 14-4)
         test.envelopeMenuSelection("100102", "");
         // Fetch the SetUpMenu
         response = test.fetch("30");
-        addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 75335108 00001390 00000390") ||
                   response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 7533D108 00001390 00000390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         //Trigger Applet2 (testcase 14-6)
         response = test.envelopeMenuSelection("100102", "");
         // Fetch the SetUpMenu
         response = test.fetch(response.getStatusWord().substring(2));
-        addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 034D656E 7533") ||
                   response.checkData("D0228103 01250082 02818285 09554943" +
                                      "43205445 53548F06 034D656E 75335104" +
@@ -616,46 +616,46 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                      "43205445 53548F06 034D656E 7533D104" +
                                      "00000390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         //Trigger Applet3 (testcase 14-8)
         test.envelopeMenuSelection("100103", "");
         // Fetch the SetUpMenu
         response = test.fetch("24");
-        addResult(response.checkData("D0228103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D0228103 01250082 02818285 09554943" +
                                      "43205445 53548F06 034D656E 75335104" +
                                      "00002390") ||
                   response.checkData("D0228103 01250082 02818285 09554943" +
                                      "43205445 53548F06 034D656E 7533D104" +
                                      "00002390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //Trigger Applet2 (testcase 14-10)
         test.unrecognizedEnvelope();
         // Fetch the SetUpMenu
         response = test.fetch("30");
-        addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 75335108 00001390 00002390") ||
                   response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 7533D108 00001390 00002390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         //Trigger Applet2 (testcase 14-12)
         test.envelopeMenuSelection("100102", "");
         // Fetch the SetUpMenu
         response = test.fetch("30");
-        addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 75335108 00000390 00002390") ||
                   response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 7533D108 00000390 00002390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         //Lock Applet3 (testcase 14-14)
         response = test.lockApplication(APPLET_AID_3);
@@ -663,7 +663,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         response = test.status("00","0C","00");
         // Fetch the SetUpMenu
         response = test.fetch(response.getStatusWord().substring(2));
-        addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 7532") ||
                   response.checkData("D0228103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75325104" +
@@ -672,26 +672,26 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                      "43205445 53548F06 024D656E 7532D104" +
                                      "00000390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         //Make selectable Applet3 (testcase 14-15)
         test.unlockApplication(APPLET_AID_3);
         // Fetch the SetUpMenu
         response = test.fetch("30");
-        addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 75335108 00000390 00002390") ||
                   response.checkData("D02E8103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 7533D108 00000390 00002390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         //Trigger Applet3 (testcase 14-16)
         response = test.envelopeMenuSelection("100103", "");
         // Fetch the SetUpMenu
         response = test.fetch(response.getStatusWord().substring(2));
-        addResult(response.checkData("D0248103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D0248103 01250082 02818285 09554943" +
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 7533") ||
                   response.checkData("D02E8103 01250082 02818285 09554943" +
@@ -701,7 +701,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                      "43205445 53548F06 024D656E 75328F06" +
                                      "034D656E 7533D108 00000390 00000390"));
         response = test.terminalResponse("81030125 00820282 81830100");                                    
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -710,13 +710,13 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "09" +
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "09" +
                                      "CCCCCCCC CCCCCCCC CC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "0C" +
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "0C" +
                                      "CCCCCCCC CCCCCCCC CCCCCCCC"));
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "02" +
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "02" +
                                      "CCCC"));
                                      
         /*********************************************************************/
@@ -733,6 +733,6 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.deleteApplet(APPLET_AID_3);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

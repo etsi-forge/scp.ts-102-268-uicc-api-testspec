@@ -31,7 +31,7 @@ public class Test_Cre_Uta_Dafs extends UiccTestModel {
     
     public boolean run() {
       
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -96,7 +96,7 @@ public class Test_Cre_Uta_Dafs extends UiccTestModel {
         /*********************************************************************/
         
         response = test.selectApplication(APPLET_AID_B_1);
-        addResult(response.checkData("10" + APPLET_AID_B_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_B_1 +
                                     "01CC"));
 
         test.reset();
@@ -114,6 +114,6 @@ public class Test_Cre_Uta_Dafs extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH_A);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

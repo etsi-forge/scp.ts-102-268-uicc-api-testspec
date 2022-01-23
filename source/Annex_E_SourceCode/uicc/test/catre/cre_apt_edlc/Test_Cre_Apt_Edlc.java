@@ -28,7 +28,7 @@ public class Test_Cre_Apt_Edlc extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -60,9 +60,9 @@ public class Test_Cre_Apt_Edlc extends UiccTestModel {
         //***TEST CASE 1: 4-APPLET IS TRIGGERED
         response = test.envelopeMenuSelection("100101", "");//Help Request not available
         //***TEST CASE 1: 5-DECLARE SERVICE ADD COMMAND IS FETCHED
-        addResult(response.checkSw("9110"));
+        test.addResult(response.checkSw("9110"));
         response  = test.fetch("10");
-        addResult(response.checkData("D00E8103 01470082 028182" + ServiceRecordTLV));
+        test.addResult(response.checkData("D00E8103 01470082 028182" + ServiceRecordTLV));
         //UNSUCCESFULL TERMINAL RESPONSE with General Result = 0x20
         test.terminalResponse("81030147 00820282 81830120");
         //***TEST CASE 1: 6-APPLET IS NOT TRIGGERED
@@ -70,9 +70,9 @@ public class Test_Cre_Apt_Edlc extends UiccTestModel {
         //***TEST CASE 1: 7-APPLET IS TRIGGERED
         response = test.envelopeMenuSelection("100101", "");//Help Request not available
         //***TEST CASE1: 8-DECLARE SERVICE ADD COMMAND IS FETCHED
-        addResult(response.checkSw("9110"));
+        test.addResult(response.checkSw("9110"));
         response  = test.fetch("10");
-        addResult(response.checkData("D00E8103 01470082 028182" + ServiceRecordTLV));
+        test.addResult(response.checkData("D00E8103 01470082 028182" + ServiceRecordTLV));
         //SUCCESFULL TERMINAL RESPONSE with General Result = 0x00
         test.terminalResponse("81030147 00820282 81830100");
         //***TEST CASE 2: 1-APPLET IS TRIGGERED
@@ -80,17 +80,17 @@ public class Test_Cre_Apt_Edlc extends UiccTestModel {
         //***TEST CASE 3: 1-APPLET IS TRIGGERED
         response = test.envelopeMenuSelection("100101", "");//Help Request not available
         //***TEST CASE 3: 2-DECLARE SERVICE DELETE COMMAND IS FETCHED
-        addResult(response.checkSw("9110"));
+        test.addResult(response.checkSw("9110"));
         response  = test.fetch("10");
-        addResult(response.checkData("D00E8103 01470182 028182" + ServiceRecordTLV));
+        test.addResult(response.checkData("D00E8103 01470182 028182" + ServiceRecordTLV));
         //UNSUCCESFULL TERMINAL RESPONSE with General Result = 0x20
         test.terminalResponse("81030147 01820282 81830120");
         //***TEST CASE 3: 3-APPLET IS TRIGGERED
         response = test.envelopeEventDownloadLocalConnection(ServiceRecordTLV);
         //***TEST CASE 3: 2-DECLARE SERVICE DELETE COMMAND IS FETCHED
-        addResult(response.checkSw("9110"));
+        test.addResult(response.checkSw("9110"));
         response  = test.fetch("10");
-        addResult(response.checkData("D00E8103 01470182 028182" + ServiceRecordTLV));
+        test.addResult(response.checkData("D00E8103 01470182 028182" + ServiceRecordTLV));
         //SUCCESFULL TERMINAL RESPONSE with General Result = 0x00
         test.terminalResponse("81030147 01820282 81830100");
         //***TEST CASE 4: 1-APPLET IS NOT TRIGGERED
@@ -98,9 +98,9 @@ public class Test_Cre_Apt_Edlc extends UiccTestModel {
         //***TEST CASE 5: 1-APPLET IS TRIGGERED
         response = test.envelopeMenuSelection("100101", "");//Help Request not available
         //***TEST CASE 5: 2-DECLARE SERVICE ADD COMMAND IS FETCHED
-        addResult(response.checkSw("9110"));
+        test.addResult(response.checkSw("9110"));
         response  = test.fetch("10");
-        addResult(response.checkData("D00E8103 01470082 028182" + ServiceRecordTLV));
+        test.addResult(response.checkData("D00E8103 01470082 028182" + ServiceRecordTLV));
         //SUCCESFULL TERMINAL RESPONSE with General Result = 0x00
         test.terminalResponse("81030147 00820282 81830100");
         //***TEST CASE 5: 3-APPLET IS TRIGGERED
@@ -112,7 +112,7 @@ public class Test_Cre_Apt_Edlc extends UiccTestModel {
 
         // check results
         response  = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10"+APPLET_AID_1+"12CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
+        test.addResult(response.checkData("10"+APPLET_AID_1+"12CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                                                          "CCCCCC"));
 
         // delete applet and package
@@ -121,6 +121,6 @@ public class Test_Cre_Apt_Edlc extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

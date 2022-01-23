@@ -27,7 +27,7 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -55,8 +55,8 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
                                "00");   // V Maximum number of services
         
         // Check correct installation
-        addResult(response.checkSw("9000"));
-        addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
 
 
         test.reset();
@@ -76,7 +76,7 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
                                "09010101020202030303" +    
                                "00");   // V Maximum number of services
 
-        addResult(response.checkSw("6A80"));
+        test.addResult(response.checkSw("6A80"));
 
         /*********************************************************************/
         /** Testcase 2                                                       */
@@ -97,7 +97,7 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
                                "050101010303" +    
                                "00");   // V Maximum number of services
 
-        addResult(response.checkSw("6A80"));
+        test.addResult(response.checkSw("6A80"));
 
 
         /*********************************************************************/
@@ -114,6 +114,6 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

@@ -29,7 +29,7 @@ public class Test_Cre_Erp_Eccn extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -73,19 +73,19 @@ public class Test_Cre_Erp_Eccn extends UiccTestModel {
 
         // Trigger Applet2
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9114"));
+        test.addResult(response.checkSw("9114"));
 
         // Trigger Applet1
         response = test.envelopeCallControlByNAA();
-        addResult(response.checkData("02078605 91112233 44"));
-        addResult(response.checkSw("9114"));
+        test.addResult(response.checkData("02078605 91112233 44"));
+        test.addResult(response.checkSw("9114"));
         
         // Fetch Display Text and Terminal Response
         response = test.fetch("14");
-        addResult(response.checkData("D0128103 01218082 0281028D 07044150" +
+        test.addResult(response.checkData("D0128103 01218082 0281028D 07044150" +
                                      "504C4554"));
         response = test.terminalResponse("81030121 80820282 81830100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
            
 
         /*********************************************************************/
@@ -95,9 +95,9 @@ public class Test_Cre_Erp_Eccn extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
                                      
         /*********************************************************************/
         /*********************************************************************/
@@ -138,19 +138,19 @@ public class Test_Cre_Erp_Eccn extends UiccTestModel {
 
         // Trigger Applet3
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9114"));
+        test.addResult(response.checkSw("9114"));
 
         // Trigger Applet3
         response = test.envelopeCallControlByNAA();
-        addResult(response.checkData("02078605 91112233 44"));
-        addResult(response.checkSw("9114"));
+        test.addResult(response.checkData("02078605 91112233 44"));
+        test.addResult(response.checkSw("9114"));
         
         // Fetch Display Text and Terminal Response
         response = test.fetch("14");
-        addResult(response.checkData("D0128103 01218082 0281028D 07044150" +
+        test.addResult(response.checkData("D0128103 01218082 0281028D 07044150" +
                                      "504C4554"));
         response = test.terminalResponse("81030121 80820282 81830100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -160,7 +160,7 @@ public class Test_Cre_Erp_Eccn extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "01" + "CC"));
                                      
 
         /*********************************************************************/
@@ -176,6 +176,6 @@ public class Test_Cre_Erp_Eccn extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

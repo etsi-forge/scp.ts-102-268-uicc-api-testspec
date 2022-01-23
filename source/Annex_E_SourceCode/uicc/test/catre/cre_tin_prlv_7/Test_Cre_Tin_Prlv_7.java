@@ -27,7 +27,7 @@ public class Test_Cre_Tin_Prlv_7 extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         String[] menuList   = new String[3];
         String[] menuIdList = new String[3];
@@ -74,7 +74,7 @@ public class Test_Cre_Tin_Prlv_7 extends UiccTestModel {
         
         // Trigger the applets
         response = test.envelopeEventDownloadUserActivity();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -84,9 +84,9 @@ public class Test_Cre_Tin_Prlv_7 extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
 
 
         /*********************************************************************/
@@ -103,6 +103,6 @@ public class Test_Cre_Tin_Prlv_7 extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

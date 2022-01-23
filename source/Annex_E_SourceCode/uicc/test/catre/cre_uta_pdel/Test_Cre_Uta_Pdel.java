@@ -35,7 +35,7 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
     }
     
     public boolean run() {
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -76,7 +76,7 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
         
         // Delete PackageB        
         response = test.deletePackage(CAP_FILE_PATH_B);             
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
            
         
         // Install AppletB2        
@@ -90,8 +90,8 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
                             "00" +   // LV Minimum Security Level field
                             "00" +   // LV TAR Value(s) 
                             "00" );  // V Maximum number of services     
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
      
         // Delete AppletB1 and AppletB2        
         test.deleteApplet(APPLET_AID_B_1);
@@ -107,7 +107,7 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
         
         // Delete PackageA        
         response = test.deletePackage(CAP_FILE_PATH_A);             
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
         
         // Install AppletA1        
         response = test.installApplet(CAP_FILE_PATH_A, CLASS_AID_A_1, APPLET_AID_A_1, 
@@ -120,8 +120,8 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
                             "00" +   // LV Minimum Security Level field
                             "00" +   // LV TAR Value(s) 
                             "00" );  // V Maximum number of services        
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
         // Delete AppletA1   
         test.deleteApplet(APPLET_AID_A_1);
         
@@ -136,15 +136,15 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
         
         // Delete PackageB
         response = test.deletePackage(CAP_FILE_PATH_B);             
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Delete PackageA        
         response = test.deletePackage(CAP_FILE_PATH_A);         
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Install packageB
         response = test.loadPackage(CAP_FILE_PATH_B);
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
         
         /*********************************************************************/
         /** Testcase 4                                                       */
@@ -163,7 +163,7 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
                             "00" +   // LV Minimum Security Level field
                             "00" +   // LV TAR Value(s) 
                             "00" );  // V Maximum number of services
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
                             
         // Install AppletB2        
         response = test.installApplet(CAP_FILE_PATH_B, CLASS_AID_B_2, APPLET_AID_B_2, 
@@ -176,7 +176,7 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
                             "00" +   // LV Minimum Security Level field
                             "00" +   // LV TAR Value(s) 
                             "00" );  // V Maximum number of services                   
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
         
         /*********************************************************************/
         /** Testcase 5                                                       */
@@ -197,8 +197,8 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
                             "00" +   // LV Minimum Security Level field
                             "00" +   // LV TAR Value(s) 
                             "00" );  // V Maximum number of services        
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -212,6 +212,6 @@ public class Test_Cre_Uta_Pdel extends UiccTestModel {
         test.deleteApplet(APPLET_AID_A_1);                
         test.deletePackage(CAP_FILE_PATH_A);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

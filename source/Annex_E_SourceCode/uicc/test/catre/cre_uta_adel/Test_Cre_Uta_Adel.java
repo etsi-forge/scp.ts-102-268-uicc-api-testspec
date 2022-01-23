@@ -35,7 +35,7 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
     }
     
     public boolean run() {
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -128,7 +128,7 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
          
         // 5- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -138,11 +138,11 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
          
         // 7- Trigger AppletA2
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // 9- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
               
         // 10- Install AppletA1
         response = test.installApplet(CAP_FILE_PATH_A, CLASS_AID_A_1, APPLET_AID_A_1, 
@@ -158,8 +158,8 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00" );  // V Maximum number of services
               
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -172,7 +172,7 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
         
         // 15- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -182,11 +182,11 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
 
         // 17- Trigger AppletB2
         response = test.envelopeMenuSelection("100104", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
  
         // 19- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
               
         // 20- Install AppletA1
         response = test.installApplet(CAP_FILE_PATH_A, CLASS_AID_A_1, APPLET_AID_A_1, 
@@ -202,8 +202,8 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00" );  // V Maximum number of services
               
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
  
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -223,11 +223,11 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
          
         // 5- Delete AppletA2
         response = test.deleteApplet(APPLET_AID_A_2);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // 6- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -237,7 +237,7 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
          
         // 9- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
               
         // 10- Install AppletA1
         response = test.installApplet(CAP_FILE_PATH_A, CLASS_AID_A_1, APPLET_AID_A_1, 
@@ -253,8 +253,8 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00" );  // V Maximum number of services
               
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -267,11 +267,11 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
         
         // 15- Delete AppletB2
         response = test.deleteApplet(APPLET_AID_B_2);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // 16- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -284,14 +284,14 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
  
         //check data
         response = test.selectApplication(APPLET_AID_A_1);
-        addResult(response.checkData("10" + APPLET_AID_A_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_A_1 +
                                      "08CCCCCC CCCCCCCC CC"));
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
         
         // 20- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
               
         // 21- Install AppletA1
         response = test.installApplet(CAP_FILE_PATH_A, CLASS_AID_A_1, APPLET_AID_A_1, 
@@ -307,8 +307,8 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00" );  // V Maximum number of services
               
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
          
        
         /*********************************************************************/
@@ -318,7 +318,7 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
 
          // 1- Delete AppletB1
         response = test.deleteApplet(APPLET_AID_B_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
  
         // 2- Install AppletB1                
         response = test.installApplet(CAP_FILE_PATH_B, CLASS_AID_B_1, APPLET_AID_B_1, 
@@ -334,8 +334,8 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00" );  // V Maximum number of services      
                                
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -343,20 +343,20 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
         // 3- Select AppletB1 on a different channel 
         response = test.manageChannel("00", "00");//Open channel if P1=00 P2 is reserved                                  
         response = test.selectApplication(response.getData(), APPLET_AID_B_1);
-        addResult(response.checkData("10" + APPLET_AID_B_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_B_1 +
                                      "00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
     
         // 4- Delete AppletB1
         response = test.deleteApplet(APPLET_AID_B_1);
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
  
  
         // 5- Select AppletB1
         response = test.selectApplication(APPLET_AID_B_1);
-        addResult(response.checkData("10" + APPLET_AID_B_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_B_1 +
                                      "00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
        
         // 6- reset
         test.reset();
@@ -371,11 +371,11 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
        
          // 1- Delete AppletB1
         response = test.deleteApplet(APPLET_AID_B_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
  
         // 2- Select AppletB1
         response = test.selectApplication(APPLET_AID_B_1);       
-        addResult(!response.checkSw("9000"));         //response shall be different from 90 00
+        test.addResult(!response.checkSw("9000"));         //response shall be different from 90 00
         
         // 3- Install AppletB1                
         response = test.installApplet(CAP_FILE_PATH_B, CLASS_AID_B_1, APPLET_AID_B_1, 
@@ -391,8 +391,8 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00" );  // V Maximum number of services      
                                
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
         
        
         /*********************************************************************/
@@ -403,7 +403,7 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
         
         // 1- Delete AppletA1
         response = test.deleteApplet(APPLET_AID_A_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -412,7 +412,7 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
         test.envelopeMenuSelection("100103", "");      
         
         response = test.selectApplication(APPLET_AID_B_1);
-        addResult(response.checkData("10" + APPLET_AID_B_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_B_1 +
                                      "01CC"));
         
         
@@ -431,6 +431,6 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH_B);
         test.deletePackage(CAP_FILE_PATH_A);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

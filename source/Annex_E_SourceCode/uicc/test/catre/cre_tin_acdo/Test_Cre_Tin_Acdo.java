@@ -36,7 +36,7 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
     }
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -86,13 +86,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
 
         // Trigger Applet1 on its menu 1 to launch fileview access tests
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet first results                                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "4B" +
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "4B" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -104,13 +104,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         
         // Trigger Applet1 on its menu 2 to launch admin fileview access tests
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "5A" +
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "5A" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -165,13 +165,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
 
         // Trigger Applet2 on its menu 1 to launch fileview access tests
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet first results                                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "4B" +
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "4B" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -184,13 +184,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         
         // Trigger Applet2 on its menu 2 to launch admin fileview access tests
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "5A" +
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "5A" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -246,13 +246,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
 
         // Trigger Applet3 on its menu 1 to launch fileview access tests
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet first results                                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "4B" +
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "4B" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -265,13 +265,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         
         // Trigger Applet3 on its menu 2 to launch admin fileview access tests
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "5A" +
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "5A" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -325,13 +325,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
 
         // Trigger Applet4 on its menu 1 to launch fileview access tests
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet first results                                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_4);
-        addResult(response.checkData("10" + APPLET_AID_4 + "4B" +
+        test.addResult(response.checkData("10" + APPLET_AID_4 + "4B" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -344,13 +344,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         
         // Trigger Applet4 on its menu 2 to launch admin fileview access tests
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_4);
-        addResult(response.checkData("10" + APPLET_AID_4 + "5A" +
+        test.addResult(response.checkData("10" + APPLET_AID_4 + "5A" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -404,13 +404,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
 
         // Trigger Applet5 on its menu 1 to launch fileview access tests
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet first results                                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_5);
-        addResult(response.checkData("10" + APPLET_AID_5 + "4B" +
+        test.addResult(response.checkData("10" + APPLET_AID_5 + "4B" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -423,13 +423,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         
         // Trigger Applet5 on its menu 2 to launch admin fileview access tests
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_5);
-        addResult(response.checkData("10" + APPLET_AID_5 + "5A" +
+        test.addResult(response.checkData("10" + APPLET_AID_5 + "5A" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -483,13 +483,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
 
         // Trigger Applet6 on its menu 1 to launch fileview access tests
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet first results                                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_6);
-        addResult(response.checkData("10" + APPLET_AID_6 + "4B" +
+        test.addResult(response.checkData("10" + APPLET_AID_6 + "4B" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -502,13 +502,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         
         // Trigger Applet6 on its menu 2 to launch admin fileview access tests
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_6);
-        addResult(response.checkData("10" + APPLET_AID_6 + "5A" +
+        test.addResult(response.checkData("10" + APPLET_AID_6 + "5A" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                 "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
@@ -561,13 +561,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         
         // Trigger Applet7 on its menu 2 to launch fileview access tests
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
         
         response = test.selectApplication(APPLET_AID_7);
-        addResult(response.checkData("10" + APPLET_AID_7 + "03" + "CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_7 + "03" + "CCCCCC"));
                                  
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -609,13 +609,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         
         // Trigger Applet7 on its menu 2 to launch fileview access tests
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
         
         response = test.selectApplication(APPLET_AID_7);
-        addResult(response.checkData("10" + APPLET_AID_7 + "03" + "CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_7 + "03" + "CCCCCC"));
                                  
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -662,13 +662,13 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
 
         // Trigger Applet7 on its menu 1 to launch fileview access tests
         response = test.envelopeMenuSelection("100103", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /** Check Applet second results then delete it                       */
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_7);
-        addResult(response.checkData("10" + APPLET_AID_7 + "06" +
+        test.addResult(response.checkData("10" + APPLET_AID_7 + "06" +
                                      "CCCCCCCC CCCC"));
                                      
         test.reset();
@@ -679,6 +679,6 @@ public class Test_Cre_Tin_Acdo extends UiccTestModel {
         // Delete package
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

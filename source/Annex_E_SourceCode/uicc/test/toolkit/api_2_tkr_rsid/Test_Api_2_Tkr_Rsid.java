@@ -32,7 +32,7 @@ public class Test_Api_2_Tkr_Rsid extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -70,33 +70,33 @@ public class Test_Api_2_Tkr_Rsid extends UiccTestModel {
 
         // test case 1 to 5: trigger Applet1 with EVENT_MENU_SELECTION (item = '01')
         response = test.envelopeMenuSelection("900101","");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 5: trigger Applet2 with EVENT_MENU_SELECTION (item = '02')
         response = test.envelopeMenuSelection("900102","");
-        addResult(response.checkSw("9110"));
+        test.addResult(response.checkSw("9110"));
         response = test.fetch("10");
         response = test.terminalResponse("81030147 00820282 81830100");
         
 
         // test case 6: trigger Applet1 with EVENT_MENU_SELECTION (item = '01')
         response = test.envelopeMenuSelection("900101","");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 7: trigger Applet1 with EVENT_EVENT_DOWNLOAD_LOCAL_CONNECTION
         response = test.envelopeEventDownloadLocalConnection("4103000100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 8: trigger Applet1 with EVENT_MENU_SELECTION (item = '01')
         response = test.envelopeMenuSelection("900101","");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "08CCCCCC CCCCCCCC CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "08CCCCCC CCCCCCCC CC"));
 
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "02CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "02CCCC"));
 
         // delete applet and package
         test.reset();
@@ -105,7 +105,7 @@ public class Test_Api_2_Tkr_Rsid extends UiccTestModel {
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

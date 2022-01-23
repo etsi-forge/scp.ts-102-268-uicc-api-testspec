@@ -29,7 +29,7 @@ public class Test_Cre_Apt_Etex extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -66,7 +66,7 @@ public class Test_Cre_Apt_Etex extends UiccTestModel {
 
         // check results
         response   = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10"+APPLET_AID_1+"05CCCCCC CCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_1+"05CCCCCC CCCC"));
 
 
 
@@ -76,6 +76,6 @@ public class Test_Cre_Apt_Etex extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

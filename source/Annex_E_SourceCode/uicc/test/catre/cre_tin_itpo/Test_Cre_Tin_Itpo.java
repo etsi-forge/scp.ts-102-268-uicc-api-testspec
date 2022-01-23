@@ -35,7 +35,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         String[] menuList   = new String[12];
         String[] menuIdList = new String[12];
@@ -73,7 +73,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu12"; menuIdList[1] = "02";
@@ -103,7 +103,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu12"; menuIdList[1] = "02";
@@ -139,7 +139,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu31"; menuIdList[1] = "06";
@@ -171,7 +171,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu31"; menuIdList[1] = "06";
@@ -204,7 +204,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0] = "Menu11"; menuIdList[0] = "01";
         menuList[1] = "Menu31"; menuIdList[1] = "06";
@@ -224,7 +224,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100101","");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0] = "Menu31"; menuIdList[0] = "06";
         menuList[1] = "Menu32"; menuIdList[1] = "07";
@@ -240,7 +240,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         response = test.lockApplication(APPLET_AID_2);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0] = "Menu31"; menuIdList[0] = "06";
         menuList[1] = "Menu32"; menuIdList[1] = "07";
@@ -276,7 +276,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0] = "Menu61"; menuIdList[0] = "10";
         menuList[1] = "Menu31"; menuIdList[1] = "06";
@@ -297,7 +297,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100102","");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0]  = "Menu61"; menuIdList[0]  = "10";
         menuList[1]  = "Menu11"; menuIdList[1]  = "01";
@@ -316,7 +316,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         response = test.unlockApplication(APPLET_AID_2);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0]  = "Menu61"; menuIdList[0]  = "10";
         menuList[1]  = "Menu11"; menuIdList[1]  = "01";
@@ -341,7 +341,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         response = test.deleteApplet(APPLET_AID_2);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0]  = "Menu61"; menuIdList[0]  = "10";
         menuList[1]  = "Menu11"; menuIdList[1]  = "01";
@@ -377,7 +377,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
-        addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
+        test.addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
         // Fetch & Terminal response
         menuList[0]  = "Menu61"; menuIdList[0]  = "10";
         menuList[1]  = "Menu11"; menuIdList[1]  = "01";
@@ -412,7 +412,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
     
     // Fetch a sepUpMenu command, check it according to the parameters
@@ -472,7 +472,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         }
         
         response = test.fetch(ToString((byte)(setUpMenuCmd.length()/2)));
-        addResult(response.checkData(setUpMenuCmd));
+        test.addResult(response.checkData(setUpMenuCmd));
         
         test.terminalResponse("81030125 00820282 81830100"); 
     }

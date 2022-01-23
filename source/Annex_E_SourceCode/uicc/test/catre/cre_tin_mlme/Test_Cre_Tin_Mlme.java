@@ -25,7 +25,7 @@ public class Test_Cre_Tin_Mlme extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         String[] menuList   = new String[3];
         String[] menuIdList = new String[3];
@@ -88,7 +88,7 @@ public class Test_Cre_Tin_Mlme extends UiccTestModel {
 
         // Trigger Applet1
         response = test.envelopeMenuSelection("100102","");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -98,7 +98,7 @@ public class Test_Cre_Tin_Mlme extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "05" + "CCCCCCCC CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "05" + "CCCCCCCC CC"));
 
 
         /*********************************************************************/
@@ -114,7 +114,7 @@ public class Test_Cre_Tin_Mlme extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
     
     // Fetch a sepUpMenu command, check it according to the parameters
@@ -167,7 +167,7 @@ public class Test_Cre_Tin_Mlme extends UiccTestModel {
         setUpMenuCmd = "D0" + ToString((byte)(Cmd.length()/2)) + Cmd;
         
         response = test.fetch(ToString((byte)(setUpMenuCmd.length()/2)));
-        addResult(response.checkData(setUpMenuCmd));
+        test.addResult(response.checkData(setUpMenuCmd));
         
         test.terminalResponse("81030125 00820282 81830100"); 
     }

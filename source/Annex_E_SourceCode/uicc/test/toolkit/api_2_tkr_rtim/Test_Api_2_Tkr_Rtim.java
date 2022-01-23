@@ -30,7 +30,7 @@ public class Test_Api_2_Tkr_Rtim extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -55,36 +55,36 @@ public class Test_Api_2_Tkr_Rtim extends UiccTestModel {
 
         // test case 1 to 6
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 7
         response = test.envelopeTimerExpiration("240101");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.envelopeTimerExpiration("240102");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.envelopeTimerExpiration("240103");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.envelopeTimerExpiration("240104");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.envelopeTimerExpiration("240105");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.envelopeTimerExpiration("240106");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.envelopeTimerExpiration("240107");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.envelopeTimerExpiration("240108");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "07CCCCCC CCCCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "07CCCCCC CCCCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -92,6 +92,6 @@ public class Test_Api_2_Tkr_Rtim extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

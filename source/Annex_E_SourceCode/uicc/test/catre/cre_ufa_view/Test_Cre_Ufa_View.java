@@ -28,7 +28,7 @@ public class Test_Cre_Ufa_View extends UiccTestModel {
     
     public boolean run() {
         
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -95,34 +95,34 @@ public class Test_Cre_Ufa_View extends UiccTestModel {
 
         // test case 7: File Context integrity
         response = test.envelopeMenuSelection("100101","");
-        addResult(response.checkSw("9113"));
+        test.addResult(response.checkSw("9113"));
         response = test.fetch("13");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.envelopeCallControlByNAA();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.terminalResponse("81030121 80020282 81030100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 8: Applet2 can get a FileView
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // test cases 9 to 13
         for (byte i=0; i<2; i++) {
             response = test.selectApplication(APPLET_AID_2);
-            addResult(response.checkSw("9000"));
+            test.addResult(response.checkSw("9000"));
             test.reset();
             test.terminalProfileSession("09010020");
             response = test.selectApplication(APPLET_AID_2);
         }
 
         // check applet2 results
-        addResult(response.checkData("10" + APPLET_AID_2 + "0ACCCCCC CCCCCCCC CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "0ACCCCCC CCCCCCCC CCCCCC"));
         
         // check applet1 results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "0BCCCCCC CCCCCCCC CCCCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "0BCCCCCC CCCCCCCC CCCCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -131,6 +131,6 @@ public class Test_Cre_Ufa_View extends UiccTestModel {
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

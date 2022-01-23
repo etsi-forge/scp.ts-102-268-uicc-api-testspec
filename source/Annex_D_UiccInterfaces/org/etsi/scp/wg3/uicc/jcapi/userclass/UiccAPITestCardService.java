@@ -9,7 +9,7 @@ package org.etsi.scp.wg3.uicc.jcapi.userclass;
 
 import org.etsi.scp.wg3.uicc.jcapi.userinterface.*;
 
-public class UiccAPITestCardService implements UiccCardManagementService,UiccAdministrativeCommandsService,UiccApplicationManagementService,UiccToolkitService   {
+public class UiccAPITestCardService implements UiccCardManagementService,UiccAdministrativeCommandsService,UiccApplicationManagementService,UiccToolkitService,UiccResultsService   {
 
     public static UiccAPITestCardService TestReference = null;
 
@@ -420,5 +420,19 @@ public class UiccAPITestCardService implements UiccCardManagementService,UiccAdm
     public APDUResponse envelopeEventDownloadHCIConnectivity() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+	
+	@Override
+	public void initialiseResults(){
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+	
+	@Override
+	public void addResult(boolean result){
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+	
+	@Override
+	public boolean getOverallResult(){
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

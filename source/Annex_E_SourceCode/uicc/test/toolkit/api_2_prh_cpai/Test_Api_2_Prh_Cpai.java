@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -73,16 +73,16 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
         /*********************************************************************/
         
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
         
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         // Terminal response with 11 additional bytes
         response = test.terminalResponse("81030121 00020282 81030C01 01234567"
                                        + "89ABCDEF 012345");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 7 to 9                                                  */
@@ -90,13 +90,13 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response with 5 additional bytes
         response = test.terminalResponse("81030121 00020282 81030601 01234567"
                                        + "89");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
         
         /*********************************************************************/
         /** Testcase 10 & 11                                                  */
@@ -104,13 +104,13 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
 
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         // Terminal response with 6 additional bytes
         response = test.terminalResponse("81030121 00020282 81030701 ABCDEFFE"
                                        + "DCBA");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 12 & 13                                                  */
@@ -118,13 +118,13 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
 
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         // Terminal response with 7 additional bytes
         response = test.terminalResponse("81030121 00020282 81030801 FEDCBA98"
                                        + "765432");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 14 & 15                                                  */
@@ -132,13 +132,13 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
 
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         // Terminal response with 8 additional bytes
         response = test.terminalResponse("81030121 00020282 81030901 00112233"
                                        + "44556677");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 16 to 18                                                  */
@@ -146,7 +146,7 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
 
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         // Terminal response with F2 additional bytes
@@ -166,7 +166,7 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
                                        + "C3C4C5C6 C7C8C9CA CBCCCDCE CFD0D1D2"
                                        + "D3D4D5D6 D7D8D9DA DBDCDDDE DFE0E1E2"
                                        + "E3E4E5E6 E7E8E9EA EBECEDEE EFF0F1");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 19                                                      */
@@ -174,13 +174,13 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
 
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         // Terminal response with 5 additional bytes
         response = test.terminalResponse("81030121 00020282 81030601 00112233"
                                        + "44");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 20                                                      */
@@ -188,13 +188,13 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
 
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         // Terminal response with 5 additional bytes
         response = test.terminalResponse("81030121 00020282 81030601 00112233"
                                        + "44");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 21 to 23                                                */
@@ -202,13 +202,13 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
 
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         // Terminal response with 2 results TLV
         response = test.terminalResponse("81030121 00020282 81030601 01234567"
                                        + "89030100");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 24                                                      */
@@ -216,12 +216,12 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
 
         // Fetch the proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         // Terminal response with no result TLV
         response = test.terminalResponse("81030121 00020282 81");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -230,7 +230,7 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                   + "18CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"
                                   + "CCCCCCCC CCCCCCCC CC"));
         
@@ -246,6 +246,6 @@ public class Test_Api_2_Prh_Cpai extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

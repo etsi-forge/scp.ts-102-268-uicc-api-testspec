@@ -31,7 +31,7 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
 		/*********************************************************************/
         /** Testcase 1, 2                                                       */
@@ -75,14 +75,14 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
         test.terminalProfileSession("09030100");
         //***TEST CASE 1: 1-APPLET 1 IS TRIGGERED***
         response = test.envelopeMenuSelection("100101", "");//Help Request not available
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         //***TEST CASE 1: 4-APPLET 1 IS TRIGGERED***
         test.envelopeEventDownloadUserActivity();
         //***TEST CASE 2: 1-APPLET 1 IS TRIGGERED***
         response = test.envelopeMenuSelection("100101", "");//Help Request not available
-        addResult(response.checkSw("9113"));
+        test.addResult(response.checkSw("9113"));
         response = test.fetch("13");
-        addResult(response.checkData("D0118103 01218082 0281028D 0604"+Text1));
+        test.addResult(response.checkData("D0118103 01218082 0281028D 0604"+Text1));
         //***TEST CASE 2: 3-APPLET 2 IS TRIGGERED***
         test.envelopeMenuSelection("100102", "");//Help Request not available
         test.reset();
@@ -93,9 +93,9 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10"+APPLET_AID_1+"0CCCCCCC CCCCCCCC CCCCCCCC CC"));
+        test.addResult(response.checkData("10"+APPLET_AID_1+"0CCCCCCC CCCCCCCC CCCCCCCC CC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10"+APPLET_AID_2+"07CCCCCC CCCCCCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_2+"07CCCCCC CCCCCCCC"));
 
 
         // delete applet and package
@@ -121,7 +121,7 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
 							   
- 	    addResult(response.checkSw("9000"));    
+ 	    test.addResult(response.checkSw("9000"));    
 		
         // Install Applet2
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_3, 
@@ -135,7 +135,7 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
  
-	    addResult(response.checkSw("9000"));
+	    test.addResult(response.checkSw("9000"));
 		
         // Card Initialisation
         test.reset();
@@ -143,7 +143,7 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
         
         // Trigger the applets
         response = test.envelopeEventProactiveHandlerAvailable();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -153,7 +153,7 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
 
 
         /*********************************************************************/
@@ -167,9 +167,9 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
         // delete applets and package
         test.deleteApplet(APPLET_AID_3);
         test.deletePackage(CAP_FILE_PATH);        
- 	    addResult(response.checkSw("9000"));
+ 	    test.addResult(response.checkSw("9000"));
         
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

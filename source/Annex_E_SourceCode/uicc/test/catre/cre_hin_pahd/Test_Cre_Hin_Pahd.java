@@ -28,7 +28,7 @@ public class Test_Cre_Hin_Pahd extends UiccTestModel {
     }
     
     public boolean run() {
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -84,15 +84,15 @@ public class Test_Cre_Hin_Pahd extends UiccTestModel {
         // 1- Trigger AppletA1
         test.envelopeEventDownloadUserActivity();                       
         response = test.fetch("0B");      
-        addResult(response.checkData("D0098103 01218082 028102"));
+        test.addResult(response.checkData("D0098103 01218082 028102"));
         test.terminalResponse("81030121 80820282 81830100");                 
         
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_1 +
                                      "03CCCCCC"));
         
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 +
+        test.addResult(response.checkData("10" + APPLET_AID_2 +
                                      "08CCCCCC CCCCCCCC CC"));
 
         test.reset();       
@@ -110,6 +110,6 @@ public class Test_Cre_Hin_Pahd extends UiccTestModel {
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

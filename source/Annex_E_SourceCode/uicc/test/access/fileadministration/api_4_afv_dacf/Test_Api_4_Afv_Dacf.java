@@ -25,7 +25,7 @@ public class Test_Api_4_Afv_Dacf extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -63,7 +63,7 @@ public class Test_Api_4_Afv_Dacf extends UiccTestModel {
 
         // Trigger Applet
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
            
 
         /*********************************************************************/
@@ -73,7 +73,7 @@ public class Test_Api_4_Afv_Dacf extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "04" + "CCCCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "04" + "CCCCCCCC"));
                                      
         /*********************************************************************/
         /*********************************************************************/
@@ -87,6 +87,6 @@ public class Test_Api_4_Afv_Dacf extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

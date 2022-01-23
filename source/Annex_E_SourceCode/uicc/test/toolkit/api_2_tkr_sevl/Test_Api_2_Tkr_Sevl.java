@@ -32,7 +32,7 @@ public class Test_Api_2_Tkr_Sevl extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -70,27 +70,27 @@ public class Test_Api_2_Tkr_Sevl extends UiccTestModel {
 
         // test case 1 to 18: trigger Applet1
         response = test.envelopeMenuSelection("900101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 19: trigger Applet1 with EVENT_CALL_CONTROL_BY_NAA
         test.reset();
         test.terminalProfileSession("09010020 03");
         response = test.envelopeCallControlByNAA();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 20 to 22: trigger Applet2
         response = test.envelopeMenuSelection("900102", "");
-        addResult(response.checkSw("910E"));
+        test.addResult(response.checkSw("910E"));
         response = test.fetch("0E");
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_1 +
                                      "13CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                                      "CCCCCCCC"));
 
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "03CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "03CCCCCC"));
 
          // delete applet and package
         test.reset();
@@ -99,6 +99,6 @@ public class Test_Api_2_Tkr_Sevl extends UiccTestModel {
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

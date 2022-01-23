@@ -39,7 +39,7 @@ public class Test_Api_2_Enh_Glen extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -85,7 +85,7 @@ public class Test_Api_2_Enh_Glen extends UiccTestModel
                                 + "01020304 05060708 090A0B0C 0D0E0F10"
                                 + "01020304 05060708 090A0B");
         
-        addResult(response.checkSw("90 00"));
+        test.addResult(response.checkSw("90 00"));
 
         // 2 : Send Unrecognized Envelope with BER TLV Length set to 7F
         response = test.sendApdu( "80 C2 00 00 81"
@@ -100,7 +100,7 @@ public class Test_Api_2_Enh_Glen extends UiccTestModel
                                 + "01020304 05060708 090A0B0C 0D0E0F10"
                                 + "01020304 05060708 090A0B0C 0D0E0F10"
                                 + "01020304 05060708 09");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // 2 : Send Unrecognized Envelope with BER TLV Length set to 80
         response = test.sendApdu( "80 C2 00 00 83"
@@ -115,7 +115,7 @@ public class Test_Api_2_Enh_Glen extends UiccTestModel
                                 + "01020304 05060708 090A0B0C 0D0E0F10"
                                 + "01020304 05060708 090A0B0C 0D0E0F10"
                                 + "01020304 05060708 090A");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         // 3 : Send Unrecognized Envelope with BER TLV Length set to FC
@@ -139,7 +139,7 @@ public class Test_Api_2_Enh_Glen extends UiccTestModel
                                 + "01020304 05060708 090A0B0C 0D0E0F10"
                                 + "01020304 05060708 090A0B0C 0D0E0F10"
                                 + "01020304 05");
-        addResult(response.checkSw("90 00"));
+        test.addResult(response.checkSw("90 00"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -148,7 +148,7 @@ public class Test_Api_2_Enh_Glen extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                    + "04CCCCCC CC"));
         
         /*********************************************************************/
@@ -163,6 +163,6 @@ public class Test_Api_2_Enh_Glen extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

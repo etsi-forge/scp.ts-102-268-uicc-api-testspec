@@ -37,7 +37,7 @@ public class Test_Api_2_Erh_Cprv extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -83,7 +83,7 @@ public class Test_Api_2_Erh_Cprv extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                   + "13CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"
                                   + "CCCCCCCC"));
         
@@ -100,7 +100,7 @@ public class Test_Api_2_Erh_Cprv extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

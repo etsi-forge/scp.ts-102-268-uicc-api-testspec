@@ -29,7 +29,7 @@ public class Test_Cre_Apt_Emse extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
 
         // start test
@@ -77,9 +77,9 @@ public class Test_Cre_Apt_Emse extends UiccTestModel {
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
 
 
         // delete applet and package
@@ -89,6 +89,6 @@ public class Test_Cre_Apt_Emse extends UiccTestModel {
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

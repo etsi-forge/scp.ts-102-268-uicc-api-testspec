@@ -27,7 +27,7 @@ public class Test_Api_1_Fvw_Slctb_Bss extends UiccTestModel {
     }
     
     public boolean run() {
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -86,7 +86,7 @@ public class Test_Api_1_Fvw_Slctb_Bss extends UiccTestModel {
         test.unrecognizedEnvelope();               
         
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_1 +
                                      "16CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                                      "CCCCCCCC CCCCCC"));
 
@@ -110,6 +110,6 @@ public class Test_Api_1_Fvw_Slctb_Bss extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);                      
         test.deletePackage(CAP_FILE_PATH);
                
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

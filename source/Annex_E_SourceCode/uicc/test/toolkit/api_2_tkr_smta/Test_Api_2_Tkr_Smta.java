@@ -32,7 +32,7 @@ public class Test_Api_2_Tkr_Smta extends UiccTestModel {
     
     public boolean run() {
         
-        initialiseResults();
+        test.initialiseResults();
         
         // start test
         test.reset();
@@ -57,16 +57,16 @@ public class Test_Api_2_Tkr_Smta extends UiccTestModel {
         response = test.terminalProfile("09010020 00000000 00000000 00000008" +
                                                "00000000 00000000 0000003F 7F");
         
-        addResult(response.checkSw("913E"));
+        test.addResult(response.checkSw("913E"));
         response = test.fetch("3E");
         test.terminalResponse("81030125 00820282 81830100");
 
         // testcase 1
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9150"));
+        test.addResult(response.checkSw("9150"));
         response = test.fetch("50");
 
-        addResult(response.checkData("D04E8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D04E8103 01250082 02818285 09554943" +
                                     "43205445 53548F08 01417070 6C657431" +
                                     response.getData().substring(64,66)+  "08024170 706C6574 31"+ //item2
                                     response.getData().substring(84,86)+  "08034170 706C6574 31"+ //item3
@@ -76,9 +76,9 @@ public class Test_Api_2_Tkr_Smta extends UiccTestModel {
         test.terminalResponse("81030125 00820282 81830100");                                
         // testcase 2
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9150"));
+        test.addResult(response.checkSw("9150"));
         response = test.fetch("50");
-        addResult(response.checkData("D04E8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D04E8103 01250082 02818285 09554943" +
                                      "43205445 53548F08 01417070 6C657431" +
                                      response.getData().substring(64,66)+  "08024170 706C6574 31"+ //item2
                                      response.getData().substring(84,86)+  "08034170 706C6574 31"+ //item3
@@ -93,7 +93,7 @@ public class Test_Api_2_Tkr_Smta extends UiccTestModel {
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_1 +
                                      "09CCCCCC CCCCCCCC CCCC"));
         
         // delete applet and package
@@ -102,7 +102,7 @@ public class Test_Api_2_Tkr_Smta extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

@@ -31,7 +31,7 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
     }
 
     public boolean run() {
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -79,26 +79,26 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         /** Test case 2
          *  Normal execution
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession("0101");
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession("0101");
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         response = test.selectApplication(APPLET_AID_1);
         response = test.selectApplication(AID_ADF_2);
@@ -109,7 +109,7 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
         test.terminalProfileSession("0101");
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /** Test case 3
@@ -117,7 +117,7 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /** Test case 4
@@ -125,7 +125,7 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /** Test case 5
@@ -133,7 +133,7 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession("0101");
@@ -152,7 +152,7 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
          */
 
         response = test.envelopeMenuSelection("100101", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /**
@@ -164,7 +164,7 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "07CCCCCC CCCCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "07CCCCCC CCCCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -172,6 +172,6 @@ public class Test_Api_1_Usy_Getfb extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

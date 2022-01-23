@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -73,16 +73,16 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
         /*********************************************************************/   
                                                                                   
         response = test.unrecognizedEnvelope();                                   
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response 
         response = test.terminalResponse("81030121 00020282 81030100");  
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
                                                                           
 
         /*********************************************************************/   
@@ -91,12 +91,12 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response 
         response = test.terminalResponse("81030121 00020282 81030101");  
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/   
         /** Testcase 5 & 6                                                   */   
@@ -104,12 +104,12 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response 
         response = test.terminalResponse("81030121 00020282 81030201 55");  
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/   
         /** Testcase 7 & 8                                                   */   
@@ -117,12 +117,12 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response 
         response = test.terminalResponse("81030121 00020282 81030402 654321");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/   
         /** Testcase 9 & 10                                                  */   
@@ -130,7 +130,7 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response with 7Fh additional information
@@ -143,7 +143,7 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
                                        + "55555555 55555555 55555555 55555555"
                                        + "55555555 55555555 55555555 55555555"
                                        + "55555555 55555555 55555555");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/   
         /** Testcase 11 & 12                                                 */   
@@ -151,13 +151,13 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response with 2 result TLVs
         response = test.terminalResponse("81030121 00020282 81030202 12030303"
                                        + "3456");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/   
         /** Testcase 13                                                      */   
@@ -165,12 +165,12 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response with no result TLV
         response = test.terminalResponse("81030121 00020282 81");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/   
         /** Testcase 13                                                      */   
@@ -178,12 +178,12 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response with no general result
         response = test.terminalResponse("81030121 00020282 810300");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -192,7 +192,7 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                    + "0ECCCCCC CCCCCCCC CCCCCCCC CCCCCC"));
         
         /*********************************************************************/
@@ -207,6 +207,6 @@ public class Test_Api_2_Prh_Gtgr extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

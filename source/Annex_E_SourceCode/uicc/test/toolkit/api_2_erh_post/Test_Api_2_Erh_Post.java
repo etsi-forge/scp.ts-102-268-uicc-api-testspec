@@ -37,7 +37,7 @@ public class Test_Api_2_Erh_Post extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -75,11 +75,11 @@ public class Test_Api_2_Erh_Post extends UiccTestModel
         
         // Test case 1
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Test case 2
         response = test.unrecognizedEnvelope();
-        addResult(response.checkData("0181FA01 02030405 06070809 0A0B0C0D"
+        test.addResult(response.checkData("0181FA01 02030405 06070809 0A0B0C0D"
                                    + "0E0F1011 12131415 16171819 1A1B1C1D"
                                    + "1E1F2021 22232425 26272829 2A2B2C2D"
                                    + "2E2F3031 32333435 36373839 3A3B3C3D"
@@ -96,59 +96,59 @@ public class Test_Api_2_Erh_Post extends UiccTestModel
                                    + "DEDFE0E1 E2E3E4E5 E6E7E8E9 EAEBECED"
                                    + "EEEFF0F1 F2F3F4F5 F6F7F8F9 FA"));
         
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Test case 3
         response = test.unrecognizedEnvelope();
-        addResult(response.checkData("01100102 03040506 0708090A 0B0C0D0E 0F10"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("01100102 03040506 0708090A 0B0C0D0E 0F10"));
+        test.addResult(response.checkSw("9000"));
         
         // Test case 4
         response = test.unrecognizedEnvelope();
-        addResult(response.checkData("01100102 03040506 0708090A 0B0C0D0E 0F10"));
-        addResult(response.checkSw("6200"));
+        test.addResult(response.checkData("01100102 03040506 0708090A 0B0C0D0E 0F10"));
+        test.addResult(response.checkSw("6200"));
         response = test.envelopeEventDownloadUserActivity(); // Dummy command to get the 91XX status word
-        addResult(response.checkSw("9115"));
+        test.addResult(response.checkSw("9115"));
         response = test.fetch("15");
-        addResult(response.checkData("D0138103  01218082  0281028D  08044150"
+        test.addResult(response.checkData("D0138103  01218082  0281028D  08044150"
                                    + "504C4554  31"));
         test.terminalResponse("81030121  00020282  81030100");
 
         // Test case 5
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9115"));
+        test.addResult(response.checkSw("9115"));
         response = test.fetch("15");
-        addResult(response.checkData("D0138103  01218082  0281028D  08044150"
+        test.addResult(response.checkData("D0138103  01218082  0281028D  08044150"
                                    + "504C4554  31"));
         test.terminalResponse("81030121  00020282  81030100");
 
         // Test case 6
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9115"));
+        test.addResult(response.checkSw("9115"));
         response = test.fetch("15");
-        addResult(response.checkData("D0138103  01218082  0281028D  08044150"
+        test.addResult(response.checkData("D0138103  01218082  0281028D  08044150"
                                    + "504C4554  31"));
         response = test.terminalResponse("81030121  00020282  81030100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // Test case 7
         response = test.unrecognizedEnvelope();
-        addResult(response.checkData("01100102 03040506 0708090A 0B0C0D0E 0F10"));
-        addResult(response.checkSw("6200"));
+        test.addResult(response.checkData("01100102 03040506 0708090A 0B0C0D0E 0F10"));
+        test.addResult(response.checkSw("6200"));
         
         // Test case 8
         response = test.envelopeCallControlByNAA();
-        addResult(response.checkData("01100102 03040506 0708090A 0B0C0D0E 0F10"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("01100102 03040506 0708090A 0B0C0D0E 0F10"));
+        test.addResult(response.checkSw("9000"));
         
         // Test case 9
         response = test.envelopeCallControlByNAA();
-        addResult(response.checkData("01101112 13141516 1718191A 1B1C1D1E 1F20"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("01101112 13141516 1718191A 1B1C1D1E 1F20"));
+        test.addResult(response.checkSw("9000"));
         
         // Test case 10
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -157,7 +157,7 @@ public class Test_Api_2_Erh_Post extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                    + "0ACCCCCC CCCCCCCC CCCCCC"));
         
         /*********************************************************************/
@@ -173,7 +173,7 @@ public class Test_Api_2_Erh_Post extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

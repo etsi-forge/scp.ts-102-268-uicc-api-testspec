@@ -30,7 +30,7 @@ public class Test_Api_2_Tep_Gval extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -61,11 +61,11 @@ public class Test_Api_2_Tep_Gval extends UiccTestModel {
         test.terminalProfileSession("A901D2F0 00000000 00000000 008DFF");
         
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "09CCCCCC CCCCCCCC CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "09CCCCCC CCCCCCCC CCCC"));
 
         // delete applet and package
         test.reset();
@@ -73,7 +73,7 @@ public class Test_Api_2_Tep_Gval extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

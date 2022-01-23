@@ -34,7 +34,7 @@ public class Test_Api_2_Tkr_Atim extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -88,43 +88,43 @@ public class Test_Api_2_Tkr_Atim extends UiccTestModel {
 
         // test case 1 to 3: trigger applet1
         response = test.envelopeMenuSelection("100101","");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // all timers expire
         response = test.envelopeTimerExpiration("240108");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.envelopeTimerExpiration("240107");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.envelopeTimerExpiration("240106");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.envelopeTimerExpiration("240105");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.envelopeTimerExpiration("240104");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.envelopeTimerExpiration("240103");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.envelopeTimerExpiration("240102");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.envelopeTimerExpiration("240101");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // test case 4: trigger applet2
         response = test.envelopeMenuSelection("100102","");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // test case 5: trigger applet3
         response = test.envelopeMenuSelection("100103","");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "03CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "03CCCCCC"));
 
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "01CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "01CC"));
 
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "01CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "01CC"));
 
         // delete applet and package
         test.reset();
@@ -134,7 +134,7 @@ public class Test_Api_2_Tkr_Atim extends UiccTestModel {
         test.deleteApplet(APPLET_AID_3);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

@@ -31,7 +31,7 @@ public class Test_Cre_Apt_Emsh extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
 
         // start test
@@ -84,9 +84,9 @@ public class Test_Cre_Apt_Emsh extends UiccTestModel {
         test.envelopeMenuSelection("100104", "1500");//Help Request
         // check results of Applet 1 and Applet2.
         response  = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
         response  = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
         //Delete Applet 1 and Applet2.
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
@@ -113,7 +113,7 @@ public class Test_Cre_Apt_Emsh extends UiccTestModel {
         test.terminalProfile("09010020 01");
         //UICC proactive command SET UP MENU, Menu Entry ID 05, 06, 07, Help Request supported
         response = test.fetch("37");
-        addResult(response.checkData("D0358103 01258082 02818285 09554943" +
+        test.addResult(response.checkData("D0358103 01258082 02818285 09554943" +
                                       "43205445 53548F09 05417070 6C657433" +
                                       "418F0906 4170706C 65743342 8F090741" +
                                       "70706C65 743343"));
@@ -121,23 +121,23 @@ public class Test_Cre_Apt_Emsh extends UiccTestModel {
         //*** Test Case 2: 2-Applet3 is triggered ****
         test.envelopeMenuSelection("100105", "1500");//Help Request
         response = test.fetch("2C");
-        addResult(response.checkData("D02A8103 01258082 02818285 09554943" +
+        test.addResult(response.checkData("D02A8103 01258082 02818285 09554943" +
                                       "43205445 53548F09 06417070 6C657433" +
                                       "428F0907 4170706C 65743343"));
         test.terminalResponse("81030125 80820282 81830100");
         //*** Test Case 2: 4-Applet3 is triggered ****
         test.envelopeMenuSelection("100106", "1500");//Help Request
         response = test.fetch("21");
-        addResult(response.checkData("D01F8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D01F8103 01250082 02818285 09554943" +
                                       "43205445 53548F09 07417070 6C657433" +
                                       "43"));
         response = test.terminalResponse("81030125 00820282 81830100");                                        
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         // check results
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10"+APPLET_AID_3+"04CCCCCC CC"));
+        test.addResult(response.checkData("10"+APPLET_AID_3+"04CCCCCC CC"));
 
         // delete applet and package
         test.reset();
@@ -146,6 +146,6 @@ public class Test_Cre_Apt_Emsh extends UiccTestModel {
         test.deleteApplet(APPLET_AID_3);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

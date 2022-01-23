@@ -36,7 +36,7 @@ public class Test_Api_2_Pah_glen extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -77,7 +77,7 @@ public class Test_Api_2_Pah_glen extends UiccTestModel
         {             
             // Send Unrecognized Envelope
             response = test.unrecognizedEnvelope();
-            addResult(response.checkSw("90 00"));
+            test.addResult(response.checkSw("90 00"));
         }
         /*********************************************************************/
         /*********************************************************************/
@@ -86,7 +86,7 @@ public class Test_Api_2_Pah_glen extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                    + "05CCCCCC CCCC"));
         
         /*********************************************************************/
@@ -101,6 +101,6 @@ public class Test_Api_2_Pah_glen extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

@@ -30,7 +30,7 @@ public class Test_Api_2_Tkr_Emet extends UiccTestModel {
     
     public boolean run() {
         
-        initialiseResults();
+        test.initialiseResults();
         
         // start test
         test.reset();
@@ -53,59 +53,59 @@ public class Test_Api_2_Tkr_Emet extends UiccTestModel {
         // test script
         test.reset();
         response = test.terminalProfile("09010020");
-        addResult(response.checkSw("9124"));
+        test.addResult(response.checkSw("9124"));
         response = test.fetch("24");
-        addResult(response.checkData("D0228103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D0228103 01250082 02818285 09554943" +
                                      "43205445 53548F05 01496E69 748F0502" +
                                      "496E6974"));
         response = test.terminalResponse("81030125 00820282 81830100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 1
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("911D"));
+        test.addResult(response.checkSw("911D"));
         response = test.fetch("1D");
-        addResult(response.checkData("D01B8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D01B8103 01250082 02818285 09554943" +
                                      "43205445 53548F05 02496E69 74"));
         response = test.terminalResponse("81030125 00820282 81830100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 2
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9124"));
+        test.addResult(response.checkSw("9124"));
         response = test.fetch("24");
-        addResult(response.checkData("D0228103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D0228103 01250082 02818285 09554943" +
                                      "43205445 53548F05 01496E69 748F0502" +
                                      "496E6974"));
         response = test.terminalResponse("81030125 00820282 81830100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 3 
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("911D"));
+        test.addResult(response.checkSw("911D"));
         response = test.fetch("1D");
-        addResult(response.checkData("D01B8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D01B8103 01250082 02818285 09554943" +
                                      "43205445 53548F05 01496E69 74"));
         response = test.terminalResponse("81030125 00820282 81830100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 4
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9124"));
+        test.addResult(response.checkSw("9124"));
         response = test.fetch("24");
-        addResult(response.checkData("D0228103 01258082 02818285 09554943" +
+        test.addResult(response.checkData("D0228103 01258082 02818285 09554943" +
                                      "43205445 53548F05 01496E69 748F0502" +
                                      "496E6974"));
         response = test.terminalResponse("81030125 80820282 81830100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 5
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "05CCCCCC CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "05CCCCCC CCCC"));
 
         // delete applet and package
         test.reset();
@@ -113,7 +113,7 @@ public class Test_Api_2_Tkr_Emet extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

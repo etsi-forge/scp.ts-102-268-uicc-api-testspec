@@ -29,7 +29,7 @@ public class Test_Cre_Tin_Sval extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -54,11 +54,11 @@ public class Test_Cre_Tin_Sval extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "09");   // V Maximum number of services
         
-        addResult(response.checkSw("6A80"));
+        test.addResult(response.checkSw("6A80"));
         
         // Select applet1
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.getStatusWord().substring(1,3).compareTo("61") != 0);
+        test.addResult(response.getStatusWord().substring(1,3).compareTo("61") != 0);
         
 
         /*********************************************************************/
@@ -82,15 +82,15 @@ public class Test_Cre_Tin_Sval extends UiccTestModel {
                                             "00" +   // LV TAR Value(s) 
                                             "04");   // V Maximum number of services
         
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession("09030120");
         
         // Trigger Applet2
         response = test.envelopeMenuSelection("100102", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /** Testcase 5-8                                                     */
@@ -112,15 +112,15 @@ public class Test_Cre_Tin_Sval extends UiccTestModel {
                                             "00" +   // LV Minimum Security Level field
                                             "00" +   // LV TAR Value(s) 
                                             "08");   // V Maximum number of services
-        addResult(response.checkData("00"));
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkData("00"));
+        test.addResult(response.checkSw("9000"));
         
         test.reset();
         test.terminalProfileSession("09030120");
 
         // Trigger Applet3
         response = test.envelopeMenuSelection("100103", "");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 
         /*********************************************************************/
@@ -130,9 +130,9 @@ public class Test_Cre_Tin_Sval extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "02" + "CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "02" + "CCCC"));
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "03" + "CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "03" + "CCCCCC"));
                                      
 
         /*********************************************************************/
@@ -152,6 +152,6 @@ public class Test_Cre_Tin_Sval extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

@@ -28,7 +28,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -53,7 +53,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
         
-		addResult(response.checkSw("9000"));
+		test.addResult(response.checkSw("9000"));
 		
         // Install Applet2
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_2, 
@@ -67,7 +67,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
 							   
-	    addResult(response.checkSw("9000"));
+	    test.addResult(response.checkSw("9000"));
         
         // Card Initialisation
         test.reset();
@@ -75,7 +75,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         
         // Trigger the applets
         response = test.envelopeEventProactiveHandlerAvailable();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -85,9 +85,9 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
 
 
         /*********************************************************************/
@@ -102,7 +102,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
-	    addResult(response.checkSw("9000"));
+	    test.addResult(response.checkSw("9000"));
         
         /*********************************************************************/
         /** Testcase 2                                                       */
@@ -120,7 +120,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
 							   
- 	    addResult(response.checkSw("9000"));    
+ 	    test.addResult(response.checkSw("9000"));    
 		
         // Install Applet2
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_4, 
@@ -134,7 +134,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00");   // V Maximum number of services
  
-	    addResult(response.checkSw("9000"));
+	    test.addResult(response.checkSw("9000"));
 		
         // Card Initialisation
         test.reset();
@@ -142,7 +142,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         
         // Trigger the applets
         response = test.envelopeEventProactiveHandlerAvailable();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -152,9 +152,9 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_4);
-        addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
 
 
         /*********************************************************************/
@@ -169,9 +169,9 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         test.deleteApplet(APPLET_AID_3);
         test.deleteApplet(APPLET_AID_4);
         test.deletePackage(CAP_FILE_PATH);        
- 	    addResult(response.checkSw("9000"));
+ 	    test.addResult(response.checkSw("9000"));
         
 		
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

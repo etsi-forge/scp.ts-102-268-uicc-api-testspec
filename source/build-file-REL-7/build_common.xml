@@ -1,0 +1,102 @@
+<!--
+Copyright (c) 1998, 2019, Oracle and/or its affiliates. All rights reserved.
+-->
+<project name="ClassicTaskDefs" basedir=".">
+
+    <dirname property="this.dir" file="${ant.file.ClassicTaskDefs}" />
+    <property environment="env"/>
+    <!-- <property name="jc.home" value="${env.JC_HOME_SIMULATOR}" /> -->
+	<property name="jc222.home" value="C:\java_card_kit-2_2_2" />
+	<property name="jc222.home.tools" value="C:\java_card_kit-2_2_2\ant-tasks" />
+	<property name="etsi.home" value="C:\ETSI\TS-102-268-UICC-API-tests\experiment\etsi-jars" />
+	<property name="etsi.REL" value="R7" />
+	<property name="ant.home" value="${env.ANT_HOME}" />
+    <property name="redirect.output" value="default.output"/>
+    <property name="build.sysclasspath" value="ignore" />
+	
+	<property name="env.JC_TARGET_PLATFORM" value="2.2.2"/>
+
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+        <classpath>
+            <pathelement location="${ant.home}/ant-contrib/ant-contrib-1.0b3-bin/ant-contrib/ant-contrib-1.0b3.jar" />
+        </classpath>
+    </taskdef>
+
+    <macrodef name="getAID">
+        <attribute name="sample.name" />
+        <attribute name="aid.sep" default=":" />
+        <sequential>
+            <propertyregex property="@{sample.name}.aid"
+                           override="true"
+                           input="${@{sample.name}}"
+                           regexp="#aid.sep#"
+                           replace="@{aid.sep}"
+                           casesensitive="false" />
+        </sequential>
+    </macrodef>
+    <macrodef name="getAID.forscript">
+        <attribute name="sample.name" />
+        <sequential>
+            <getAID sample.name="@{sample.name}" aid.sep=" "/>
+        </sequential>
+    </macrodef>
+	
+
+    <!-- Definitions for tasks for javacard tools -->
+    <!-- <taskdef name="capgen"
+             classname="com.sun.javacard.ant.tasks.CapgenTask"
+             classpath="${jc222.home.tools}/lib/jctasks.jar" /> -->
+    <taskdef name="exp2text"
+             classname="com.sun.javacard.ant.tasks.Exp2TextTask"
+             classpath="${jc222.home.tools}/lib/jctasks.jar" />
+    <taskdef name="convert"
+             classname="com.sun.javacard.ant.tasks.ConverterTask"
+             classpath="${jc222.home.tools}/lib/jctasks.jar" />
+    <taskdef name="verifyexport"
+             classname="com.sun.javacard.ant.tasks.VerifyExpTask"
+             classpath="${jc222.home.tools}/lib/jctasks.jar" />
+    <taskdef name="verifycap"
+             classname="com.sun.javacard.ant.tasks.VerifyCapTask"
+             classpath="${jc222.home.tools}/lib/jctasks.jar" />
+    <taskdef name="verifyrevision"
+             classname="com.sun.javacard.ant.tasks.VerifyRevTask"
+             classpath="${jc222.home.tools}/lib/jctasks.jar" />
+    <typedef name="appletnameaid"
+             classname="com.sun.javacard.ant.types.AppletNameAID"
+             classpath="${jc222.home.tools}/lib/jctasks.jar" />
+    <typedef name="jcainputfile"
+             classname="com.sun.javacard.ant.types.JCAInputFile"
+             classpath="${jc222.home.tools}/lib/jctasks.jar" />
+    <typedef name="exportfiles"
+             classname="org.apache.tools.ant.types.FileSet" />
+
+    <path id="jc_jars"
+        description="Sets the classpath to Java Card API">
+		<pathelement path="${basedir}"/>
+		<pathelement path="${jc222.home}/lib/api.jar"/>
+        <pathelement path="${jc222.home}/lib/javacardframework.jar"/>
+        <pathelement path="${jc222.home}/lib/converter.jar"/>
+        <pathelement path="${jc222.home}/lib/offcardverifier.jar"/>
+        <pathelement path="${jc222.home}/lib/scriptgen.jar"/>
+        <pathelement path="${jc222.home}/lib/apdutool.jar"/>
+        <pathelement path="${jc222.home}/lib/apduio.jar"/>
+		<pathelement path="${etsi.home}/${etsi.REL}/uicc-api-for-java-card-REL-7.jar" />
+		<pathelement path="${basedir}/export"/>
+        <pathelement path="${basedir}/build/classes"/>
+		<pathelement path="."/>
+    </path>
+
+    <path id="jc_tools_jars"
+         description="Sets the classpath to Java Card API and tools">
+		<pathelement path="${basedir}"/>
+		<pathelement path="${jc222.home}/lib/api.jar"/>
+        <pathelement path="${jc222.home}/lib/javacardframework.jar"/>
+        <pathelement path="${jc222.home}/lib/converter.jar"/>
+        <pathelement path="${jc222.home}/lib/offcardverifier.jar"/>
+        <pathelement path="${jc222.home}/lib/scriptgen.jar"/>
+        <pathelement path="${jc222.home}/lib/apdutool.jar"/>
+        <pathelement path="${jc222.home}/lib/apduio.jar"/>
+		<pathelement path="${etsi.home}/${etsi.REL}/uicc-api-for-java-card-REL-7.jar" />
+    </path>
+
+</project>

@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Gcid extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -73,15 +73,15 @@ public class Test_Api_2_Prh_Gcid extends UiccTestModel
         /*********************************************************************/   
                                                                                   
         response = test.unrecognizedEnvelope();                                   
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
         
         // Fetch Display Text
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         response = test.terminalResponse("81030121 00020282 81030100");
-        addResult(response.checkSw("911C"));
+        test.addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 2                                                       */   
@@ -89,13 +89,13 @@ public class Test_Api_2_Prh_Gcid extends UiccTestModel
                                                                                   
         // Open channel proactive command
         response = test.fetch("1C");
-        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+        test.addResult(response.checkData("D01A8103 01400182 02818206 05911122"
                                    + "33443504 01000000 39020080"));
 
         // Terminal response with channel status TLV length set to 00
         response = test.terminalResponse("81030140 01820282 81030220 00380035"
                                        + "04010000 00390200 80");
-        addResult(response.checkSw("911C"));
+        test.addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 3                                                       */   
@@ -103,21 +103,21 @@ public class Test_Api_2_Prh_Gcid extends UiccTestModel
                                                                                   
         // Open channel proactive command
         response = test.fetch("1C");
-        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+        test.addResult(response.checkData("D01A8103 01400182 02818206 05911122"
                                    + "33443504 01000000 39020080"));
 
         // Terminal response OK on channel 01
         response = test.terminalResponse("81030140 01820282 81030100 38028100"
                                        + "35040100 00003902 0080");
-        addResult(response.checkSw("910B"));
+        test.addResult(response.checkSw("910B"));
 
         // Close channel proactive command
         response = test.fetch("0B");
-        addResult(response.checkData("D0098103 01410082 028121"));
+        test.addResult(response.checkData("D0098103 01410082 028121"));
 
         // Terminal response OK 
         response = test.terminalResponse("81030141 00820282 81030100");
-        addResult(response.checkSw("911C"));
+        test.addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 4                                                       */   
@@ -125,21 +125,21 @@ public class Test_Api_2_Prh_Gcid extends UiccTestModel
                                                                                   
         // Open channel proactive command
         response = test.fetch("1C");
-        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+        test.addResult(response.checkData("D01A8103 01400182 02818206 05911122"
                                    + "33443504 01000000 39020080"));
 
         // Terminal response with 2 Channel Id TLV 
         response = test.terminalResponse("81030140 01820282 81030100 38028100"
                                        + "38028200 35040100 00003902 0080");
-        addResult(response.checkSw("910B"));
+        test.addResult(response.checkSw("910B"));
 
         // Close channel proactive command
         response = test.fetch("0B");
-        addResult(response.checkData("D0098103 01410082 028121"));
+        test.addResult(response.checkData("D0098103 01410082 028121"));
 
         // Terminal response OK 
         response = test.terminalResponse("81030141 00820282 81030100");
-        addResult(response.checkSw("911C"));
+        test.addResult(response.checkSw("911C"));
 
         /*********************************************************************/   
         /** Testcase 5                                                       */   
@@ -147,13 +147,13 @@ public class Test_Api_2_Prh_Gcid extends UiccTestModel
                                                                                   
         // Open channel proactive command
         response = test.fetch("1C");
-        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+        test.addResult(response.checkData("D01A8103 01400182 02818206 05911122"
                                    + "33443504 01000000 39020080"));
 
         // Terminal response 
         response = test.terminalResponse("81030140 01820282 81030100 38020305"
                                        + "35040100 00003902 0080");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -162,7 +162,7 @@ public class Test_Api_2_Prh_Gcid extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                    + "05CCCCCC CCCC"));
         
         /*********************************************************************/
@@ -177,6 +177,6 @@ public class Test_Api_2_Prh_Gcid extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

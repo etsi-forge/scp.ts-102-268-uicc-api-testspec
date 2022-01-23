@@ -27,7 +27,7 @@ public class Test_Cre_Exh_Imtg extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -79,7 +79,7 @@ public class Test_Cre_Exh_Imtg extends UiccTestModel {
 
         // Trigger applets with Status command
         response = test.status("00","00","16");
-        addResult(response.getData().regionMatches(16, "3F00", 0, 4));
+        test.addResult(response.getData().regionMatches(16, "3F00", 0, 4));
 
         
         /*********************************************************************/
@@ -88,7 +88,7 @@ public class Test_Cre_Exh_Imtg extends UiccTestModel {
 
         // Trigger applets with unrecognized envelope
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         
         /*********************************************************************/
@@ -97,7 +97,7 @@ public class Test_Cre_Exh_Imtg extends UiccTestModel {
 
         // Trigger applets with unrecognized envelope
         response = test.envelopeEventDownloadMTCall();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
 
@@ -108,9 +108,9 @@ public class Test_Cre_Exh_Imtg extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "04" + "CCCCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "04" + "CCCCCCCC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "04" + "CCCCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "04" + "CCCCCCCC"));
                                      
         /*********************************************************************/
         /*********************************************************************/
@@ -126,6 +126,6 @@ public class Test_Cre_Exh_Imtg extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

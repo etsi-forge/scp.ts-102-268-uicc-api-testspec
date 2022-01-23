@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -73,15 +73,15 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         /*********************************************************************/
         
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         
         response = test.terminalResponse("81030123 00020282 81030100 0D020441");
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         /*********************************************************************/
         /** Testcase 2 & 3                                                   */
@@ -89,12 +89,12 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         
         response = test.terminalResponse("81030123 00020282 81030100 0D040441"
                                        + "4243");
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
 
         /*********************************************************************/
         /** Testcase 4                                                       */
@@ -102,11 +102,11 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the display text proactive command
         response = test.fetch("12");
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
         
         response = test.terminalResponse("81030121 00020282 81030100");
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         /*********************************************************************/
         /** Testcase 5 & 6                                                   */
@@ -114,11 +114,11 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         
         response = test.terminalResponse("81030123 00020282 81030100 0D00");
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         /*********************************************************************/
         /** Testcase 7 & 8                                                   */
@@ -126,11 +126,11 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         // Terminal response with Text String Length = 01h
         response = test.terminalResponse("81030123 00020282 81030100 0D020041");
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         /*********************************************************************/
         /** Testcase 9 to 11                                                 */
@@ -138,12 +138,12 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         // Terminal response with Text String Length = 02h
         response = test.terminalResponse("81030123 00020282 81030100 0D030042"
                                        + "43");
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         /*********************************************************************/
         /** Testcase 12 to 14                                                */
@@ -151,7 +151,7 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         // Terminal response with Text String Length = 7Eh
         response = test.terminalResponse("81030123 00020282 81030100 0D7F0401"
@@ -163,7 +163,7 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
                                        + "52535455 56575859 5A5B5C5D 5E5F6061"
                                        + "62636465 66676869 6A6B6C6D 6E6F7071"
                                        + "72737475 76777879 7A7B7C7D 7E");
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         /*********************************************************************/
         /** Testcase 15 to 16                                                */
@@ -171,7 +171,7 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         // Terminal response with Text String Length = 7Fh
         response = test.terminalResponse("81030123 00020282 81030100 0D818004"
@@ -183,7 +183,7 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
                                        + "51525354 55565758 595A5B5C 5D5E5F60"
                                        + "61626364 65666768 696A6B6C 6D6E6F70"
                                        + "71727374 75767778 797A7B7C 7D7E7F");
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         /*********************************************************************/
         /** Testcase 17 to 18                                                */
@@ -191,7 +191,7 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         // Terminal response with Text String Length = EFh
         response = test.terminalResponse("81030123 00020282 81030100 0D81F004"
@@ -210,7 +210,7 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
                                        + "C1C2C3C4 C5C6C7C8 C9CACBCC CDCECFD0"
                                        + "D1D2D3D4 D5D6D7D8 D9DADBDC DDDEDFE0"
                                        + "E1E2E3E4 E5E6E7E8 E9EAEBEC EDEEEF");
-        addResult(response.checkSw("9116"));
+        test.addResult(response.checkSw("9116"));
 
         /*********************************************************************/
         /** Testcase 19 to 21                                                */
@@ -218,12 +218,12 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         
         // Fetch the proactive command
         response = test.fetch("16");
-        addResult(response.checkData("D0148103 01230082 0281828D 05045465"
+        test.addResult(response.checkData("D0148103 01230082 0281828D 05045465"
                                    + "78749102 00FF"));
         // Terminal response with 2 Text String TLV
         response = test.terminalResponse("81030123 00020282 81030100 0D030042"
                                        + "430D0204 44");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -232,7 +232,7 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                   + "15CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"
                                   + "CCCCCCCC CCCC"));
         
@@ -248,6 +248,6 @@ public class Test_Api_2_Prh_Cpts extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

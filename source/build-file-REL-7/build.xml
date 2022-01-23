@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 1998, 2019, Oracle and/or its affiliates. All rights reserved.
+-->
+
+<!--
+-->
+<project name="TS 102 268 UICC API Testspec"
+         default="for-convert"
+         basedir=".">
+    <!-- import the common file, which has taskdefs and required dirs -->
+    <import file="build_common.xml" />
+	<!-- <property name="src" value="${basedir}/src" /> -->
+	<property name="src" value="${basedir}/Annex_E_SourceCode" />
+	<property name="util" value="${basedir}/Annex_D_UiccTestUtil" />
+	<property name="interface" value="${basedir}/Annex_D_UiccInterfaces" />
+	<property name="example" value="${basedir}/Annex_D_Example" />
+	<property name="src.temp" value="${basedir}/src-temp" />
+	<property name="src.test.temp" value="${basedir}/src-test-temp" />
+	<property name="annexes"  value="${basedir}/Annexes" />
+	<property name="javac.15.path" value="C:\Java\jdk1.5.0_22\bin\javac" />
+
+    <!--trial-ts-102-268\Annex_E_SourceCode
+    Sample directory is the sample name.
+    All files (cap, jca, scr, exp) will be generated in build folder with this name
+    -->
+    <basename file="${basedir}" property="sample.name" />
+	
+	<path id="uicc-exports"
+        description="Sets the export and classpath for the uicc test">
+		<pathelement path="${basedir}/export"/>
+        <pathelement path="${basedir}/build/classes"/>
+		<pathelement path="${jc_tools_jars}"/>
+    </path>
+
+   
+	<fileset dir="${src.temp}" id="src-temp-2">
+	   <include name="**/applet.opt"/>
+	</fileset>
+    <!-- <echo>${toString:src-temp-2}</echo> -->
+    <!-- -->
+    <target name="clean">
+        <delete dir="./build" />
+    </target>
+	
+	<target name="clean-src-temp" depends="clean">
+        <delete dir="${src.temp}" />
+    </target>
+	
+	<target name="clean-test-temp">
+        <delete dir="${src.test.temp}" />
+    </target>
+
+    <!-- -->
+    <target name="init">
+        <mkdir dir="./build/classes" />
+    </target>
+	
+	 <!-- compiles all test packages into the build/classes directory -->
+    <target name="compile_applet" depends="copy-src-to-src.temp">
+	    <mkdir dir="./build/classes" />
+	    <echo message="source directory = ${src.temp}" />
+        <pathconvert property="boot_classpath" refid="jc_jars"/>
+        <javac srcdir="${src.temp}"
+               destdir="./build/classes"
+               source="1.5"
+               target="1.5"
+               debug="yes"
+			   optimize="no"
+			   fork="yes"
+			   executable="${javac.15.path}"
+			   compiler="javac1.5">
+			   <classpath refid="jc_jars"/>
+        </javac>
+    </target>
+	
+	<target name="compile_test" depends="copy-test-to-src.temp">
+	    <mkdir dir="./build-test/classes" />
+	    <echo message="source directory = ${src.test.temp}" />
+        <javac srcdir="${src.test.temp}"
+               destdir="./build-test/classes"
+			   classpath="${basedir}/build-off-card/etsi.jar"/>
+    </target>
+	
+	<target name="compile_off_card" >
+	    <mkdir dir="./build-off-card/classes" />
+        <javac srcdir="off-card"
+               destdir="./build-off-card/classes">
+        </javac>
+    </target>
+	
+	<target name="jar-off-card" depends="compile_off_card">
+	   <jar destfile="./build-off-card/etsi.jar"
+	        basedir="./build-off-card/classes"/>
+	</target>
+	
+	<!-- -->
+	<resourcecount property="dir-with-cap">
+       <fileset dir="${src}" id="dir-cap">
+	         <include name="**/*.cap"/>
+	   </fileset>
+    </resourcecount>
+<!-- 	
+	<resourcecount property="dir-in-total">
+       <fileset dir="${src}" id="dir-total">
+	         <include name="**/javacard/"/>
+	   </fileset>
+    </resourcecount>
+-->
+    <resourcecount property="dir-in-total">
+       <dirset dir="${src}" id="dir-total">
+	       <include name="**/javacard"/>
+	   </dirset>
+    </resourcecount>
+	
+	<target name="count">
+	   <echo>Message number of directory with cap:${dir-with-cap} </echo>
+	   <echo>Message number of directory:${dir-in-total} </echo>
+	</target>
+	
+	<!-- copy the sources to a new temp sirectory without the Test_ file and the files in the javacard directory -->
+	<target name="copy-src-to-src.temp" depends="clean-src-temp" >
+	   <mkdir dir="./src-temp" />
+	   <copy todir="${src.temp}">
+	     <fileset dir="${src}">
+			<exclude name="**/Test_*.java"/>
+		 </fileset>
+	   </copy>
+	</target>
+	<target name="copy-test-to-src.temp" >
+	   <!-- <mkdir dir="./src-test-temp" /> -->
+	   <copy todir="${src.test.temp}">
+	     <fileset dir="${src}">
+			<include name="**/Test_*.java"/>
+		 </fileset>
+	   </copy>
+	</target>
+	<!-- <exclude name="**/javacard/*"/> -->
+	<!-- this iterates over all javacard directories and unzip the cap file so that we get access to the MANIFEST files, in the unzip-cap target the file is name is seperated into file name and path and a new path replacing src to src-temp is created-->
+	<target name="for-unzip" depends="copy-src-to-src.temp">
+	<foreach target="unzip-cap" param="file.full.name" inheritall="true">
+      <path>
+          <fileset dir="${src.temp}" id="src-temp-unzip">
+	         <include name="**/*.cap"/>
+	      </fileset>
+      </path>
+    </foreach>
+	</target>
+	
+	<target name="unzip-cap">		
+		<echo>${file.full.name}</echo>
+		<basename property="cap-file" file="${file.full.name}" suffix=".cap" />
+		<echo>${cap-file}</echo>
+		<dirname property="cap-dir" file="${file.full.name}" />
+		<echo>${cap-dir}</echo>
+		<pathconvert property="result-path">
+		    <path>
+			   <pathelement path="${cap-dir}" />
+			</path>
+			<!--
+			<filtermapper>
+			    <replacestring from="src" to="src-temp"/>
+			</filtermapper>
+			-->
+		</pathconvert>
+		<echo>${result-path}</echo>
+		<unzip src="${file.full.name}" dest="${result-path}"/>
+		<java classname="manifesttoopt.ManifestToOpt">
+		    <arg value="${result-path}"/>
+			<classpath>
+              <pathelement location="."/>
+              <pathelement path="${java.class.path}"/>
+          </classpath>
+		</java>
+	</target>
+	
+	<!-- this iterate over all directories that have an applet.opt file and calls the target will be used to convert when the applet.opt file is in all directories recreated fom the MANIFESt info-->
+	<target name="for-convert" depends="compile_applet">
+	<foreach target="convert_test" param="file.full.name" inheritall="true">
+      <path>
+          <fileset dir="${src.temp}" id="src-temp-2">
+	         <include name="**/applet.opt"/>
+			 <exclude name="**/api_3_upf_gvba2/**"/>
+	      </fileset>
+      </path>
+    </foreach>
+	</target>
+	
+	<target name="loop">		
+		<echo>${file.full.name}</echo>
+	</target>
+	
+	<target name="convert_test">
+	    <echo>${file.full.name}</echo>
+		<echo>${basedir}</echo>
+        <convert dir="./build/classes" Configfile="${file.full.name}"
+		         Verbose="true" >
+        <classpath refid="jc_jars" />            
+        </convert>
+    </target>
+	
+	<target name="convert-gvba2" description="converts the single package api_3_upf_gvba2">
+	    <convert dir="./build/classes" Configfile="${src.temp}/uicc/test/system/api_3_upf_gvba/api_3_upf_gvba2/applet.opt"
+		         Verbose="true" >
+        <classpath refid="jc_jars" />            
+        </convert>
+	</target>
+	<!-- the convert task itself -->
+	<!-- an .cap/.ext from build/classes file to the destination -->
+	<target name="cap-to-src" >
+	   <copy todir="${src}">
+	     <fileset dir="./build/classes">
+			<include name="**/javacard/*.cap"/>
+			<include name="**/javacard/*.exp"/>
+		 </fileset>
+	   </copy>
+	</target>
+	
+	<target name="zip-annexes">
+	   <mkdir dir="${annexes}" /> 
+       <zip destfile="${annexes}/Annex_E_SourceCode.zip"	basedir="${src}" />  
+       <zip destfile="${annexes}/Annex_D_UiccTestUtil.zip"	basedir="${util}" />
+       <zip destfile="${annexes}/Annex_D_UiccInterfaces.zip"	basedir="${interface}" /> 
+       <zip destfile="${annexes}/Annex_D_Example.zip"	basedir="${example}" />  	   
+	</target>
+</project>

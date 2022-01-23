@@ -35,7 +35,7 @@ public class Test_Api_2_Prh_Find extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -73,16 +73,16 @@ public class Test_Api_2_Prh_Find extends UiccTestModel
         /*********************************************************************/   
                                                                                   
         response = test.unrecognizedEnvelope();                                   
-        addResult(response.checkSw("9112"));
+        test.addResult(response.checkSw("9112"));
                                                                                   
         // Fetch the proactive command                                            
         response = test.fetch("12");                                              
-        addResult(response.checkData("D0108103 01210082 0281028D 05045465"
+        test.addResult(response.checkData("D0108103 01210082 0281028D 05045465"
                                    + "7874"));
 
         // Terminal response with 2 result TLV
         response = test.terminalResponse("81030121 00820282 81030100 03020112");   
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         /*********************************************************************/
         /*********************************************************************/
@@ -91,7 +91,7 @@ public class Test_Api_2_Prh_Find extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                    + "0FCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"));
         
         /*********************************************************************/
@@ -106,6 +106,6 @@ public class Test_Api_2_Prh_Find extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

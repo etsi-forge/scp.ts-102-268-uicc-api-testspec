@@ -30,7 +30,7 @@ public class Test_Api_3_Hbd_Bthdbs extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -55,11 +55,11 @@ public class Test_Api_3_Hbd_Bthdbs extends UiccTestModel {
 
         // test case 1 to 5: trigger applet1
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "05CCCC CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "05CCCC CCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -67,7 +67,7 @@ public class Test_Api_3_Hbd_Bthdbs extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

@@ -29,7 +29,7 @@ public class Test_Cre_Tin_Prlv_12 extends UiccTestModel {
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         String[] menuList   = new String[3];
         String[] menuIdList = new String[3];
@@ -100,7 +100,7 @@ public class Test_Cre_Tin_Prlv_12 extends UiccTestModel {
         
         // Trigger the applets
         response = test.envelopeEventDownloadUserActivity();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -110,13 +110,13 @@ public class Test_Cre_Tin_Prlv_12 extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_4);
-        addResult(response.checkData("10" + APPLET_AID_4 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_4 + "01" + "CC"));
 
 
         // Card Initialisation
@@ -141,7 +141,7 @@ public class Test_Cre_Tin_Prlv_12 extends UiccTestModel {
         test.terminalProfileSession("09030020 21");
         // Trigger the applets
         response = test.envelopeEventDownloadUserActivity();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -151,13 +151,13 @@ public class Test_Cre_Tin_Prlv_12 extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "02" + "CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "02" + "CCCC"));
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "02" + "CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "02" + "CCCC"));
         response = test.selectApplication(APPLET_AID_4);
-        addResult(response.checkData("10" + APPLET_AID_4 + "02" + "CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_4 + "02" + "CCCC"));
         response = test.selectApplication(APPLET_AID_5);
-        addResult(response.checkData("10" + APPLET_AID_5 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_5 + "01" + "CC"));
 
 
         // Card Initialisation
@@ -181,7 +181,7 @@ public class Test_Cre_Tin_Prlv_12 extends UiccTestModel {
         test.terminalProfileSession("09030020 21");
         // Trigger the applets
         response = test.envelopeEventDownloadUserActivity();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 
         /*********************************************************************/
@@ -191,15 +191,15 @@ public class Test_Cre_Tin_Prlv_12 extends UiccTestModel {
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10" + APPLET_AID_2 + "03" + "CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_2 + "03" + "CCCCCC"));
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10" + APPLET_AID_3 + "03" + "CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_3 + "03" + "CCCCCC"));
         response = test.selectApplication(APPLET_AID_4);
-        addResult(response.checkData("10" + APPLET_AID_4 + "03" + "CCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_4 + "03" + "CCCCCC"));
         response = test.selectApplication(APPLET_AID_5);
-        addResult(response.checkData("10" + APPLET_AID_5 + "02" + "CCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_5 + "02" + "CCCC"));
 
         /*********************************************************************/
         /*********************************************************************/
@@ -218,6 +218,6 @@ public class Test_Cre_Tin_Prlv_12 extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }   

@@ -35,7 +35,7 @@ public class Test_Api_3_Upf_Gvba extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -64,21 +64,21 @@ public class Test_Api_3_Upf_Gvba extends UiccTestModel {
 
         // test case 1, 3 to 5: trigger applet1
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // test case 2: select client applet. It calls applet1 shared method.
         test.selectApplication(APPLET_AID_2);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // test case 1: select applet1
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "06CCCC CCCCCCCC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "06CCCC CCCCCCCC"));
 
         // delete applet and package
         test.reset();
@@ -88,6 +88,6 @@ public class Test_Api_3_Upf_Gvba extends UiccTestModel {
         test.deletePackage(CAP_FILE_PATH2);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

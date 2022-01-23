@@ -43,7 +43,7 @@ public class Test_Api_2_Bte_Aptlb_Bss_Bss extends UiccTestModel
      * Installs the applet, runs the tests and checks the test result.
      */
     public boolean run(){
-        initialiseResults();
+        test.initialiseResults();
 
         test.reset();
         test.terminalProfileSession("13");
@@ -71,7 +71,7 @@ public class Test_Api_2_Bte_Aptlb_Bss_Bss extends UiccTestModel
          test.unrecognizedEnvelope();
          // check test results
          response = test.selectApplication(APPLET_AID_1);
-         addResult(response.checkData("10" +APPLET_AID_1 +
+         test.addResult(response.checkData("10" +APPLET_AID_1 +
                                           "15CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC " +
                                           "CCCCCCCC CCCC"));
 
@@ -81,7 +81,7 @@ public class Test_Api_2_Bte_Aptlb_Bss_Bss extends UiccTestModel
           test.deleteApplet(APPLET_AID_1);
           test.deletePackage(CAP_FILE_PATH);
 
-          return getOverallResult();
+          return test.getOverallResult();
     }
 
 }

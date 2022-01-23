@@ -32,7 +32,7 @@ public class Test_Cre_Api_Tran extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
          // start test
          test.reset();
@@ -55,12 +55,12 @@ public class Test_Cre_Api_Tran extends UiccTestModel {
 
          // test case 1: trigger applet1
          response = test.unrecognizedEnvelope();
-         addResult(response.checkSw("9114"));
+         test.addResult(response.checkSw("9114"));
          response = test.fetch("14");
-         addResult(response.checkData("D0128103 01218082 0281028D 07044845" +
+         test.addResult(response.checkData("D0128103 01218082 0281028D 07044845" +
                                               "4C4C4F31"));
          response = test.terminalResponse("81030121 80020282 81030100");
-         addResult(response.checkSw("9000"));
+         test.addResult(response.checkSw("9000"));
 
          // install applet2
          test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2,
@@ -80,24 +80,24 @@ public class Test_Cre_Api_Tran extends UiccTestModel {
 
          // test case 2: trigger applet2
          response = test.envelopeMenuSelection("900101", "");
-         addResult(response.checkSw("9114"));
+         test.addResult(response.checkSw("9114"));
 
          // trigger applet1
          response = test.unrecognizedEnvelope();
-         addResult(response.checkSw("9114"));
+         test.addResult(response.checkSw("9114"));
 
          // resume applet2
          response = test.fetch("14");
-         addResult(response.checkData("D0128103 01218082 0281028D 07044845" +
+         test.addResult(response.checkData("D0128103 01218082 0281028D 07044845" +
                                       "4C4C4F32"));
          response = test.terminalResponse("81030121 80020282 81030100");
-         addResult(response.checkSw("9000"));
+         test.addResult(response.checkSw("9000"));
 
          // check results
          response = test.selectApplication(APPLET_AID_1);
-         addResult(response.checkData("10" + APPLET_AID_1 + "02CCCC"));
+         test.addResult(response.checkData("10" + APPLET_AID_1 + "02CCCC"));
          response = test.selectApplication(APPLET_AID_2);
-         addResult(response.checkData("10" + APPLET_AID_2 + "01CC"));
+         test.addResult(response.checkData("10" + APPLET_AID_2 + "01CC"));
 
          // delete applets and package
          test.reset();
@@ -106,6 +106,6 @@ public class Test_Cre_Api_Tran extends UiccTestModel {
          test.deleteApplet(APPLET_AID_2);
          test.deletePackage(CAP_FILE_PATH);
 
-         return getOverallResult();
+         return test.getOverallResult();
     }
 }

@@ -27,7 +27,7 @@ public class Test_Cre_Apt_Genb extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -49,14 +49,14 @@ public class Test_Cre_Apt_Genb extends UiccTestModel {
                                         "00"  + // LV Minimum Security Level field
                                         "00"  + // LV TAR Value(s)
                                         "00");  // V Maximum number of services
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         // test script
         test.reset();
         test.terminalProfileSession("01010000 20");
 
         response = test.selectApplication(APPLET_AID_1);        
-        addResult(!response.checkSw("9000"));
+        test.addResult(!response.checkSw("9000"));
 
         test.reset();
         test.terminalProfileSession("01010000 20");
@@ -68,9 +68,9 @@ public class Test_Cre_Apt_Genb extends UiccTestModel {
         //***
         //**** INSTALL THE APPLET IN SELECTABLE STATE
         response = test.makeSelectableApplet(APPLET_AID_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
 		// test script
         test.reset();
@@ -80,10 +80,10 @@ public class Test_Cre_Apt_Genb extends UiccTestModel {
 
         //***TEST CASE 3: 2-THE APPLET IS IN LOCK STATE: APPLET ISN'T TRIGGERED ***
         response = test.lockApplication(APPLET_AID_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.selectApplication(APPLET_AID_1);
         
-        addResult(!response.checkSw("9000"));
+        test.addResult(!response.checkSw("9000"));
         
         test.reset();
         test.terminalProfileSession("01010000 20");
@@ -94,9 +94,9 @@ public class Test_Cre_Apt_Genb extends UiccTestModel {
         //***APPLET IS IN UNLOCK STATE:APPLET IS TRIGGERED
 
         response = test.unlockApplication(APPLET_AID_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
 		// test script
         test.reset();
@@ -106,7 +106,7 @@ public class Test_Cre_Apt_Genb extends UiccTestModel {
 
         // check results
         response  = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10"+APPLET_AID_1+"04CCCCCC CC"));
+        test.addResult(response.checkData("10"+APPLET_AID_1+"04CCCCCC CC"));
 
         // delete applet and package
         test.reset();
@@ -114,6 +114,6 @@ public class Test_Cre_Apt_Genb extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

@@ -40,7 +40,7 @@ public class Test_Api_2_Enh_Copy extends UiccTestModel
     public boolean run() {
 
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -79,14 +79,14 @@ public class Test_Api_2_Enh_Copy extends UiccTestModel
         
         // Test cases 1
         response = test.unrecognizedEnvelope();
-            addResult(response.checkSw("90 00"));
+            test.addResult(response.checkSw("90 00"));
         
         // Test cases 1 to 7
         for(byte i = 1; i < 7; i++)
         {
                 // 1: Send Unrecognized Envelope
                 response = test.unrecognizedEnvelope();
-                addResult(response.checkSw("90 00"));
+                test.addResult(response.checkSw("90 00"));
         }
         
         // Test case 8
@@ -252,7 +252,7 @@ public class Test_Api_2_Enh_Copy extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                    + "10CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC CC"));
         
         /*********************************************************************/
@@ -268,6 +268,6 @@ public class Test_Api_2_Enh_Copy extends UiccTestModel
         test.deletePackage(CAP_FILE_PATH);
         
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

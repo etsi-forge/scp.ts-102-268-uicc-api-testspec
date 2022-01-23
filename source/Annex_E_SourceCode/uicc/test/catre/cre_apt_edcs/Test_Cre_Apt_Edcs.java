@@ -26,7 +26,7 @@ public class Test_Cre_Apt_Edcs extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -55,92 +55,92 @@ public class Test_Cre_Apt_Edcs extends UiccTestModel {
         test.terminalProfileSession("09010020 000C0000 00000003 40");
          //***TEST CASE 1: 1-APPLET 1 IS TRIGGERED BY EVENT MENU SELECTION
         response  = test.envelopeMenuSelection("100101", "");//Help Request not available
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //***TEST CASE 1: 3-APPLET 1 IS NOT TRIGGERED BY EVENT_EVENT_DOWNLOAD_CHANNEL_STATUS
         response  = test.envelopeEventDownloadChannelStatus("38028100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //***TEST CASE 1: 4-APPLET 1 IS TRIGGERED BY EVENT MENU SELECTION
         response  = test.envelopeMenuSelection("100101", "");//Help Request not available
-        addResult(response.checkSw("911A"));
+        test.addResult(response.checkSw("911A"));
         response  = test.fetch("1A");
-        addResult(response.checkData("D0188103 01400182 02818206 05815566" +
+        test.addResult(response.checkData("D0188103 01400182 02818206 05815566" +
                                        "77883502 03003902 000A"));
         //TERMINAL RESPONSE WITH PROACTIVE UICC SESSION TERMINATED BY USER
         test.terminalResponse("81030140 01820282 81830110");
 
         //***TEST CASE 1: 8-APPLET 1 IS NOT TRIGGERED BY EVENT_EVENT_DOWNLOAD_CHANNEL_STATUS
         response  = test.envelopeEventDownloadChannelStatus("38020100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //***TEST CASE 1: 9-APPLET 1 IS TRIGGERED BY EVENT MENU SELECTION
         response  = test.envelopeMenuSelection("100101", "");//Help Request not available
-        addResult(response.checkSw("911A"));
+        test.addResult(response.checkSw("911A"));
         //APPLET 1 BUILD A PROACTIVE COMMAND OPEN CHANNEL
         response  = test.fetch("1A");
-        addResult(response.checkData("D0188103 01400182 02818206 05815566" +
+        test.addResult(response.checkData("D0188103 01400182 02818206 05815566" +
                                        "77883502 03003902 000A"));
         //SUCCESSFUL TERMINAL RESPONSE
         response  = test.terminalResponse("81030140 01820282 81830100 38028100" +
                                           "35020300 3902000A");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //***TEST CASE 2: 1-APPLET 1 IS TRIGGERED BY EVENT_EVENT_DOWNLOAD_CHANNEL_STATUS
         response  = test.envelopeEventDownloadChannelStatus("38028100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //***TEST CASE 3: 1-APPLET 1 IS TRIGGERED BY EVENT MENU SELECTION
         response  = test.envelopeMenuSelection("100101", "");//Help Request not available
-        addResult(response.checkSw("911A"));
+        test.addResult(response.checkSw("911A"));
         //APPLET 1 BUILD A PROACTIVE COMMAND OPEN CHANNEL
         response  = test.fetch("1A");
-        addResult(response.checkData("D0188103 01400282 02818206 05815566" +
+        test.addResult(response.checkData("D0188103 01400282 02818206 05815566" +
                                        "77883502 03003902 000A"));
         //TERMINAL RESPONSE WITH PARTIAL COMPREHENSION
         response  = test.terminalResponse("81030140 02820282 81830101 38028200" +                                           
                                           "35020300 3902000A");
-        addResult(response.checkSw("910B"));
+        test.addResult(response.checkSw("910B"));
         //APPLET 1 BUILD A PROACTIVE COMMAND CLOSE CHANNEL
         response  = test.fetch("0B");
-        addResult(response.checkData("D0098103 01410082 028122"));
+        test.addResult(response.checkData("D0098103 01410082 028122"));
         //UNSUCCESSFUL TERMINAL RESPONSE: TERMINAL CURRENTLY UNABLE TO PERFORM THE COMMAND
         response  = test.terminalResponse("81030141 00820282 81830120");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //***TEST CASE 3: 4-APPLET 1 IS TRIGGERED BY EVENT_EVENT_DOWNLOAD_CHANNEL_STATUS
         response  = test.envelopeEventDownloadChannelStatus("38028200");
-        addResult(response.checkSw("910B"));
+        test.addResult(response.checkSw("910B"));
         //APPLET 1 BUILD A PROACTIVE COMMAND CLOSE CHANNEL
         response  = test.fetch("0B");
-        addResult(response.checkData("D0098103 01410082 028122"));
+        test.addResult(response.checkData("D0098103 01410082 028122"));
         //TERMINAL RESPONSE WITH MISSING INFORMATION
         response  = test.terminalResponse("81030141 00820282 81830102");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //***TEST CASE 4: 4-APPLET 1 IS NOT TRIGGERED BY EVENT_EVENT_DOWNLOAD_CHANNEL_STATUS
         response  = test.envelopeEventDownloadChannelStatus("38028200");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //***TEST CASE 5: 1-APPLET 1 IS TRIGGERED BY EVENT MENU SELECTION
         response  = test.envelopeMenuSelection("100101", "");//Help Request not available
-        addResult(response.checkSw("911A"));
+        test.addResult(response.checkSw("911A"));
         //APPLET 1 BUILD A PROACTIVE COMMAND OPEN CHANNEL
         response  = test.fetch("1A");
-        addResult(response.checkData("D0188103 01400182 02818206 05815566" +
+        test.addResult(response.checkData("D0188103 01400182 02818206 05815566" +
                                        "77883502 03003902 000A"));
         //SUCCESSFUL TERMINAL RESPONSE
         test.terminalResponse("81030140 01820282 81830100 38028200" +
                               "35020300 3902000A");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         test.reset();
         test.terminalProfileSession("09010020 000C0000 00000003 40");
         response  = test.envelopeEventDownloadChannelStatus("38028200");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // check results
         response  = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10"+APPLET_AID_1+"0DCCCCCC CCCCCCCC CCCCCCCC CCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_1+"0DCCCCCC CCCCCCCC CCCCCCCC CCCC"));
 
         // delete applet and package
         test.reset();
@@ -148,7 +148,7 @@ public class Test_Cre_Apt_Edcs extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
 
     }
 }

@@ -30,7 +30,7 @@ public class Test_Cre_Api_Hepo extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -55,18 +55,18 @@ public class Test_Cre_Api_Hepo extends UiccTestModel {
 
         // test case 1 to 8: trigger applet1
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("9113"));
+        test.addResult(response.checkSw("9113"));
         
         // fetch display text proactive command
         response = test.fetch("13");
-        addResult(response.checkData("D0118103 01218082 0281028D 06044845" +
+        test.addResult(response.checkData("D0118103 01218082 0281028D 06044845" +
                                              "4C4C4F"));
         response = test.terminalResponse("81030121 80020282 81030100");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "08CCCCCC CCCCCCCC CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "08CCCCCC CCCCCCCC CC"));
 
         // delete applet and package
         test.reset();
@@ -74,7 +74,7 @@ public class Test_Cre_Api_Hepo extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }
 

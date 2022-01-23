@@ -38,7 +38,7 @@ public class Test_Api_2_Enh_Gcst extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -82,7 +82,7 @@ public class Test_Api_2_Enh_Gcst extends UiccTestModel
         
         // Fetch the first OPEN CHANNEL proactive command
         response = test.fetch("1C");
-        addResult(response.checkData("D01A8103 01400182 02818206 05911122"
+        test.addResult(response.checkData("D01A8103 01400182 02818206 05911122"
                                   + "33443504 01000000 39020080"));
         
         test.terminalResponse("81030140 01820282 81030100 38028100"
@@ -113,7 +113,7 @@ public class Test_Api_2_Enh_Gcst extends UiccTestModel
         test.envelopeEventDownloadChannelStatus("38028100");
         // Fetch the display text proactive command
         response = test.fetch("15");
-        addResult(response.checkData("D0138103  01210082  0281028D  08F64150"
+        test.addResult(response.checkData("D0138103  01210082  0281028D  08F64150"
                                    + "504C4554  31"));
         test.terminalResponse("81030121  00020282  81030100");
 
@@ -124,7 +124,7 @@ public class Test_Api_2_Enh_Gcst extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_1 +
                                      "08CCCCCC CCCCCCCC CC"));
         
         /*********************************************************************/
@@ -138,7 +138,7 @@ public class Test_Api_2_Enh_Gcst extends UiccTestModel
         // delete applets and package
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
-        return getOverallResult();
+        return test.getOverallResult();
     }
 
 }

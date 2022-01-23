@@ -35,7 +35,7 @@ public class Test_Cre_Apt_Efca extends UiccTestModel {
 
     public boolean run() {
 
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -85,7 +85,7 @@ public class Test_Cre_Apt_Efca extends UiccTestModel {
 
         //***TEST CASE 1: 4-APPLET 3 IS TRIGGERED
         response   = test.envelopeMenuSelection("100101", "");//Help Request not available
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         test.reset();
         //***TEST CASE 2: 1-APPLET 3 IS TRIGGERED, APPLET 1, APPLET 2 ARE NOT TRIGGERED
@@ -109,13 +109,13 @@ public class Test_Cre_Apt_Efca extends UiccTestModel {
 
         test.terminalProfileSession("09010020 01");
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_1+"03CCCCCC"));
         response = test.selectApplication(APPLET_AID_2);
-        addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_2+"03CCCCCC"));
         response = test.selectApplication(APPLET_AID_3);
-        addResult(response.checkData("10"+APPLET_AID_3+"05CCCCCC CCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_3+"05CCCCCC CCCC"));
         response = test.selectApplication(APPLET_AID_4);
-        addResult(response.checkData("10"+APPLET_AID_4+"02CCCC"));
+        test.addResult(response.checkData("10"+APPLET_AID_4+"02CCCC"));
 
         // delete applet and package
         test.reset();
@@ -147,15 +147,15 @@ public class Test_Cre_Apt_Efca extends UiccTestModel {
         test.reset();
         //***TEST CASE 4: 1-APPLET 5 IS TRIGGERED BY THE EVENT_FIRST_COMMAND_AFTER_ATR
         response = test.terminalProfile("09010020 01");
-        addResult(response.checkSw("911E"));
+        test.addResult(response.checkSw("911E"));
         //***TEST CASE 4: 1-APPLET 5 DISABLES A MENU ENTRY, THE FETCH OF SET UP MENU CONTAIN ONLY ONE ITEM
         response = test.fetch("1E");
-        addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
+        test.addResult(response.checkData("D01C8103 01250082 02818285 09554943" +
                                       "43205445 53548F06 014D656E 7531"));
 
         // check results
         response = test.selectApplication(APPLET_AID_5);
-        addResult(response.checkData("10"+APPLET_AID_5+"01CC"));
+        test.addResult(response.checkData("10"+APPLET_AID_5+"01CC"));
 
         // delete applet and package
         test.reset();
@@ -163,7 +163,7 @@ public class Test_Cre_Apt_Efca extends UiccTestModel {
         test.deleteApplet(APPLET_AID_5);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
 
     }
 }

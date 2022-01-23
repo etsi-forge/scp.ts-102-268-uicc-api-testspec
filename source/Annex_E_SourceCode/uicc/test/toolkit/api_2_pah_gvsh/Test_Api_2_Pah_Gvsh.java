@@ -35,7 +35,7 @@ public class Test_Api_2_Pah_Gvsh extends UiccTestModel
     
     public boolean run() {
         APDUResponse data = null;
-        initialiseResults();
+        test.initialiseResults();
         
         // test script
         test.reset();
@@ -81,7 +81,7 @@ public class Test_Api_2_Pah_Gvsh extends UiccTestModel
         /*********************************************************************/
 
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1
+        test.addResult(response.checkData("10" + APPLET_AID_1
                                   + "08CCCCCC CCCCCCCC CC"));
         
         /*********************************************************************/
@@ -96,6 +96,6 @@ public class Test_Api_2_Pah_Gvsh extends UiccTestModel
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

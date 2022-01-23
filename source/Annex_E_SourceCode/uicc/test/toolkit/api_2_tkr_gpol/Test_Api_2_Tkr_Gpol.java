@@ -26,7 +26,7 @@ public class Test_Api_2_Tkr_Gpol extends UiccTestModel {
     }
 
     public boolean run() {
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -58,12 +58,12 @@ public class Test_Api_2_Tkr_Gpol extends UiccTestModel {
          *  Requesting max duration.
          */
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("910F"));
+        test.addResult(response.checkSw("910F"));
         response = test.fetch("0F");
         test.terminalResponse("81030103 00820282 81830100 840200FF");
         test.reset();
         response = test.terminalProfile("09017020");
-        addResult(response.checkSw("910F"));
+        test.addResult(response.checkSw("910F"));
         response = test.fetch("0F");
         test.terminalResponse("81030103 00820282 81830100 840200FF");
         test.unrecognizedEnvelope();
@@ -72,12 +72,12 @@ public class Test_Api_2_Tkr_Gpol extends UiccTestModel {
          *  Requesting system duration.
          */
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("910F"));
+        test.addResult(response.checkSw("910F"));
         response = test.fetch("0F");
         test.terminalResponse("81030103 00820282 81830100 8402011E");
         test.reset();
         response = test.terminalProfile("09017020");
-        addResult(response.checkSw("910F"));
+        test.addResult(response.checkSw("910F"));
         response = test.fetch("0F");
         test.terminalResponse("81030103 00820282 81830100 84020175");
         test.unrecognizedEnvelope();
@@ -86,17 +86,17 @@ public class Test_Api_2_Tkr_Gpol extends UiccTestModel {
          *  Requesting no Duration.
          */
         response = test.unrecognizedEnvelope();
-        addResult(response.checkSw("910B"));
+        test.addResult(response.checkSw("910B"));
         response = test.fetch("0B");
         test.terminalResponse("81030104 00820282 81830100");
         test.reset();
         response = test.terminalProfile("09017020");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         test.unrecognizedEnvelope();
 
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "04CCCCCC CC"));
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "04CCCCCC CC"));
 
         // delete applet and package
         test.reset();
@@ -104,6 +104,6 @@ public class Test_Api_2_Tkr_Gpol extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

@@ -49,7 +49,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
     }
 
     public boolean run() {
-        initialiseResults();
+        test.initialiseResults();
 
         // start test
         test.reset();
@@ -112,7 +112,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
 
         //10
         response = test.activate(EF_TNR);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //11
         test.selectFile(MF);
@@ -121,7 +121,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
 
         //12
         response = test.readBinary("0000", "02");
-        addResult(response.checkData("0101"));
+        test.addResult(response.checkData("0101"));
 
         //13
         test.updateBinary("0000", "FFFFFF");
@@ -133,14 +133,14 @@ public class Test_Api_1_Cont extends UiccTestModel {
 
         //15
         response = test.activate(EF_CNR);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //16
         test.selectFile(EF_TARU);
         
         //17
         response = test.readBinary("0000", "02");
-        addResult(response.checkData("0202"));
+        test.addResult(response.checkData("0202"));
 
         //18
         test.updateBinary("0000", "FFFFFF");
@@ -160,7 +160,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_TARU);
         response = test.readBinary("0000", "04");
-        addResult(response.checkData("01010202"));
+        test.addResult(response.checkData("01010202"));
 
         //12
         test.updateBinary("0000", "FFFFFFFF");
@@ -170,7 +170,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_TARU);
         response = test.readBinary("0000", "04");
-        addResult(response.checkData("03030404"));
+        test.addResult(response.checkData("03030404"));
 
         //14
         test.updateBinary("0000", "FFFFFFFF");
@@ -195,11 +195,11 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_LUPC);
         response = test.readRecord("01", "04", "0A");
-        addResult(response.checkData("11111111 11111111 1111"));
+        test.addResult(response.checkData("11111111 11111111 1111"));
 
         //14
         response = test.readRecord("02", "04", "0A");
-        addResult(response.checkData("33333333 33333333 3333"));
+        test.addResult(response.checkData("33333333 33333333 3333"));
 
         //15
         test.updateRecord("01", "04", "11111111 11111111 1111");
@@ -212,11 +212,11 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_LUPC);
         response = test.readRecord("01", "04", "0A");
-        addResult(response.checkData("11111111 11111111 1111"));
+        test.addResult(response.checkData("11111111 11111111 1111"));
 
         //18
         response = test.readRecord("02", "04", "0A");
-        addResult(response.checkData("11111111 11111111 1111"));
+        test.addResult(response.checkData("11111111 11111111 1111"));
 
         //19
         test.updateRecord("01", "04", "11111111 11111111 1111");
@@ -239,11 +239,11 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_LARU);
         response = test.readRecord("00", "02", "04");
-        addResult(response.checkData("66666666"));
+        test.addResult(response.checkData("66666666"));
 
         //18
         response = test.readRecord("00", "02", "04");
-        addResult(response.checkData("BBBBBBBB"));
+        test.addResult(response.checkData("BBBBBBBB"));
 
         //19
         test.updateRecord("01", "04", "55555555");
@@ -256,11 +256,11 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_LARU);
         response = test.readRecord("00", "02", "04");
-        addResult(response.checkData("44444444"));
+        test.addResult(response.checkData("44444444"));
 
         //22
         response = test.readRecord("00", "02", "04");
-        addResult(response.checkData("99999999"));
+        test.addResult(response.checkData("99999999"));
 
         //23
         test.updateRecord("01", "04", "55555555");
@@ -281,17 +281,17 @@ public class Test_Api_1_Cont extends UiccTestModel {
         //11
         test.selectFile(DF_TEST);
         response = test.selectFile(EF_TNU);
-        addResult(response.checkSw("6283"));
+        test.addResult(response.checkSw("6283"));
 
         //12
         response = test.activate(EF_TNU);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //13
         test.selectApplication(AID_ADF_1);
         test.selectFile(DF_TEST);
         response = test.selectFile(EF_TNU);
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         /** test case 7
          *  Increase
@@ -307,46 +307,46 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_CARU);
         response = test.readRecord("00", "04", "03");
-        addResult(response.checkSw("6A83"));
+        test.addResult(response.checkSw("6A83"));
 
         //21
         response = test.readRecord("00", "03", "03");
-        addResult(response.checkData("000001"));
+        test.addResult(response.checkData("000001"));
 
         //22
         response = test.readRecord("00", "03", "03");
-        addResult(response.checkData("000002"));
+        test.addResult(response.checkData("000002"));
 
         //23
         response = test.updateRecord("00", "03", "AAAAAA");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //24
         response = test.updateRecord("00", "03", "555555");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //25
         test.selectApplication(AID_ADF_1);
         test.selectFile(DF_TEST);
         test.selectFile(EF_CARU);
         response = test.readRecord("00", "04", "03");
-        addResult(response.checkSw("6A83"));
+        test.addResult(response.checkSw("6A83"));
 
         //26
         response = test.readRecord("00", "03", "03");
-        addResult(response.checkData("000002"));
+        test.addResult(response.checkData("000002"));
 
         //27
         response = test.readRecord("00", "03", "03");
-        addResult(response.checkData("000004"));
+        test.addResult(response.checkData("000004"));
 
         //28
         response = test.updateRecord("00", "03", "AAAAAA");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
 
         //29
         response = test.updateRecord("00", "03", "555555");
-        addResult(response.checkSw("9000"));
+        test.addResult(response.checkSw("9000"));
         
         
 
@@ -362,18 +362,18 @@ public class Test_Api_1_Cont extends UiccTestModel {
 
         //21
         test.selectFile(DF_TEST);
-        addResult(test.selectFile(EF_RFU0).checkSw("9000"));
+        test.addResult(test.selectFile(EF_RFU0).checkSw("9000"));
 
         //22
-        addResult(test.selectFile(EF_RFU1).checkSw("9000"));
+        test.addResult(test.selectFile(EF_RFU1).checkSw("9000"));
 
         //23
         test.selectApplication(AID_ADF_1);
         test.selectFile(DF_TEST);
-        addResult(test.selectFile(EF_RFU0).checkSw("9000"));
+        test.addResult(test.selectFile(EF_RFU0).checkSw("9000"));
 
         //24
-        addResult(test.selectFile(EF_RFU1).checkSw("9000"));
+        test.addResult(test.selectFile(EF_RFU1).checkSw("9000"));
 
         /** test case 9
          *  CreateFile DF
@@ -387,17 +387,17 @@ public class Test_Api_1_Cont extends UiccTestModel {
 
         //21
         test.selectFile(DF_TEST);
-        addResult(test.selectFile(DF_RFU1).checkSw("9000"));
+        test.addResult(test.selectFile(DF_RFU1).checkSw("9000"));
 
         //22
-        addResult(test.selectFile(DF_RFU2).checkSw("9000"));
+        test.addResult(test.selectFile(DF_RFU2).checkSw("9000"));
 
         //23
         test.selectApplication(AID_ADF_1);
-        addResult(test.selectFile(DF_RFU1).checkSw("9000"));
+        test.addResult(test.selectFile(DF_RFU1).checkSw("9000"));
 
         //24
-        addResult(test.selectFile(DF_RFU2).checkSw("9000"));
+        test.addResult(test.selectFile(DF_RFU2).checkSw("9000"));
 
         
         /** test case 10
@@ -414,31 +414,31 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.selectFile(DF_TEST);
         test.selectFile(EF_TDAC);
         response = test.readBinary("0000", "06");
-        addResult(response.checkSw("9000")||response.checkSw("6282")||response.checkSw("6700"));
+        test.addResult(response.checkSw("9000")||response.checkSw("6282")||response.checkSw("6700"));
         if (response.checkSw("9000"))
         {
-            addResult(response.checkData("000000FF"));
+            test.addResult(response.checkData("000000FF"));
         }   
         
         //12
-        addResult(test.readBinary("0000", "04").checkData("000000FF"));
+        test.addResult(test.readBinary("0000", "04").checkData("000000FF"));
  
         //13
-        addResult(test.resizeFile(EF_TDAC, "03").checkSw("9000"));
+        test.addResult(test.resizeFile(EF_TDAC, "03").checkSw("9000"));
  
         //14
         test.selectApplication(AID_ADF_1);
         test.selectFile(DF_TEST);
         test.selectFile(EF_LNU);
         response = test.readRecord("00", "04", "04");
-        addResult(response.checkSw("6A83"));
+        test.addResult(response.checkSw("6A83"));
  
         //15
         response = test.readRecord("00", "03", "04");
-        addResult(response.checkData("FFFFFFFF"));
+        test.addResult(response.checkData("FFFFFFFF"));
  
         //16
-        addResult(test.resizeFile(EF_LNU, "08").checkSw("9000"));
+        test.addResult(test.resizeFile(EF_LNU, "08").checkSw("9000"));
         
         
  
@@ -461,7 +461,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
  
         //4
         test.selectFile(DF_TEST);
-        addResult(test.selectFile(EF_NOSH).checkSw("6985"));
+        test.addResult(test.selectFile(EF_NOSH).checkSw("6985"));
  
         //5
         test.fetch("13");
@@ -476,7 +476,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
         //4
         test.selectApplication(AID_ADF_1);
         test.selectFile(DF_TEST);
-        addResult(test.selectFile(EF_NOSH).checkSw("6985"));
+        test.addResult(test.selectFile(EF_NOSH).checkSw("6985"));
  
         //5
         test.fetch("13");
@@ -491,7 +491,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
  
         //2
         test.selectFile(DF_TEST);
-        addResult(test.selectFile(EF_NOSH).checkSw("9000"));
+        test.addResult(test.selectFile(EF_NOSH).checkSw("9000"));
  
         //3
         test.unrecognizedEnvelope();
@@ -506,7 +506,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
         //2
         test.selectApplication(AID_ADF_1);
         test.selectFile(DF_TEST);
-        addResult(test.selectFile(EF_NOSH).checkSw("9000"));
+        test.addResult(test.selectFile(EF_NOSH).checkSw("9000"));
  
         //3
         test.unrecognizedEnvelope();
@@ -545,7 +545,7 @@ public class Test_Api_1_Cont extends UiccTestModel {
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 + "11CCCCCC CCCCCCCC CCCCCCCC" +
+        test.addResult(response.checkData("10" + APPLET_AID_1 + "11CCCCCC CCCCCCCC CCCCCCCC" +
                                                            "CCCCCCCC CCCC"));
 
         
@@ -555,6 +555,6 @@ public class Test_Api_1_Cont extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
 
-        return getOverallResult();
+        return test.getOverallResult();
     }
 }

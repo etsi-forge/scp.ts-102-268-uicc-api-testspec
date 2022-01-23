@@ -46,7 +46,7 @@ public class Test_Api_2_Tkr_Rgfeso extends UiccTestModel {
     
     public boolean run() {
         
-        initialiseResults();
+        test.initialiseResults();
         
         // start test
         test.reset();
@@ -241,7 +241,7 @@ public class Test_Api_2_Tkr_Rgfeso extends UiccTestModel {
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        addResult(response.checkData("10" + APPLET_AID_1 +
+        test.addResult(response.checkData("10" + APPLET_AID_1 +
                                      "0CCCCCCC CCCCCCCC CCCCCCCC CC"));
         
         // delete applet and package
@@ -250,7 +250,7 @@ public class Test_Api_2_Tkr_Rgfeso extends UiccTestModel {
         test.deleteApplet(APPLET_AID_1);
         test.deletePackage(CAP_FILE_PATH);
         
-        return getOverallResult();
+        return test.getOverallResult();
     }
     
     
@@ -261,7 +261,7 @@ public class Test_Api_2_Tkr_Rgfeso extends UiccTestModel {
 
     private void appletTriggered(String data) {
         response = test.envelopeCallControlByNAA();
-        addResult(response.checkData(data));
+        test.addResult(response.checkData(data));
     }
     
     /** 
