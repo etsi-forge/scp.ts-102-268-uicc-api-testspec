@@ -132,7 +132,7 @@ public class Cre_Mha_Pahd_1 extends TestToolkitApplet {
             testCaseNb==(byte)0x18) {handler_available=false;}
 
         else if (testCaseNb==(byte)0x02 ||
-                 testCaseNb==(byte)0x2C ){handler_available=true;}
+                 testCaseNb==(byte)0x2E ){handler_available=true;}
 
         switch(event){
             //--TC 1
