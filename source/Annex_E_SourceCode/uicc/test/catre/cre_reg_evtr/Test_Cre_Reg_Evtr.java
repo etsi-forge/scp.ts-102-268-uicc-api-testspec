@@ -29,7 +29,7 @@ public class Test_Cre_Reg_Evtr extends UiccTestModel {
     
     public boolean run() {
         
-        test.initialiseResults();
+        initialiseResults();
         
         // test script
         test.reset();
@@ -57,18 +57,18 @@ public class Test_Cre_Reg_Evtr extends UiccTestModel {
         // test script
         response = test.makeSelectableApplet(APPLET_AID_1);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
-        test.status("00", "0C", "00");
-        test.addResult(response.checkSw("910F"));
+        response = test.status("00", "0C", "00");
+        addResult(response.checkSw("910F"));
         response = test.fetch("0F");
-        test.addResult(response.checkData("D00D8103 01050082 02818299 020004") ||
+        addResult(response.checkData("D00D8103 01050082 02818299 020004") ||
                    response.checkData("D00D8103 01050082 02818219 020004"));
         test.terminalResponse("81030105 00820282 81830100");
 
         // test case 1: trigger applet1
         response = test.envelopeEventDownloadUserActivity();
-        test.addResult(response.checkSw("910F"));
+        addResult(response.checkSw("910F"));
         response = test.fetch("0F");
-        test.addResult(response.checkData("D00D8103 01050082 02818299 020003") ||
+        addResult(response.checkData("D00D8103 01050082 02818299 020003") ||
                    response.checkData("D00D8103 01050082 02818219 020003"));
         test.terminalResponse("81030105 00820282 81830100");
         
@@ -90,14 +90,14 @@ public class Test_Cre_Reg_Evtr extends UiccTestModel {
 
         // test case 2: trigger applet2
         response = test.unrecognizedEnvelope();
-        test.addResult(response.checkSw("9000"));
+        addResult(response.checkSw("9000"));
         
         // check results
         response = test.selectApplication(APPLET_AID_1);
-        test.addResult(response.checkData("10" + APPLET_AID_1 + "01CC"));
+        addResult(response.checkData("10" + APPLET_AID_1 + "01CC"));
 
         response = test.selectApplication(APPLET_AID_2);
-        test.addResult(response.checkData("10" + APPLET_AID_2 + "01CC"));
+        addResult(response.checkData("10" + APPLET_AID_2 + "01CC"));
 
         
         // delete applet and package
@@ -107,6 +107,6 @@ public class Test_Cre_Reg_Evtr extends UiccTestModel {
         test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);
 
-        return test.getOverallResult();
+        return getOverallResult();
     }
 }
