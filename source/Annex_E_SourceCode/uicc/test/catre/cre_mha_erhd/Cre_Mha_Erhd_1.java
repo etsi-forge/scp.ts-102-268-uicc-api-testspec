@@ -60,6 +60,8 @@ public class Cre_Mha_Erhd_1 extends TestToolkitApplet {
                                             EVENT_APPLICATION_DESELECT,
                                             EVENT_EVENT_BROWSING_STATUS,
                                             EVENT_EVENT_DOWNLOAD_NETWORK_SEARCH_MODE_CHANGE,
+                                            EVENT_EVENT_DOWNLOAD_FRAMES_INFORMATION_CHANGED,
+                                            EVENT_EVENT_DOWNLOAD_HCI_CONNECTIVITY
                                         };
 
 

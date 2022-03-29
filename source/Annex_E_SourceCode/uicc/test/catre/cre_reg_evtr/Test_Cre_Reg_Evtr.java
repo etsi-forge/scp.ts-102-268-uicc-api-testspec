@@ -54,10 +54,10 @@ public class Test_Cre_Reg_Evtr extends UiccTestModel {
                             "00" + // LV TAR Value(s) 
                             "00"); // V Maximum number of services
 
-        test.status("00", "0C", "00");
-
         // test script
         response = test.makeSelectableApplet(APPLET_AID_1);
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00", "0C", "00");
         addResult(response.checkSw("910F"));
         response = test.fetch("0F");
         addResult(response.checkData("D00D8103 01050082 02818299 020004") ||
@@ -68,7 +68,7 @@ public class Test_Cre_Reg_Evtr extends UiccTestModel {
         response = test.envelopeEventDownloadUserActivity();
         addResult(response.checkSw("910F"));
         response = test.fetch("0F");
-        addResult(response.checkData("D00D8103 01050082 02818299 020003")) ||
+        addResult(response.checkData("D00D8103 01050082 02818299 020003") ||
                    response.checkData("D00D8103 01050082 02818219 020003"));
         test.terminalResponse("81030105 00820282 81830100");
         

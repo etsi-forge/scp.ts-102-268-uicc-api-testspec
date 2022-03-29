@@ -35,7 +35,7 @@ public class Cre_Mha_Pahd_3 extends TestToolkitApplet {
 	private Cre_Mha_Pahd_3 () {}
 
 
-	    private byte[] baTestsResults = new byte[128];
+	private byte[] baTestsResults = new byte[128];
     	private byte[] baTestAppletId = new byte[17];
 	/**
 	 * Create an instance of the Applet, the Java Card runtime environment will call this static method first.

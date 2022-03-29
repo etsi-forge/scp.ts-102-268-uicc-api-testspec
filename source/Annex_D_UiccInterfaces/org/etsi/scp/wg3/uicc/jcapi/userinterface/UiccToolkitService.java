@@ -1,6 +1,6 @@
 /**
  * @author SCP WG3, ETSI
- * @version 0.10
+ * @version 0.10.1
  * UiccToolkitService defines Toolkit methods, among them ETSI TS 102 223 specification
  */
 package org.etsi.scp.wg3.uicc.jcapi.userinterface;
@@ -197,7 +197,7 @@ public interface UiccToolkitService {
      * perform an Envelope Event Download Network Search Change Mode
      * @return APDUResponse Object
      *  Send the following string :
-     *  "D6 0A 99 01 0E 82 02 83 81 E5 01 00"
+     *  "D6 0A 99 01 0E 82 02 82 81 E5 01 00"
      */
     public APDUResponse envelopeEventDownloadNetworkSearchModeChange(); 
 
@@ -205,8 +205,23 @@ public interface UiccToolkitService {
      * perform an Envelope Event Download Browsing Status
      * @return APDUResponse Object
      *  Send the following string :
-     *  "D6 0A 99 01 0F 82 02 83 81 E4 01 00"
+     *  "D6 0A 99 01 0F 82 02 82 81 E4 01 00"
      */
-    public APDUResponse envelopeEventDownloadBrowsingStatus(); 
-
+    public APDUResponse envelopeEventDownloadBrowsingStatus();
+    
+    /**
+     * perform an Envelope Event Download Frames Inforamation Changed
+     * @return APDUResponse Object
+     *  Send the following string :
+     *  "D6 0C 99 01 10 82 02 83 81 E7 03 01 02 03"
+     */
+    public APDUResponse envelopeEventDownloadFramesInformationChanged();
+    
+    /**
+     * perform an Envelope Event Download HCI Connectivity
+     * @return APDUResponse Object
+     *  Send the following string :
+     *  "D6 07 99 01 13 82 02 82 81"
+     */
+    public APDUResponse envelopeEventDownloadHCIConnectivity();
 }
