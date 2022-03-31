@@ -224,4 +224,12 @@ public interface UiccToolkitService {
      *  "D6 07 99 01 13 82 02 82 81"
      */
     public APDUResponse envelopeEventDownloadHCIConnectivity();
+
+    /**
+     * perform an Envelope Event to trigger EVENT_PROACTIVE_HANDLER_AVAILABLE.
+     * @return APDUResponse Object
+     *  Send the following string :
+     *  FFS - define the value to be sent
+     */
+    public APDUResponse envelopeEventProactiveHandlerAvailable();
 }
