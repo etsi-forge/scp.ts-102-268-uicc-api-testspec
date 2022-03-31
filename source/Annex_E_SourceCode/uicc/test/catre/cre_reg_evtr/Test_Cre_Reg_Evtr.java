@@ -57,7 +57,7 @@ public class Test_Cre_Reg_Evtr extends UiccTestModel {
         // test script
         response = test.makeSelectableApplet(APPLET_AID_1);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
-        response = test.status("00", "0C", "00");
+        test.status("00", "0C", "00");
         addResult(response.checkSw("910F"));
         response = test.fetch("0F");
         addResult(response.checkData("D00D8103 01050082 02818299 020004") ||

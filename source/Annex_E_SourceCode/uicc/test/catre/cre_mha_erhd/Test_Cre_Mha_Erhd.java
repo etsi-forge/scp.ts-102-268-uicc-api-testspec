@@ -1,3 +1,4 @@
+
 //-----------------------------------------------------------------------------
 //Test_Cre_Mha_Erhd.java
 //-----------------------------------------------------------------------------
@@ -224,7 +225,7 @@ public class Test_Cre_Mha_Erhd extends UiccTestModel {
    		response = test.selectApplication(APPLET_AID_1);
    		testresult &=  response.checkData("10" +APPLET_AID_1 +
       									  "1ECCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-      									  "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCC");
+      									  "CCCCCCCC CCCCCCCC CCCCCCCC CC");
 
    		response = test.selectApplication(APPLET_AID_2);
    		testresult &=  response.checkData("10" +APPLET_AID_2 +

@@ -42,7 +42,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         /*********************************************************************/
 
         // Install Applet1
-        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
+        test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
                            "8008" + // TLV UICC Toolkit application specific parameters
                                "01" +   // V Priority Level
                                "00" +   // V Max. number of timers
@@ -56,7 +56,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
 		addResult(response.checkSw("9000"));
 		
         // Install Applet2
-        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_2, 
+        test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_2, 
                            "8008" + // TLV UICC Toolkit application specific parameters
                                "02" +   // V Priority Level
                                "00" +   // V Max. number of timers
@@ -109,7 +109,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         /*********************************************************************/
 
         // Install Applet1
-        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_3, 
+        test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_3, 
                            "8008" + // TLV UICC Toolkit application specific parameters
                                "01" +   // V Priority Level
                                "00" +   // V Max. number of timers
@@ -123,7 +123,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
  	    addResult(response.checkSw("9000"));    
 		
         // Install Applet2
-        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_4, 
+        test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_4, 
                            "8008" + // TLV UICC Toolkit application specific parameters
                                "01" +   // V Priority Level
                                "00" +   // V Max. number of timers
