@@ -200,7 +200,7 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
         response = test.selectApplication(APPLET_AID_1);
         testresult &=  response.checkData("10" +APPLET_AID_1 +
                                         "1CCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-                                        "CCCCCCCC CCCCCCCC CCCCCC");
+                                        "CCCCCCCC CCCCCCCC CCCCCC CCCC");
 
         response = test.selectApplication(APPLET_AID_2);
         testresult &=  response.checkData("10" +APPLET_AID_2 +
