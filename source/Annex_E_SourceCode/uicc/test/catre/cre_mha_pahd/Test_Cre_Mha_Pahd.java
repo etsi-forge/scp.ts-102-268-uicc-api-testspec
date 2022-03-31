@@ -264,18 +264,18 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
         // the applet will not be triggered on an unsupported event.
    		response = test.selectApplication(APPLET_AID_1);
    		testresult &=  (response.checkData("10" +APPLET_AID_1 +
-      									"2FCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-      									"CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-      									"CCCCCCCC CCCCCCCC CCCCCCCC CCCC") ||
+                                        "30CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
+                                        "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
+                                        "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC CC") ||
                         response.checkData("10" +APPLET_AID_1 +
                                         "18CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                                         "CCCCCCCC CCCCCCCC CC") );
 
    		response = test.selectApplication(APPLET_AID_2);
    		testresult &=  (response.checkData("10" +APPLET_AID_2 +
-										"22CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
+										"25CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
 										"CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-										"CCCCCC") ||
+										"CCCCCCCC CCCC") ||
                         response.checkData("10" +APPLET_AID_2 +
                                         "11CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC " +
                                         "CCCC") );
