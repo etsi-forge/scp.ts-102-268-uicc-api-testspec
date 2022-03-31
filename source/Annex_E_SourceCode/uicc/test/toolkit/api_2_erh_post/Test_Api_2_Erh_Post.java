@@ -116,6 +116,8 @@ public class Test_Api_2_Erh_Post extends UiccTestModel
 
         // Test case 5
         response = test.unrecognizedEnvelope();
+        addResult(response.checkSw("6200"));
+        response = test.envelopeEventDownloadUserActivity(); // Dummy command to get the 91XX status word
         addResult(response.checkSw("9115"));
         response = test.fetch("15");
         addResult(response.checkData("D0138103  01218082  0281028D  08044150"
