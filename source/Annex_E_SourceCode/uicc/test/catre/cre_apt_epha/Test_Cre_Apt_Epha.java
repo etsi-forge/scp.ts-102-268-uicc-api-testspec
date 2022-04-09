@@ -150,7 +150,7 @@ public class Test_Cre_Apt_Epha extends UiccTestModel {
         /*********************************************************************/
         /*********************************************************************/
 
-        response = test.selectApplication(APPLET_AID_3);
+        response = test.selectApplication(APPLET_AID_1);
         addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
 
 
