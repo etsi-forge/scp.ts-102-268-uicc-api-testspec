@@ -34,13 +34,13 @@ public class Api_1_Fvw_Incr_1 extends TestToolkitApplet implements UICCConstants
             (byte)0x88,(byte)0x00};                      // Tag, Length - SFI (no SFI)
     private byte [] abCreateEF_2C7F = {
             (byte)0x82,(byte)0x04,                       // Tag, Length - File descriptor
-            (byte)0x46,(byte)0x21,(byte)0x00,(byte)0x7F, // Value - File descriptor (Cyclic) and record length (0x7F)
+            (byte)0x46,(byte)0x21,(byte)0x00,(byte)0x7F, // Value - File descriptor (Cyclic) and record length (0xF7)
             (byte)0x83,(byte)0x02,                       // Tag, Length - File Id
             (byte)0x2C,(byte)0x7F,                       // Value - File Id
             (byte)0x8A,(byte)0x01,(byte)0x05,            // Tag, Length, Value - LCSI (Activated)
             (byte)0x8B,(byte)0x03,                       // Tag, Length - Security attribute
             (byte)0x2F,(byte)0x06,(byte)0x01,            // Value - Security attribute (EF Arr, record nb)
-            (byte)0x80,(byte)0x02,(byte)0x00,(byte)7F, // Tag, Length, value - File size (0 bytes => no record)
+            (byte)0x80,(byte)0x02,(byte)0x00,(byte)0x7F, // Tag, Length, value - File size (0 bytes => no record)
             (byte)0x88,(byte)0x00};                      // Tag, Length - SFI (no SFI)
     byte testCaseNb = (byte) 0x00;
     byte incr[] = null;
@@ -518,7 +518,8 @@ public class Api_1_Fvw_Incr_1 extends TestToolkitApplet implements UICCConstants
             // Set records to 55 55 55
             Util.arrayFillNonAtomic(data, (short)0, (short)data.length, (byte)0x55);
             UiccFileView.updateRecord((short)0, REC_ACC_MODE_PREVIOUS, (short)0, data, (short)0, (short)data.length);
-            bRes &= true;
+
+			bRes &= true;
         }
         catch (Exception e)
         {
@@ -527,39 +528,10 @@ public class Api_1_Fvw_Incr_1 extends TestToolkitApplet implements UICCConstants
         reportTestOutcome(testCaseNb, bRes);
 
         // -----------------------------------------------------------------
-        // Test Case 15 : Record not found
+        // Test Case 15 : Void
+        // Note: this means that baTestsResults will contain '00' for this test case, indicating Void in this case
         //
-        testCaseNb = 15;
-        try
-        {
-        	incr = new byte[3];
-        	resp = new byte[3];
-        	createEFCmd = HandlerBuilder.buildTLVHandler(HandlerBuilder.EDIT_HANDLER, (short)abCreateEF_2C00.length, abCreateEF_2C00, (short)0x00, (short)abCreateEF_2C00.length);
-            UiccAdminFileView.createFile(createEFCmd);
-            UiccAdminFileView.select((short)0x2C00);
-            
-            incrOffset = 0;
-            incrLength = 3;
-            respOffset = 0;
-            
-            respLength = UiccFileView.increase(incr, incrOffset, incrLength, resp, respOffset);
-            bRes = false;
-        }
-        catch (UICCException e)
-        {
-            if (e.getReason() == UICCException.RECORD_NOT_FOUND)
-                bRes = true;
-            else
-                bRes = false;
-        }
-        catch(Exception e)
-        {
-        	bRes = false;
-        }
-        
-        UiccAdminFileView.deleteFile((short)0x2C00);
-        reportTestOutcome(testCaseNb, bRes);
-        
+
         // -----------------------------------------------------------------
         // Test Case 16 : incrLength out of range
         // -----------------------------------------------------------------
