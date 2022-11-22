@@ -103,7 +103,7 @@ public class Test_Api_2_Prh_Cchd extends UiccTestModel
         // Fetch the received data proactive command
         response = test.fetch("0E");
         addResult(response.checkData("D00C8103 01420182 02812137 0106"));
-        // Terminal Response with 6 bytes avalaible (�Hello1�)
+        // Terminal Response with 6 bytes avalaible ("Hello1")
         response = test.terminalResponse("81030142 01820282 81830100 36064865"
                                        + "6C6C6F31 370106");
         addResult(response.checkSw("910E"));
@@ -126,7 +126,7 @@ public class Test_Api_2_Prh_Cchd extends UiccTestModel
         // Fetch the received data proactive command
         response = test.fetch("0E");
         addResult(response.checkData("D00C8103 01420182 02812137 0106"));
-        // Terminal Response with 6 bytes avalaible (�Hello2�)
+        // Terminal Response with 6 bytes avalaible ("Hello2")
         response = test.terminalResponse("81030142 01820282 81830100 36064865"
                                        + "6C6C6F32 370106");
         addResult(response.checkSw("910E"));
@@ -138,7 +138,7 @@ public class Test_Api_2_Prh_Cchd extends UiccTestModel
         // Fetch the received data proactive command
         response = test.fetch("0E");
         addResult(response.checkData("D00C8103 01420182 02812137 010C"));
-        // Terminal Response with 12 bytes avalaible (�Hello3� & 'Hello4')
+        // Terminal Response with 12 bytes avalaible ("Hello3" & "Hello4")
         response = test.terminalResponse("81030142 01820282 81830100 36064865"
                                        + "6C6C6F33 36064865 6C6C6F34 37010C");
         addResult(response.checkSw("9000"));

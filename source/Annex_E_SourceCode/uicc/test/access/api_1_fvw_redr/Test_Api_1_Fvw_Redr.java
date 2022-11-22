@@ -16,9 +16,6 @@ import org.etsi.scp.wg3.uicc.jcapi.userinterface.*;
 
 /**
  * Test Area : uicc.test.access.api_1_fvw_redr
- *
- * @version 0.0.1 - 6 d�c. 2005
- * @author 3GPP T3 SWG API
  */
 public class Test_Api_1_Fvw_Redr extends UiccTestModel {
 

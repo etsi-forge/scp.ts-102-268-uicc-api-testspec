@@ -398,7 +398,7 @@ public class Test_Cre_Uta_Adel extends UiccTestModel {
         /*********************************************************************/
         /** Testcase 5                                                       */
         /*********************************************************************/ 
-        // Object owned by a deleted applet can�t be accessed by other applets
+        // Object owned by a deleted applet can't be accessed by other applets
         
         
         // 1- Delete AppletA1

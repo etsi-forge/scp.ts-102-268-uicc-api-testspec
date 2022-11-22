@@ -41,7 +41,7 @@ public class Test_Cre_Tin_Tarv extends UiccTestModel {
         /** Testcase 1                                                       */
         /*********************************************************************/
 
-        // Install Applet2 with TAR "020202�
+        // Install Applet2 with TAR "020202"
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "800B" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level

@@ -19,9 +19,6 @@ import uicc.test.util.*;
 
 /**
  * Test Area : uicc.test.access.fileadministration.api_4_afv_updb
- *
- * @version 0.0.1 - 8 déc. 2005
- * @author 3GPP T3 SWG API
  */
 public class Api_4_Afv_Updb_1 extends TestToolkitApplet implements UICCConstants
 {

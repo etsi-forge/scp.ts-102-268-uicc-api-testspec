@@ -19,9 +19,6 @@ import uicc.test.util.*;
 
 /**
  * Test Area : uicc.test.access.api_4_Afv_redr
- *
- * @version 0.0.1 - 6 déc. 2005
- * @author 3GPP T3 SWG API
  */
 public class Api_4_Afv_Redr_1 extends TestToolkitApplet implements UICCConstants
 {

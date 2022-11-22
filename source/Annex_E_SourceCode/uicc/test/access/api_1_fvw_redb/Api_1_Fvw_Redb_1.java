@@ -17,9 +17,6 @@ import uicc.test.util.*;
 
 /**
  * Test Area : uicc.test.access.api_1_fvw_redb
- *
- * @version 0.0.1 - 6 déc. 2005
- * @author 3GPP T3 SWG API
  */
 
 public class Api_1_Fvw_Redb_1 extends TestToolkitApplet implements UICCConstants

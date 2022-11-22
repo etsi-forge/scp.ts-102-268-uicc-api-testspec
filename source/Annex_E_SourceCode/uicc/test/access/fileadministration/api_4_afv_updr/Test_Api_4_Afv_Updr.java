@@ -16,9 +16,6 @@ import org.etsi.scp.wg3.uicc.jcapi.userinterface.*;
 
 /**
  * Test Area : uicc.test.access.fileadministration.api_4_afv_updr
- *
- * @version 0.0.1 - 8 d�c. 2005
- * @author 3GPP T3 SWG API
  */
 public class Test_Api_4_Afv_Updr extends UiccTestModel {
 
