@@ -25,6 +25,9 @@ public interface UiccToolkitService {
 
     /**
      * perform a fetch APDU command
+     * This method shall check a) that there is a pending 91XX and b) that expDataLength == XX (from 91XX).
+     * If either of these checks fail, a Fail shall be reported.
+     * The value of Le for the Fetch command shall be XX (from 91XX) if available; otherwise expDataLength.
      * @param length of expected data, as String
      * @return APDUResponse Object
      */
