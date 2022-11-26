@@ -65,7 +65,8 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00",    // V Maximum number of services
                            true);
-        
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
         // Fetch & Terminal response
         menuList[0] = "Menu1"; menuIdList[0] = "01";
         menuList[1] = "Menu2"; menuIdList[1] = "02";

@@ -228,7 +228,8 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                "0100" + // LV Access Domain for UICC file system = ALWAYS
                                "00",    // LV Access Domain DAP field
                            true);
-        
+		// Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
         // Fetch the SetUpMenu with the menus
         menuList[0] = "Menu1";
         menuIdList[0] = "01";
@@ -240,8 +241,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         /** Testcase 3                                                       */
         /*********************************************************************/
 
-        // Lock Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
-        test.lockApplication(APPLET_AID_1, true);
+        // Lock Applet1
+        test.lockApplication(APPLET_AID_1);
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
         // Fetch the SetUpMenu with the menus
         menuList[0] = "Menu2";
         menuIdList[0] = "02";
@@ -297,8 +300,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         /** Testcase 6                                                       */
         /*********************************************************************/
         
-        // Lock Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
-        test.lockApplication(APPLET_AID_1, true);
+        // Lock Applet1
+        test.lockApplication(APPLET_AID_1);
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
         // Fetch SetUpEventList command
         response = test.fetch("0D");
         addResult(response.checkData("D00B8103 01050082 02818219 00") ||
@@ -361,8 +366,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         response = test.terminalResponse("81030105 00820282 81830100");                                    
         addResult(response.checkSw("9000"));
 
-        // Delete Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
-        test.deleteApplet(APPLET_AID_1, true);
+        // Delete Applet1
+        test.deleteApplet(APPLET_AID_1);
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
         // Fetch SetUpEventList command
         response = test.fetch("0D");
         addResult(response.checkData("D00B8103 01050082 02818219 00") ||
@@ -384,6 +391,9 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00",    // V Maximum number of services
                            true);
+        // Send a Select command to be sure to retrieve the correct status word in the RAPDU
+        // Do not send Status, because this would turn off polling (which is coded for the start of Testcase 12)
+        test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch SetUpEventList command
         response = test.fetch("0F");
         addResult(response.checkData("D00D8103 01050082 02818219 020003") ||
@@ -414,8 +424,11 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         /** Testcase 10                                                      */
         /*********************************************************************/
         
-        // Lock Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
-        test.lockApplication(APPLET_AID_1, true);
+        // Lock Applet1
+        test.lockApplication(APPLET_AID_1);
+        // Send a Select command to be sure to retrieve the correct status word in the RAPDU
+        // Do not send Status, because this would turn off polling (which is coded for the start of Testcase 12)
+        test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Polling Off command
         response = test.fetch("0B");
         addResult(response.checkData("D0098103 01040082 028182"));
@@ -427,8 +440,11 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         /** Testcase 11                                                      */
         /*********************************************************************/
         
-        // Make selectable Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
-        test.unlockApplication(APPLET_AID_1, true);
+        // Make selectable Applet1
+        test.unlockApplication(APPLET_AID_1);
+        // Send a Select command to be sure to retrieve the correct status word in the RAPDU
+        // Do not send Status, because this would turn off polling (which is coded for the start of Testcase 12)
+        test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Poll Interval command
         response = test.fetch("0F");
         addResult(response.checkData(pollInterCmd));
@@ -456,8 +472,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         response = test.terminalResponse("81030103 00820282 81830100 84020010");                                    
         addResult(response.checkSw("9000"));
 
-        // Delete Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
-        test.deleteApplet(APPLET_AID_1, true);
+        // Delete Applet1
+        test.deleteApplet(APPLET_AID_1);
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
         // Fetch Polling Off command
         response = test.fetch("0B");
         addResult(response.checkData("D0098103 01040082 028182"));
@@ -478,6 +496,9 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00",    // V Maximum number of services
                            true);
+        // Send a Select command to be sure to retrieve the correct status word in the RAPDU
+        // Do not send Status, because this would turn off polling (which is coded for the start of Testcase 12)
+        test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Poll Interval command
         response = test.fetch("0F");
         addResult(response.checkData(pollInterCmd));
@@ -707,8 +728,10 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         response = test.terminalResponse("81030125 00820282 81830100");                                    
         addResult(response.checkSw("9000"));
         
-        //Make selectable Applet3 (testcase 14-15); note that we don't want this method to consume any unnecessary 91XX -> true
-        test.unlockApplication(APPLET_AID_3, true);
+        //Make selectable Applet3 (testcase 14-15)
+        test.unlockApplication(APPLET_AID_3);
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
         // Fetch the SetUpMenu
         response = test.fetch("30");
         addResult(response.checkData("D02E8103 01250082 02818285 09554943" +
