@@ -128,7 +128,7 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
         /** Testcase 4                                                       */
         /*********************************************************************/
 
-        // Good Install Applet2
+        // Good Install Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -140,7 +140,8 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
@@ -156,7 +157,7 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
         /** Testcase 4                                                       */
         /*********************************************************************/
 
-        // Good Install Applet3
+        // Good Install Applet3; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_3, APPLET_AID_3, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -168,7 +169,8 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
@@ -185,8 +187,8 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
         /** Testcase 5                                                       */
         /*********************************************************************/
 
-        // Delete Applet2
-        response = test.deleteApplet(APPLET_AID_2);
+        // Delete Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
+        response = test.deleteApplet(APPLET_AID_2, true);
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
@@ -197,7 +199,7 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
         menuList[2] = "Menu31"; menuIdList[2] = "81";
         fetchSetUpMenu("UICC TEST", null, (byte)3, menuIdList, menuList, null, null);
 
-        // Good Install Applet2
+        // Good Install Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -209,7 +211,8 @@ public class Test_Cre_Tin_Itid extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");

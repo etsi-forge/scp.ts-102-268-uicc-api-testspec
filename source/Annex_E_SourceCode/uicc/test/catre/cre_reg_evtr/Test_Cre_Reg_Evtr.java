@@ -54,8 +54,8 @@ public class Test_Cre_Reg_Evtr extends UiccTestModel {
                             "00" + // LV TAR Value(s) 
                             "00"); // V Maximum number of services
 
-        // test script
-        response = test.makeSelectableApplet(APPLET_AID_1);
+        // test script; note that we don't want this method to consume any unnecessary 91XX -> true
+        response = test.makeSelectableApplet(APPLET_AID_1, true);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00", "0C", "00");
         addResult(response.checkSw("910F"));

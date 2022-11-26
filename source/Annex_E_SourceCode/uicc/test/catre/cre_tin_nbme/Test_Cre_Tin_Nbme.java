@@ -47,7 +47,7 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
         /** Testcase 1-2                                                     */
         /*********************************************************************/
 
-        // Install Applet1
+        // Install Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
                            "800E" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -63,7 +63,8 @@ public class Test_Cre_Tin_Nbme extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
         
         // Fetch & Terminal response
         menuList[0] = "Menu1"; menuIdList[0] = "01";

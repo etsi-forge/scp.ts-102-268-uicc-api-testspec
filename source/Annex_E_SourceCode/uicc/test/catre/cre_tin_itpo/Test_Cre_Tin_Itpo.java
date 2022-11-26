@@ -51,7 +51,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         /** Testcase 1                                                       */
         /*********************************************************************/
 
-        // Install Applet1
+        // Install Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
                            "8010" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -69,7 +69,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
@@ -86,7 +87,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         /** Testcase 2                                                       */
         /*********************************************************************/
 
-        // Install Applet2
+        // Install Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -98,7 +99,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+            true);
         
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
@@ -117,7 +119,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         /** Testcase 3                                                       */
         /*********************************************************************/
 
-        // Install Applet3
+        // Install Applet3; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_3, APPLET_AID_3, 
                            "800C" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -135,7 +137,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
                            "8104" + // TLV UICC Access application specific parameters
                                "00" +   // LV UICC File System AID field
                                "0100" + // LV Access Domain for UICC file system = ALWAYS
-                               "00" );  // LV Access Domain DAP field       
+                               "00",    // LV Access Domain DAP field
+                           true);
         
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
@@ -155,7 +158,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         /** Testcase 4                                                       */
         /*********************************************************************/
 
-        // Install Applet4
+        // Install Applet4; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_4, APPLET_AID_4, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -167,7 +170,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
         
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
@@ -188,7 +192,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         /** Testcase 5                                                       */
         /*********************************************************************/
 
-        // Install Applet5
+        // Install Applet5; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_5, APPLET_AID_5, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -200,7 +204,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
@@ -236,8 +241,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         menuList[7] = "Menu51"; menuIdList[7] = "09";
         fetchSetUpMenu("UICC TEST", null, (byte)8, menuIdList, menuList, null, null);
 
-        // Lock Applet2
-        response = test.lockApplication(APPLET_AID_2);
+        // Lock Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
+        response = test.lockApplication(APPLET_AID_2, true);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
         addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
@@ -256,7 +261,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         /** Testcase 7                                                       */
         /*********************************************************************/
 
-        // Install Applet6
+        // Install Applet6; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_6, APPLET_AID_6, 
                            "800E" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -272,7 +277,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
@@ -312,8 +318,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         menuList[10] = "Menu63"; menuIdList[10] = "12";
         fetchSetUpMenu("UICC TEST", null, (byte)11, menuIdList, menuList, null, null);
 
-        // Unlock Applet2
-        response = test.unlockApplication(APPLET_AID_2);
+        // Unlock Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
+        response = test.unlockApplication(APPLET_AID_2, true);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
         addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
@@ -337,8 +343,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         /** Testcase 9                                                       */
         /*********************************************************************/
 
-        // Delete Applet2
-        response = test.deleteApplet(APPLET_AID_2);
+        // Delete Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
+        response = test.deleteApplet(APPLET_AID_2, true);
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
         addResult(response.getStatusWord().substring(0,2).compareTo("91") == 0);
@@ -361,7 +367,7 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
         /** Testcase 10                                                      */
         /*********************************************************************/
 
-        // Install Applet2
+        // Install Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -373,7 +379,8 @@ public class Test_Cre_Tin_Itpo extends UiccTestModel {
                                "00" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00" );  // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
         
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         response = test.status("00","0C","00");
