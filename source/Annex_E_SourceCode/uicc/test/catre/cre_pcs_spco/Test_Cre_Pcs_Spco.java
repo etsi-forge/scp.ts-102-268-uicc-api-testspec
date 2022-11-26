@@ -510,32 +510,61 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                      "78743232"));
         response = test.terminalResponse("81030121 00820282 81830100");                                    
         
-        for (byte i = 0; i < 3; i++)
-        {
-            switch (Integer.valueOf(response.getStatusWord(),16).intValue()) 
-            {
-                case 0x9118:
-                    // Fetch an empty SetUpMenu
-                    response = test.fetch("18");
-                    addResult(response.checkData("D0168103 01250082 02818285 09554943" +
-                                                 "43205445 53548F00"));
-                    response = test.terminalResponse("81030125 00820282 81830100");                                    
-                    break;
-                case 0x910E:
-                    response = test.fetch("0E");
-                    addResult(response.checkData("D00C8103 01050082 02818219 0103") ||
-                              response.checkData("D00C8103 01050082 02818299 0103"));
-                    response = test.terminalResponse("81030105 00820282 81830100");                                    
-                    break;
-                case 0x910B:
-                    // Fetch Polling Off command
-                    response = test.fetch("0B");
-                    addResult(response.checkData("D0098103 01040082 028182"));
-                    response = test.terminalResponse("81030104 00820282 81830100");                                    
-                    break;
-                default:
+        // local variables so that we detect each expected proactive command only once
+        boolean setUpMenuReceived = false;
+        boolean setUpEventListReceived = false;
+        boolean pollingOffReceived = false;
+        // loop three times to try to fetch the three expected proactive commands
+        for (byte i = 0; i < 3; i++) {
+            // check for a pending proactive command
+            if (response.getStatusWord().startsWith("91")) {
+                // fetch the proactive command
+                response = test.fetch(response.getStatusWord().substring(2));
+                // find the command details (by searching for "8103"), so that we can extract the type of command
+                int commandDetailsIndex = response.getData().indexOf("8103");
+                // if the proactive command is long enough to contain the type of command (it should be!) ...
+                if ((commandDetailsIndex > 0) && (response.getData().length() >= (commandDetailsIndex + 8))) {
+                    // extract the type of command (3 bytes after the command details starts)
+                    String typeOfCommand = response.getData().substring(commandDetailsIndex + 6, commandDetailsIndex + 8);
+                    // check for the expected types (if not received already)
+                    // 25: SET UP MENU
+                    if (!setUpMenuReceived && typeOfCommand.equals("25")) {
+                        addResult(response.checkData("D0168103 01250082 02818285 09554943" +
+                            "43205445 53548F00"));
+                        setUpMenuReceived = true;
+                    }
+                    // 05: SET UP EVENT LIST
+                    else if (!setUpEventListReceived && typeOfCommand.equals("05")) {
+                        addResult(response.checkData("D00C8103 01050082 02818219 0103") ||
+                            response.checkData("D00C8103 01050082 02818299 0103"));
+                        setUpEventListReceived = true;
+                    }
+                    // 04: POLLING OFF
+                    else if (!pollingOffReceived && typeOfCommand.equals("04")) {
+                        addResult(response.checkData("D0098103 01040082 028182"));
+                        pollingOffReceived = true;
+                    }
+                    // other
+                    else {
+                        addResult(false);
+                    }
+                    // send the terminal response
+                    response = test.terminalResponse("810301" + typeOfCommand + " 00820282 81830100");
+                }
+                else {
+                    // the proactive command is too short for a type of command, so this is not an expected proactive command
                     addResult(false);
-                    break;
+                    // return a dummy terminal response
+                    response = test.terminalResponse("81030105 00820282 81830100");
+                }
+            }
+            else {
+                // no proactive command; we always expect three proactive commands, so this is an error
+                // add number of failures corresponding to the number of missing proactive commands
+                for (int j = i; j < 3; j++) {
+                    addResult(false);
+                }
+                break;
             }
         }
 
