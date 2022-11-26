@@ -58,7 +58,7 @@ public class Test_Api_2_Tep_Gval extends UiccTestModel {
         
         // test case 2 to 9
         test.reset();
-        test.terminalProfileSession("A901D2F0 00000000 00000000 008DFF");
+        test.terminalProfileSessionExact("A901D2F0 00000000 00000000 008DFF");
         
         response = test.unrecognizedEnvelope();
         addResult(response.checkSw("9000"));

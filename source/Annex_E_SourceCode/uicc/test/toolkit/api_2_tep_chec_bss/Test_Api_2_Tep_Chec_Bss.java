@@ -58,7 +58,7 @@ public class Test_Api_2_Tep_Chec_Bss extends UiccTestModel {
         
         // test case 2 to 11
         test.reset();
-        test.terminalProfileSession("A977FFF1 FFFFFFFF FFFFFFFF FFFFFFFF");
+        test.terminalProfileSessionExact("A977FFF1 FFFFFFFF FFFFFFFF FFFFFFFF");
         
         response = test.unrecognizedEnvelope();
         addResult(response.checkSw("9000"));

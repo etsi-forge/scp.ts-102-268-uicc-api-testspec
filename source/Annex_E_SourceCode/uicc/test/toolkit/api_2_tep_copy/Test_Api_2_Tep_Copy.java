@@ -57,7 +57,7 @@ public class Test_Api_2_Tep_Copy extends UiccTestModel {
         
         // test cases 2 to 11
         test.reset();
-        test.terminalProfileSession("A901D2F0 01020000 00000000 008DFF");
+        test.terminalProfileSessionExact("A901D2F0 01020000 00000000 008DFF");
         
         response = test.unrecognizedEnvelope();
         addResult(response.checkSw("9000"));

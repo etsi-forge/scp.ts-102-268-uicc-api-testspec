@@ -58,7 +58,7 @@ public class Test_Api_2_Tep_Checb extends UiccTestModel {
 
         // test case 2 to 4
         test.reset();
-        test.terminalProfileSession("010160");
+        test.terminalProfileSessionExact("010160");
         
         response = test.unrecognizedEnvelope();
         addResult(response.checkSw("9000"));
