@@ -82,11 +82,13 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
                                "04" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
                                "00" +   // LV TAR Value(s) 
-                               "00");   // V Maximum number of services
+                               "00",    // V Maximum number of services
+                           true);
+        addResult(response.checkSw("9000"));
 
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
 
-	addResult(response.checkSw("9000"));
-        
         // Fetch SetUpMenu
         test.fetch("20");
         test.terminalResponse("81030125 00820282 81830100");
@@ -132,6 +134,8 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
         
 	addResult(response.checkSw("9000"));
 
+        // Send a status command to be sure to retrieve the correct status word in the RAPDU
+        test.status("00","0C","00");
 
         // Fetch SetUpMenu
         test.fetch("2A");
