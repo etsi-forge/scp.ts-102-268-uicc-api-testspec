@@ -143,7 +143,7 @@ public class Test_Cre_Mha_Erhd extends UiccTestModel {
         testresult &= response.checkSw("9110");
         response = test.fetch("10");
         testresult &= response.checkData("D00E8103 01218082 0281028D 03040000");
-        response   = test.terminalResponse("81030110 00820282 81830100");
+        response   = test.terminalResponse("81030121 80820282 81830100");
         testresult &= response.checkSw("9000");
         //TC 19
         response = test.unrecognizedEnvelope();
@@ -152,7 +152,7 @@ public class Test_Cre_Mha_Erhd extends UiccTestModel {
         testresult &= response.checkSw("9111");
         response = test.fetch("11");
         testresult &= response.checkData("D00F8103 01218082 0281028D 0404010203");
-        response   = test.terminalResponse("81030110 00820282 81830100");
+        response   = test.terminalResponse("81030121 80820282 81830100");
         testresult &= response.checkSw("9000");
         //TC 20
         response = test.unrecognizedEnvelope();
