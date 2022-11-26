@@ -12,11 +12,10 @@ import org.etsi.scp.wg3.uicc.jcapi.userclass.*;
 public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
 
     static final String CAP_FILE_PATH = "uicc/test/toolkit/api_2_trs_isprav";
-    static final String CLASS_AID_1 = "A0000000 090005FF FFFFFF89 50010001";
-    static final String APPLET_AID_1 = "A0000000 090005FF FFFFFF89 50010102";
-    static final String APPLET_AID_2 = "A0000000 090005FF FFFFFF89 50010202";
-	static final String APPLET_AID_3 = "A0000000 090005FF FFFFFF89 50010302";
-	static final String APPLET_AID_4 = "A0000000 090005FF FFFFFF89 50010402";
+    static final String CLASS_AID_1 = "A0000000 090005FF FFFFFF89 20010001";
+    static final String CLASS_AID_2 = "A0000000 090005FF FFFFFF89 20020001";
+    static final String APPLET_AID_1 = "A0000000 090005FF FFFFFF89 20010102";
+    static final String APPLET_AID_2 = "A0000000 090005FF FFFFFF89 20010202";
    
     private UiccAPITestCardService test;
     APDUResponse response;
@@ -56,7 +55,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
 		addResult(response.checkSw("9000"));
 		
         // Install Applet2
-        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_2, 
+        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "8008" + // TLV UICC Toolkit application specific parameters
                                "02" +   // V Priority Level
                                "00" +   // V Max. number of timers
@@ -101,7 +100,6 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         // delete applets and package
         test.deleteApplet(APPLET_AID_1);
         test.deleteApplet(APPLET_AID_2);
-        test.deletePackage(CAP_FILE_PATH);
 	    addResult(response.checkSw("9000"));
         
         /*********************************************************************/
@@ -109,7 +107,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         /*********************************************************************/
 
         // Install Applet1
-        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_3, 
+        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
                            "8008" + // TLV UICC Toolkit application specific parameters
                                "01" +   // V Priority Level
                                "00" +   // V Max. number of timers
@@ -123,7 +121,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
  	    addResult(response.checkSw("9000"));    
 		
         // Install Applet2
-        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_4, 
+        response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "8008" + // TLV UICC Toolkit application specific parameters
                                "01" +   // V Priority Level
                                "00" +   // V Max. number of timers
@@ -151,9 +149,9 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         /*********************************************************************/
         /*********************************************************************/
 
-        response = test.selectApplication(APPLET_AID_3);
+        response = test.selectApplication(APPLET_AID_1);
         addResult(response.checkData("10" + APPLET_AID_1 + "01" + "CC"));
-        response = test.selectApplication(APPLET_AID_4);
+        response = test.selectApplication(APPLET_AID_2);
         addResult(response.checkData("10" + APPLET_AID_2 + "01" + "CC"));
 
 
@@ -166,8 +164,8 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
         // delete applets and package
-        test.deleteApplet(APPLET_AID_3);
-        test.deleteApplet(APPLET_AID_4);
+        test.deleteApplet(APPLET_AID_1);
+        test.deleteApplet(APPLET_AID_2);
         test.deletePackage(CAP_FILE_PATH);        
  	    addResult(response.checkSw("9000"));
         
