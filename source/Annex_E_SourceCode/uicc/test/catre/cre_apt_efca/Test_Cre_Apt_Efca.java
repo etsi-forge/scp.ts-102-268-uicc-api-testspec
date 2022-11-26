@@ -146,7 +146,7 @@ public class Test_Cre_Apt_Efca extends UiccTestModel {
 
         test.reset();
         //***TEST CASE 4: 1-APPLET 5 IS TRIGGERED BY THE EVENT_FIRST_COMMAND_AFTER_ATR
-        response = test.terminalProfile("09010020 01");
+        response = test.terminalProfile("09010020");
         addResult(response.checkSw("911E"));
         //***TEST CASE 4: 1-APPLET 5 DISABLES A MENU ENTRY, THE FETCH OF SET UP MENU CONTAIN ONLY ONE ITEM
         response = test.fetch("1E");

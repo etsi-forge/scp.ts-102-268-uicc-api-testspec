@@ -110,7 +110,7 @@ public class Test_Cre_Apt_Emsh extends UiccTestModel {
                                     "00"  + // LV TAR Value(s)
                                     "00");  // V Maximum number of services
         test.reset();
-        test.terminalProfile("09010020 01");
+        test.terminalProfile("09010020");
         //UICC proactive command SET UP MENU, Menu Entry ID 05, 06, 07, Help Request supported
         response = test.fetch("37");
         addResult(response.checkData("D0358103 01258082 02818285 09554943" +
