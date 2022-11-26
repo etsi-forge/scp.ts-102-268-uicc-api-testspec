@@ -17,11 +17,28 @@ public interface UiccToolkitService {
     public APDUResponse terminalProfileSession(String tpStr);
 
     /**
+     * Perform Terminal Profile APDU command and all fetch/Terminal
+     * Response APDU until (90 00) status word.
+     * The test tool must not modify the Terminal Profile command.
+     * @param Terminal Profile command parameters, as String
+     * @return APDUResponse Object
+     */
+    public APDUResponse terminalProfileSessionExact(String tpStr);
+
+    /**
      * perform a Terminal Profile APDU command
      * @param Terminal Profile command parameters, as String
      * @return APDUResponse Object
      */
     public APDUResponse terminalProfile(String tpStr);
+
+    /**
+     * Perform a Terminal Profile APDU command.
+     * The test tool must not modify the Terminal Profile command.
+     * @param Terminal Profile command parameters, as String
+     * @return APDUResponse Object
+     */
+    public APDUResponse terminalProfileExact(String tpStr);
 
     /**
      * perform a fetch APDU command
