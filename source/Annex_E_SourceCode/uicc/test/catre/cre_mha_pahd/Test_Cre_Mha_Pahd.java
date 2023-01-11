@@ -215,19 +215,15 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
         response = test.envelopeEventDownloadAccessTechnologyChange();
         //TC 41
         response = test.envelopeEventDownloadDisplayParametersChanged();
-        //TC 49
-        response = test.envelopeEventDownloadFramesInformationChanged();
-        //TC 50
-        response = test.envelopeEventDownloadHCIConnectivity();
         //TC 42
         //The Proactive Handler is not available before the
         //Terminal Profile
         //TC 43
-   	response = test.envelopeEventDownloadNetworkSearchModeChange();
-   	 //TC 44
-   	response = test.envelopeEventDownloadBrowsingStatus();
+   	    response = test.envelopeEventDownloadNetworkSearchModeChange();
+   	    //TC 44
+   	    response = test.envelopeEventDownloadBrowsingStatus();
         //TC 45 + 2
-   	test.reset();
+   	    test.reset();
         //initialization with all the facilities supported (without SETUP_EVENT_LIST)
         response = test.terminalProfileSession("FFFFFFFF FEFFFFFF FFFFFFFF FFFFFFFF " +
                                                "FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF " +
@@ -255,6 +251,16 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
                             "00" +   // LV TAR Value(s)
                             "00" );  // V Maximum number of services
         response = test.selectApplication(APPLET_AID_3);
+        //TC 48
+        // reset, because Applet3 is now selected on channel 0, which we need to use for toolkit activity
+        test.reset();
+        //initialization with all the facilities supported (without SETUP_EVENT_LIST)
+        response = test.terminalProfileSession("FFFFFFFF FEFFFFFF FFFFFFFF FFFFFFFF " +
+            "FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF " +
+            "FFFF");
+        response = test.envelopeEventDownloadFramesInformationChanged();
+        //TC 49
+        response = test.envelopeEventDownloadHCIConnectivity();
 
 
         // get result from applets
@@ -264,18 +270,18 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
         // the applet will not be triggered on an unsupported event.
    		response = test.selectApplication(APPLET_AID_1);
         addResult(response.checkData("10" +APPLET_AID_1 +
-                                        "30CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
+                                        "2FCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
                                         "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-                                        "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC CC") ||
+                                        "CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC") ||
                         response.checkData("10" +APPLET_AID_1 +
                                         "18CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC" +
                                         "CCCCCCCC CCCCCCCC CC") );
 
    		response = test.selectApplication(APPLET_AID_2);
         addResult(response.checkData("10" +APPLET_AID_2 +
-										"25CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
+										"24CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
 										"CCCCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-										"CCCCCCCC CCCC") ||
+										"CCCCCCCC CC") ||
                         response.checkData("10" +APPLET_AID_2 +
                                         "11CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC " +
                                         "CCCC") );

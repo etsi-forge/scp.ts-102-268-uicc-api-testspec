@@ -191,13 +191,7 @@ public class Test_Cre_Mha_Erhd extends UiccTestModel {
    	 	//TC 28
    	 	response = test.envelopeEventDownloadBrowsingStatus();
         addResult(response.checkSw("9000"));
-        //TC 28
-        response = test.envelopeEventDownloadFramesInformationChanged();
-        addResult(response.checkSw("9000"));
         //TC 29
-        response = test.envelopeEventDownloadHCIConnectivity();
-        addResult(response.checkSw("9000"));
-        //TC 27 + 2
         test.reset();
         response = test.terminalProfileSession("13");
 
@@ -214,8 +208,15 @@ public class Test_Cre_Mha_Erhd extends UiccTestModel {
                             "00" );  // V Maximum number of services
         response = test.selectApplication(APPLET_AID_3);
 
-//        test.reset();
-//        response = test.terminalProfileSession("13");
+        //TC 30
+        // reset, because Applet3 is now selected on channel 0, which we need to use for toolkit activity
+        test.reset();
+        response = test.terminalProfileSession("13");
+        response = test.envelopeEventDownloadFramesInformationChanged();
+        addResult(response.checkSw("9000"));
+        //TC 31
+        response = test.envelopeEventDownloadHCIConnectivity();
+        addResult(response.checkSw("9000"));
 
 
    	    //check results of the tests

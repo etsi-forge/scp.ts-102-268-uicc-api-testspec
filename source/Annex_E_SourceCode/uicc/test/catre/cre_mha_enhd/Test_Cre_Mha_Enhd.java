@@ -170,13 +170,7 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
         //TC 26
         response = test.envelopeEventDownloadBrowsingStatus();
         addResult(response.checkSw("9000"));
-        //TC 28
-        response = test.envelopeEventDownloadFramesInformationChanged();
-        addResult(response.checkSw("9000"));
-        //TC 29
-        response = test.envelopeEventDownloadHCIConnectivity();
-        addResult(response.checkSw("9000"));
-        //TC 27 + 2
+        //TC 27
         test.reset();
         response = test.terminalProfileSession("FFFFFFF FFEFF1FFF FF0000FF FF9FFFEF" +
                                                "03FF000 0007FE300 01");
@@ -192,7 +186,16 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
                             "00" +   // LV TAR Value(s)
                             "00" );  // V Maximum number of services
         response = test.selectApplication(APPLET_AID_3);
-       addResult(response.checkSw("9000"));
+        addResult(response.checkSw("9000"));
+        //TC 28
+        // reset, because Applet3 is now selected on channel 0, which we need to use for toolkit activity
+        test.reset();
+        response = test.terminalProfileSession("FFFFFFF FFEFF1FFF FF0000FF FF9FFFEF" +
+            "03FF000 0007FE300 01");
+        response = test.envelopeEventDownloadFramesInformationChanged();
+        addResult(response.checkSw("9000"));
+        response = test.envelopeEventDownloadHCIConnectivity();
+        addResult(response.checkSw("9000"));
 
         //CHECK TEST RESULT
         response = test.selectApplication(APPLET_AID_1);
@@ -202,8 +205,8 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
 
         response = test.selectApplication(APPLET_AID_2);
         addResult(response.checkData("10" +APPLET_AID_2 +
-                                        "13CCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
-                                        "CCCCCC CCCC"));
+                                        "15CCCCCC CCCCCCCC CCCCCCCC CCCCCCCC"+
+                                        "CCCCCCCC CCCC"));
 
         response = test.selectApplication(APPLET_AID_3);
         addResult(response.checkData("10" +APPLET_AID_3 + "01CC"));
@@ -240,11 +243,5 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
         else return "";
 
     }
-
-
-
-
-
-
 
 }
