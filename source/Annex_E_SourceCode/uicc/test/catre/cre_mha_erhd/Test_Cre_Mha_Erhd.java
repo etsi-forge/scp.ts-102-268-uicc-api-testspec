@@ -127,6 +127,7 @@ public class Test_Cre_Mha_Erhd extends UiccTestModel {
         addResult(response.checkSw("911A"));
         //TC 16
         response = test.fetch("1A");
+        addResult(response.checkSw("9000"));
         response = test.terminalResponse("81030140 01820282 8183010038 0281003502 " +
         		                         "03003902 000A");
         addResult(response.checkSw("9000"));
@@ -174,6 +175,7 @@ public class Test_Cre_Mha_Erhd extends UiccTestModel {
         //TC 24
         //fetch declare service
         response = test.fetch("10");//fetch declare service
+        addResult(response.checkSw("9000"));
         //get the service record tlv from declare service command
         String servrectlv = getServiceRecordTLV(response.getData());
         response = test.terminalResponse("81030147 0082028281 830100");
