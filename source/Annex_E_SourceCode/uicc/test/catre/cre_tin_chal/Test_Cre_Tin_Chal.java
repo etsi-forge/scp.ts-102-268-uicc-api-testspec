@@ -84,13 +84,13 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00",    // V Maximum number of services
                            true);
-        addResult(response.checkSw("9000"));
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         test.status("00","0C","00");
 
         // Fetch SetUpMenu
-        test.fetch("20");
+        response = test.fetch("20");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030125 00820282 81830100");
         
 
@@ -129,16 +129,16 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
                                "03" +   // V Position of menu entry 1
                                "07" +   // V Maximum number of channels 
                                "00" +   // LV Minimum Security Level field
-                               "00" +   // LV TAR Value(s) 
-                               "00");   // V Maximum number of services
-        
-	addResult(response.checkSw("9000"));
+                               "00" +   // LV TAR Value(s)
+                               "00",    // V Maximum number of services
+                           true);
 
         // Send a status command to be sure to retrieve the correct status word in the RAPDU
         test.status("00","0C","00");
 
         // Fetch SetUpMenu
-        test.fetch("2A");
+        response = test.fetch("2A");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030125 00820282 81830100");
 
         
