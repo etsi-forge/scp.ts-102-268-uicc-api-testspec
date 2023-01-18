@@ -97,7 +97,7 @@ public class Test_Api_2_Trs_IsPrAv extends UiccTestModel {
 
         test.reset();
         test.terminalProfileSession(UiccCardManagementService.DEFAULT_TERMINAL_PROFILE);
-        // delete applets and package
+        // delete applets 
         test.deleteApplet(APPLET_AID_1);
         test.deleteApplet(APPLET_AID_2);
 	    addResult(response.checkSw("9000"));
