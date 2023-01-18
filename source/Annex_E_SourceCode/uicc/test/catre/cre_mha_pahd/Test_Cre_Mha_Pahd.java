@@ -142,6 +142,7 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
         addResult(response.checkSw("911A"));
         //TC 17
         response = test.fetch("1A");
+        addResult(response.checkSw("9000"));
         response = test.terminalResponse("81030140 01820282 8183010038 0281003502 " +
         		                         "03003902 000A");
         addResult(response.checkSw("9000"));
@@ -160,6 +161,7 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
         response = test.envelopeEventDownloadDisplayParametersChanged();
         //fetch declare service
         response = test.fetch("10");
+        addResult(response.checkSw("9000"));
         //get the service record tlv from declare service command
         String servrectlv = getServiceRecordTLV(response.getData());
         response = test.terminalResponse("81030147 0082028281 830100");
@@ -169,6 +171,7 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
         addResult(response.checkSw("9000"));
         //TC 23
         response = test.envelopeEventDownloadCallConnected();
+        addResult(response.checkSw("9000"));
         //fetch display text
         response = test.fetch("14");
         response = test.terminalResponse("81030121 80820282 81030100");

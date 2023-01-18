@@ -82,6 +82,7 @@ public class Test_Api_2_Tkr_Sevl extends UiccTestModel {
         response = test.envelopeMenuSelection("900102", "");
         addResult(response.checkSw("910E"));
         response = test.fetch("0E");
+        addResult(response.checkSw("9000"));
 
         // check results
         response = test.selectApplication(APPLET_AID_1);

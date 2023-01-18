@@ -59,6 +59,7 @@ public class Test_Api_2_Tkr_Smta extends UiccTestModel {
         
         addResult(response.checkSw("913E"));
         response = test.fetch("3E");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030125 00820282 81830100");
 
         // testcase 1

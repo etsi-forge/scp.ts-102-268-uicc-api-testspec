@@ -464,7 +464,8 @@ public class Test_Api_1_Cont extends UiccTestModel {
         addResult(test.selectFile(EF_NOSH).checkSw("6985"));
  
         //5
-        test.fetch("13");
+        response = test.fetch("13");
+        addResult(response.checkSw("9000"));
         response = test.terminalResponse("81030121 80820282 81830100");
  
         /** test case 14
@@ -479,7 +480,8 @@ public class Test_Api_1_Cont extends UiccTestModel {
         addResult(test.selectFile(EF_NOSH).checkSw("6985"));
  
         //5
-        test.fetch("13");
+        response = test.fetch("13");
+        addResult(response.checkSw("9000"));
         response = test.terminalResponse("81030121 80820282 81830100");
  
         /** test case 15

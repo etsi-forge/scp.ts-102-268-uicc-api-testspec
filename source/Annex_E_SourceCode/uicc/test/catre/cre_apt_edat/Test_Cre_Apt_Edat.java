@@ -55,13 +55,15 @@ public class Test_Cre_Apt_Edat extends UiccTestModel {
         //***TEST CASE 1: 1-APPLET 1 IS REGISTERED TO EVENT_EVENT_DOWNLOAD_ACCESS_TECHNOLOGY_CHANGE***
         //***TEST CASE 1: 2-APPLET 1 IS TRIGGERED***
         test.envelopeEventDownloadAccessTechnologyChange();
-        test.fetch("0D");
+        response = test.fetch("0D");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030105 00820282 81830100");
         //***TEST CASE 2: 1-APPLET 1 IS NOT TRIGGERED***
         test.envelopeEventDownloadAccessTechnologyChange();
         //***TEST CASE 2: 1 IS REGISTERED TO EVENT_EVENT_DOWNLOAD_ACCESS_TECHNOLOGY_CHANGE***
         test.envelopeMenuSelection("100101", "");//Help Request not available
-        test.fetch("0E");
+        response = test.fetch("0E");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030105 00820282 81830100");
         //***TEST CASE 2: 2-APPLET 1 IS TRIGGERED***
         test.envelopeEventDownloadAccessTechnologyChange();

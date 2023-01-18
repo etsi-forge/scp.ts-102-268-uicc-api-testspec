@@ -144,6 +144,7 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
         //TC 19
         response = test.unrecognizedEnvelope();
         response = test.fetch("10");//fetch declare service
+        addResult(response.checkSw("9000"));
         //get the service record tlv from declare service command
         String servrectlv = getServiceRecordTLV(response.getData());
         response = test.terminalResponse("81030147 0082028281 830100");

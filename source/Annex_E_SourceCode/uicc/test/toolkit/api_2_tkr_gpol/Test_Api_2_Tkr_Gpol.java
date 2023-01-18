@@ -60,11 +60,13 @@ public class Test_Api_2_Tkr_Gpol extends UiccTestModel {
         response = test.unrecognizedEnvelope();
         addResult(response.checkSw("910F"));
         response = test.fetch("0F");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030103 00820282 81830100 840200FF");
         test.reset();
         response = test.terminalProfile("09017020");
         addResult(response.checkSw("910F"));
         response = test.fetch("0F");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030103 00820282 81830100 840200FF");
         test.unrecognizedEnvelope();
 
@@ -74,11 +76,13 @@ public class Test_Api_2_Tkr_Gpol extends UiccTestModel {
         response = test.unrecognizedEnvelope();
         addResult(response.checkSw("910F"));
         response = test.fetch("0F");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030103 00820282 81830100 8402011E");
         test.reset();
         response = test.terminalProfile("09017020");
         addResult(response.checkSw("910F"));
         response = test.fetch("0F");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030103 00820282 81830100 84020175");
         test.unrecognizedEnvelope();
 
@@ -88,6 +92,7 @@ public class Test_Api_2_Tkr_Gpol extends UiccTestModel {
         response = test.unrecognizedEnvelope();
         addResult(response.checkSw("910B"));
         response = test.fetch("0B");
+        addResult(response.checkSw("9000"));
         test.terminalResponse("81030104 00820282 81830100");
         test.reset();
         response = test.terminalProfile("09017020");

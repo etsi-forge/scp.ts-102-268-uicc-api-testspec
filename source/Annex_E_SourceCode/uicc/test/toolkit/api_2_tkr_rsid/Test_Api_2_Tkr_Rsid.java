@@ -76,6 +76,7 @@ public class Test_Api_2_Tkr_Rsid extends UiccTestModel {
         response = test.envelopeMenuSelection("900102","");
         addResult(response.checkSw("9110"));
         response = test.fetch("10");
+        addResult(response.checkSw("9000"));
         response = test.terminalResponse("81030147 00820282 81830100");
         
 
