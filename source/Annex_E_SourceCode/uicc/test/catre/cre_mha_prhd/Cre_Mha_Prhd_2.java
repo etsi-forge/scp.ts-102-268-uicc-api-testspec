@@ -106,7 +106,7 @@ public class Cre_Mha_Prhd_2 extends TestToolkitApplet {
             testCaseNb==(byte)0x11 ){handler_available=false;}
 
        else if (testCaseNb==(byte)0x02 ||
-                testCaseNb==(byte)0x23){handler_available=true;}
+                testCaseNb==(byte)0x21){handler_available=true;}
 
 
         switch (event) {

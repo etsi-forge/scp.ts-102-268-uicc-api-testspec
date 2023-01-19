@@ -397,7 +397,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                            true);
 	    // Send a status command to be sure to retrieve the correct status word in the RAPDU
 		// Do not send Status, because this would turn off polling (which is coded for the start of Testcase12)
-        test.sendpdu("00 A4 00 0C 02 3F 00");
+        test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch SetUpEventList command
         response = test.fetch("0F");
         addResult(response.checkData("D00D8103 01050082 02818219 020003") ||
@@ -432,7 +432,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.lockApplication(APPLET_AID_1, true);
 		// Send a status command to be sure to retrieve the correct status word in the RAPDU
 		// Do not send Status, because this would turn off polling (which is coded for the start of Testcase12)
-        test.sendpdu("00 A4 00 0C 02 3F 00");
+        test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Polling Off command
         response = test.fetch("0B");
         addResult(response.checkData("D0098103 01040082 028182"));
@@ -448,7 +448,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         test.unlockApplication(APPLET_AID_1, true);
 		// Send a status command to be sure to retrieve the correct status word in the RAPDU
 		// Do not send Status, because this would turn off polling (which is coded for the start of Testcase12)
-        test.sendpdu("00 A4 00 0C 02 3F 00");
+        test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Poll Interval command
         response = test.fetch("0F");
         addResult(response.checkData(pollInterCmd));
@@ -502,7 +502,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                            true);
 		// Send a status command to be sure to retrieve the correct status word in the RAPDU
 		// Do not send Status, because this would turn off polling (which is coded for the start of Testcase12)
-        test.sendpdu("00 A4 00 0C 02 3F 00");
+        test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Poll Interval command
         response = test.fetch("0F");
         addResult(response.checkData(pollInterCmd));
