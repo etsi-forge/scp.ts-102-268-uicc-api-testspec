@@ -171,9 +171,9 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
         addResult(response.checkSw("9000"));
         //TC 23
         response = test.envelopeEventDownloadCallConnected();
-        addResult(response.checkSw("9000"));
         //fetch display text
         response = test.fetch("14");
+        addResult(response.checkSw("9000"));
         response = test.terminalResponse("81030121 80820282 81030100");
         addResult(response.checkSw("9000"));
         //TC 24
@@ -225,7 +225,7 @@ public class Test_Cre_Mha_Pahd extends UiccTestModel {
    	    response = test.envelopeEventDownloadNetworkSearchModeChange();
    	    //TC 44
    	    response = test.envelopeEventDownloadBrowsingStatus();
-        //TC 45 + 2
+        //TC 45
    	    test.reset();
         //initialization with all the facilities supported (without SETUP_EVENT_LIST)
         response = test.terminalProfileSession("FFFFFFFF FEFFFFFF FFFFFFFF FFFFFFFF " +
