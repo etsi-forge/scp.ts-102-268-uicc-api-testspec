@@ -70,7 +70,7 @@ public class Test_Cre_Tin_Chal extends UiccTestModel {
         /** Testcase 2                                                       */
         /*********************************************************************/
 
-        // Install Applet2; note that we don't want this method to consume any necessary 91XX -> true
+        // Install Applet2; note that we don't want this method to consume any unnecessary 91XX -> true
         response = test.installApplet(CAP_FILE_PATH, CLASS_AID_2, APPLET_AID_2, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
