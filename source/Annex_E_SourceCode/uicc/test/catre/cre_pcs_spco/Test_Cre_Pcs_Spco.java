@@ -381,7 +381,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         response = test.terminalResponse("81030105 00820282 81830100");                                    
         addResult(response.checkSw("9000"));
         
-        // Install Applet1
+        // Install Applet1; note that we don't want this method to consume any necessary 91XX -> true
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -395,7 +395,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00",    // V Maximum number of services
                            true);
-	    // Send a status command to be sure to retrieve the correct status word in the RAPDU
+	    // Send a Select command to be sure to retrieve the correct status word in the RAPDU
 		// Do not send Status, because this would turn off polling (which is coded for the start of Testcase12)
         test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch SetUpEventList command
@@ -430,7 +430,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         
         // Lock Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
         test.lockApplication(APPLET_AID_1, true);
-		// Send a status command to be sure to retrieve the correct status word in the RAPDU
+		// Send a Select command to be sure to retrieve the correct status word in the RAPDU
 		// Do not send Status, because this would turn off polling (which is coded for the start of Testcase12)
         test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Polling Off command
@@ -446,7 +446,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         
         // Make selectable Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
         test.unlockApplication(APPLET_AID_1, true);
-		// Send a status command to be sure to retrieve the correct status word in the RAPDU
+		// Send a Select command to be sure to retrieve the correct status word in the RAPDU
 		// Do not send Status, because this would turn off polling (which is coded for the start of Testcase12)
         test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Poll Interval command
@@ -486,7 +486,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         response = test.terminalResponse("81030104 00820282 81830100");                                    
         addResult(response.checkSw("9000"));
         
-        // Install Applet1
+        // Install Applet1; note that we don't want this method to consume any necessary 91XX -> true
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -500,7 +500,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
                                "00" +   // LV TAR Value(s) 
                                "00",    // V Maximum number of services
                            true);
-		// Send a status command to be sure to retrieve the correct status word in the RAPDU
+		// Send a Select command to be sure to retrieve the correct status word in the RAPDU
 		// Do not send Status, because this would turn off polling (which is coded for the start of Testcase12)
         test.sendApdu("00 A4 00 0C 02 3F 00");
         // Fetch Poll Interval command
