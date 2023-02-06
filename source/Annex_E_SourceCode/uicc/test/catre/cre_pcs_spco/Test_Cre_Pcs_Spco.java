@@ -381,7 +381,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         response = test.terminalResponse("81030105 00820282 81830100");                                    
         addResult(response.checkSw("9000"));
         
-        // Install Applet1; note that we don't want this method to consume any necessary 91XX -> true
+        // Install Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level
@@ -486,7 +486,7 @@ public class Test_Cre_Pcs_Spco extends UiccTestModel {
         response = test.terminalResponse("81030104 00820282 81830100");                                    
         addResult(response.checkSw("9000"));
         
-        // Install Applet1; note that we don't want this method to consume any necessary 91XX -> true
+        // Install Applet1; note that we don't want this method to consume any unnecessary 91XX -> true
         test.installApplet(CAP_FILE_PATH, CLASS_AID_1, APPLET_AID_1, 
                            "800A" + // TLV UICC Toolkit application specific parameters
                                "FF" +   // V Priority Level

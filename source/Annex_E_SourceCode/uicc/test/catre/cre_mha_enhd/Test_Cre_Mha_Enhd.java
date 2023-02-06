@@ -195,6 +195,7 @@ public class Test_Cre_Mha_Enhd extends UiccTestModel {
             "03FF000 0007FE300 01");
         response = test.envelopeEventDownloadFramesInformationChanged();
         addResult(response.checkSw("9000"));
+        // TC 29
         response = test.envelopeEventDownloadHCIConnectivity();
         addResult(response.checkSw("9000"));
 
